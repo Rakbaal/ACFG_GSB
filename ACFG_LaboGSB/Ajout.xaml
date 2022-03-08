@@ -1,0 +1,23 @@
+﻿<Window x:Class="ACFG_LaboGSB.Ajout"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ACFG_LaboGSB"
+        mc:Ignorable="d"
+        Title="Ajout" Height="449" Width="440">
+    <Grid Margin="0,0,10,-6">
+        <Label Content="Ajout d'un médicament : " HorizontalAlignment="Left" Margin="34,33,0,0" VerticalAlignment="Top" FontSize="18"/>
+        <Label Content="Nom commercial : " HorizontalAlignment="Left" Margin="34,72,0,0" VerticalAlignment="Top" FontSize="14"/>
+        <Label Content="Nom DCI : " HorizontalAlignment="Left" Margin="34,106,0,0" VerticalAlignment="Top" FontSize="14"/>
+        <Label Content="Type : " HorizontalAlignment="Left" Margin="34,140,0,0" VerticalAlignment="Top" FontSize="14"/>
+        <Label Content="Dosage : " HorizontalAlignment="Left" Margin="34,169,0,0" VerticalAlignment="Top" FontSize="14"/>
+        <Label Content="Description : " HorizontalAlignment="Left" Margin="34,0,0,0" VerticalAlignment="Center" FontSize="14"/>
+        <Button x:Name="Btn_Ajout" Content="Ajouter" HorizontalAlignment="Left" Margin="73,330,0,0" VerticalAlignment="Top" FontSize="18"/>
+        <TextBox x:Name="Tbx_NomCommercialAjout" HorizontalAlignment="Left" Margin="168,77,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="Tbx_NomDCIAjout" HorizontalAlignment="Left" Margin="116,111,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="Tbx_TypeAjout" HorizontalAlignment="Left" Margin="89,145,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="Tbx_DosageAjout" HorizontalAlignment="Left" Margin="106,174,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="Tbx_DescriptionAjout" HorizontalAlignment="Left" Margin="124,211,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="208" Height="98"/>
+    </Grid>
+</Window>
