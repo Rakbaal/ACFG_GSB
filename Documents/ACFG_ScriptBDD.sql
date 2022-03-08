@@ -63,7 +63,7 @@ AS
 go
 
 --Création de la procédure stockée CREATE des CRUD
-ALTER PROC PS_CREATE_MEDICAMENT
+CREATE PROC PS_CREATE_MEDICAMENT
 	@NomCommercial VARCHAR(38),
 	@NomDCI VARCHAR(38),
 	@Dosage VARCHAR(38),
@@ -84,6 +84,11 @@ AS
 		SELECT 0
 	end
 go
+
+-- Création de la procédure stockée de SELECT de tous les médicaments
+CREATE PROC PS_SELECT_ALL_MEDICAMENT
+AS
+	SELECT * FROM MEDICAMENT
 
 --Création du trigger pour Hasher le mdp en SHA512 en base
 CREATE TRIGGER TRI_HASHAGE
