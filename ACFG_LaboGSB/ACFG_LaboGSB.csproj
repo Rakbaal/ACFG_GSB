@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="logo-gsb-noir.png" />
+    <None Remove="logo.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -21,7 +21,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="logo-gsb-noir.png" />
+    <Resource Include="logo.png" />
   </ItemGroup>
 
 </Project>

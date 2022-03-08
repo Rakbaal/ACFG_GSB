@@ -1,4 +1,5 @@
 ﻿using ACFG_LaboGSB.Classes;
+using ACFG_LaboGSB.SQL;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,8 +23,6 @@ namespace ACFG_LaboGSB
     /// </summary>
     public partial class Login : Window
     {
-        private readonly MyContext _context = new MyContext();
-
         public Login()
         {
             InitializeComponent();
@@ -31,37 +30,32 @@ namespace ACFG_LaboGSB
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            //Algo pour hasher le mdp
-            string mdppropre = "sebaub273";
-            Byte[] inputBytes = Encoding.UTF8.GetBytes(mdppropre);
-            SHA512 shaM = new SHA512Managed();
-            Byte[] hashedBytes = shaM.ComputeHash(inputBytes);
-            string mdpHasher = Convert.ToBase64String(hashedBytes);
-
-            string mdppropre2 = "sebaub273";
+            //Algo pour hasher le mot de passe
+            string mdppropre = this.TextboxMdp.Text;
+            string mdpHasher = "";
             using (SHA512 sha512Hash = SHA512.Create())
             {
-                //From String to byte array
-                byte[] sourceBytes = Encoding.UTF8.GetBytes(mdppropre2);
+                //De String à une liste de Bit
+                byte[] sourceBytes = Encoding.UTF8.GetBytes(mdppropre);
                 byte[] hashBytes = sha512Hash.ComputeHash(sourceBytes);
-                string hash = BitConverter.ToString(hashBytes).Replace("-", String.Empty);
-
-                Console.WriteLine("The SHA512 hash of " + mdppropre2 + " is: " + hash);
+                mdpHasher = BitConverter.ToString(hashBytes).Replace("-", String.Empty);
             }
 
-            MessageBox.Show(hashedBytes.ToString());
+            string login = this.TextboxIdentifiant.Text;
+            int resultatProc = 0;
+            resultatProc = Requetes.PS_LOGIN_VALIDATION(login, mdpHasher);
 
+            if (resultatProc != 0)
+            {
+                Medicament Medicament = new Medicament();
+                Medicament.ShowDialog();
+            }
+            else
+            {
 
-            string mdpHasherSQL = "½BU*™Œ’.ÓÏÉJ—N¢~)ÚßÐÍÐgH¾žŸßo®AÂ2.'ô0nô7y¤z—˜mLÓcôíù";
+            }
+
             
-
-
-            _context.Add(new Visiteur() { VIS_LOGIN = this.TextboxIdentifiant.Text , VIS_MDP = mdpHasher });
-            _context.SaveChanges();
-
-
-            Medicament Medicament = new Medicament();
-            Medicament.ShowDialog();
         }
 
         private void TextboxIdentifiant_MouseEnter(object sender, MouseEventArgs e)
