@@ -28,8 +28,12 @@ namespace ACFG_LaboGSB
             InitializeComponent();
         }
 
+        #region Bouton
+
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            this.LabelErreur.Visibility = Visibility.Hidden;
+
             //Algo pour hasher le mot de passe
             string mdppropre = this.TextboxMdp.Text;
             string mdpHasher = "";
@@ -52,11 +56,17 @@ namespace ACFG_LaboGSB
             }
             else
             {
-
+                this.LabelErreur.Visibility = Visibility.Visible;
+                this.TextboxIdentifiant.Text = "Identifiant";
+                this.TextboxMdp.Text = "Mot de passe";
             }
 
             
         }
+
+        #endregion
+
+        #region TextBox
 
         private void TextboxIdentifiant_MouseEnter(object sender, MouseEventArgs e)
         {
@@ -99,5 +109,42 @@ namespace ACFG_LaboGSB
                 this.TextboxMdp.Text = "Mot de passe";
             }
         }
+
+        private void TextboxMdp_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                this.LabelErreur.Visibility = Visibility.Hidden;
+
+                //Algo pour hasher le mot de passe
+                string mdppropre = this.TextboxMdp.Text;
+                string mdpHasher = "";
+                using (SHA512 sha512Hash = SHA512.Create())
+                {
+                    //De String à une liste de Bit
+                    byte[] sourceBytes = Encoding.UTF8.GetBytes(mdppropre);
+                    byte[] hashBytes = sha512Hash.ComputeHash(sourceBytes);
+                    mdpHasher = BitConverter.ToString(hashBytes).Replace("-", String.Empty);
+                }
+
+                string login = this.TextboxIdentifiant.Text;
+                int resultatProc = 0;
+                resultatProc = Requetes.PS_LOGIN_VALIDATION(login, mdpHasher);
+
+                if (resultatProc != 0)
+                {
+                    Medicament Medicament = new Medicament();
+                    Medicament.ShowDialog();
+                }
+                else
+                {
+                    this.LabelErreur.Visibility = Visibility.Visible;
+                    this.TextboxIdentifiant.Text = "Identifiant";
+                    this.TextboxMdp.Text = "Mot de passe";
+                }
+            }
+        }
+
+        #endregion
     }
 }

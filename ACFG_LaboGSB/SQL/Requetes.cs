@@ -10,6 +10,8 @@ namespace ACFG_LaboGSB.SQL
 {
     class Requetes
     {
+        #region PS - Login
+
         public static int PS_LOGIN_VALIDATION(string login, string mdpHasher)
         {
             SqlCommand myCommand = null;
@@ -33,7 +35,7 @@ namespace ACFG_LaboGSB.SQL
             }
             catch (Exception erreur) // En cas d'erreur un message s'affiche sur la console
             {
-                Console.WriteLine("Erreur lors de la requête SELECT ListeLigneCGV " + erreur.Message);
+                Console.WriteLine("Erreur lors de la procédure stockée de validation du login avec le mot de passe : " + erreur.Message);
                 throw;
             }
 
@@ -41,7 +43,21 @@ namespace ACFG_LaboGSB.SQL
             {
                 conn.Close();
             }
-            return visiteur.VIS_ID;
+
+            if (visiteur != null)
+            {
+                return visiteur.VIS_ID;
+            }
+            else
+            {
+                return 0;
+            }
         }
+
+        #endregion
+
+        #region PS - Médicaments
+
+        #endregion
     }
 }

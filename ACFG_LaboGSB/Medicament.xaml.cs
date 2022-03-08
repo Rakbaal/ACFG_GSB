@@ -22,6 +22,13 @@ namespace ACFG_LaboGSB
         public Medicament()
         {
             InitializeComponent();
+
+
+        }
+
+        private void DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
         }
     }
 }
