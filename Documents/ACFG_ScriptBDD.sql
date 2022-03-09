@@ -72,23 +72,38 @@ CREATE PROC PS_CREATE_MEDICAMENT
 AS
 	SET ROWCOUNT 0
 	IF exists(SELECT MED_NOM_COMMERCIAL FROM MEDICAMENT WHERE MED_NOM_COMMERCIAL = @NomCommercial)
-	begin
-		-- Annule l'insertion si le libellé existe déjà
-		SELECT 1
-	end
+		begin
+			-- Annule l'insertion si le libellé existe déjà
+			SELECT 1
+		end
 	ELSE
-	begin
-		-- Effectue l'insertion si le libellé n'existe pas
-		INSERT INTO MEDICAMENT(MED_NOM_COMMERCIAL, MED_NOM_DCI, MED_DOSAGE, MED_DESCRIPTION, MED_TYPE) 
-			VALUES(@NomCommercial, @NomDCI, @Dosage, @Description, @Type)
-		SELECT 0
-	end
+		begin
+			-- Effectue l'insertion si le libellé n'existe pas
+			INSERT INTO MEDICAMENT(MED_NOM_COMMERCIAL, MED_NOM_DCI, MED_DOSAGE, MED_DESCRIPTION, MED_TYPE) 
+				VALUES(@NomCommercial, @NomDCI, @Dosage, @Description, @Type)
+			SELECT 0
+		end
 go
 
 -- Création de la procédure stockée de SELECT de tous les médicaments
 CREATE PROC PS_SELECT_ALL_MEDICAMENT
 AS
-	SELECT * FROM MEDICAMENT
+	SELECT MED_ID, MED_NOM_COMMERCIAL, MED_NOM_DCI, MED_DOSAGE, MED_TYPE
+	FROM MEDICAMENT
+
+
+-- Suppression d'un médicaments
+CREATE PROC PS_DELETE_MEDICAMENT
+	@IdMedicament INT
+AS
+	IF exists(SELECT MED_ID FROM MEDICAMENT WHERE MED_ID = @IdMedicament)
+		begin
+			DELETE FROM MEDICAMENT 
+			WHERE MED_ID = @IdMedicament
+		end
+
+exec PS_DELETE_MEDICAMENT 
+	
 
 --Création du trigger pour Hasher le mdp en SHA512 en base
 CREATE TRIGGER TRI_HASHAGE
