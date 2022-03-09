@@ -51,8 +51,8 @@ namespace ACFG_LaboGSB
 
             if (resultatProc != 0)
             {
-                Medicament Medicament = new Medicament();
-                Medicament.ShowDialog();
+                MedicamentF MedicamentF = new MedicamentF();
+                MedicamentF.ShowDialog();
             }
             else
             {
@@ -133,8 +133,8 @@ namespace ACFG_LaboGSB
 
                 if (resultatProc != 0)
                 {
-                    Medicament Medicament = new Medicament();
-                    Medicament.ShowDialog();
+                    MedicamentF MedicamentF = new MedicamentF();
+                    MedicamentF.ShowDialog();
                 }
                 else
                 {
