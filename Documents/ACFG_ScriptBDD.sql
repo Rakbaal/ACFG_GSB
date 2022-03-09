@@ -115,10 +115,16 @@ AS
 	END
 
 
--- Création de la procédure stockée de SELECT de tous les médicaments
+-- Création de la procédure stockée de SELECT de tous les médicaments SANS description
 CREATE PROC PS_SELECT_ALL_MEDICAMENT
 AS
 	SELECT MED_ID, MED_NOM_COMMERCIAL, MED_NOM_DCI, MED_DOSAGE, MED_TYPE
+	FROM MEDICAMENT
+
+-- Création de la procédure stockée de SELECT de tous les médicaments AVEC description
+CREATE PROC PS_SELECT_ALL_MEDICAMENT_DESCRIPTION
+AS
+	SELECT MED_ID, MED_NOM_COMMERCIAL, MED_NOM_DCI, MED_DOSAGE, MED_TYPE, MED_DESCRIPTION
 	FROM MEDICAMENT
 
 
