@@ -68,45 +68,51 @@ namespace ACFG_LaboGSB
 
         #region TextBox
 
-        private void TextboxIdentifiant_MouseEnter(object sender, MouseEventArgs e)
-        {
-            if (this.TextboxIdentifiant.Text == "Identifiant")
-            {
-                this.TextboxIdentifiant.Text = "";
-            }
-        }
 
         private void TextboxIdentifiant_MouseLeave(object sender, MouseEventArgs e)
         {
-            if (this.TextboxIdentifiant.Text == "")
+            if (this.TextboxIdentifiant.IsFocused == true)
             {
-                this.TextboxIdentifiant.Text = "Identifiant";
+
             }
+            else
+            {
+                if (this.TextboxIdentifiant.Text == "")
+                {
+                    this.TextboxIdentifiant.Text = "Identifiant";
+                }
+            }
+            
         }
 
         private void TextboxIdentifiant_TextChanged(object sender, TextChangedEventArgs e)
         {
-
+            if (this.TextboxIdentifiant.IsFocused == true)
+            {
+                if (this.TextboxIdentifiant.Text == "Identifiant")
+                {
+                    this.TextboxIdentifiant.Text = "";
+                }
+            }
         }
 
         private void TextboxMdp_TextChanged(object sender, TextChangedEventArgs e)
         {
-
         }
 
-        private void TextboxMdp_MouseEnter(object sender, MouseEventArgs e)
-        {
-            if (this.TextboxMdp.Text == "Mot de passe")
-            {
-                this.TextboxMdp.Text = "";
-            }
-        }
 
         private void TextboxMdp_MouseLeave(object sender, MouseEventArgs e)
         {
-            if (this.TextboxMdp.Text == "")
+            if (this.TextboxMdp.IsFocused == true)
             {
-                this.TextboxMdp.Text = "Mot de passe";
+
+            }
+            else
+            {
+                if (this.TextboxMdp.Text == "")
+                {
+                    this.TextboxMdp.Text = "Mot de passe";
+                }
             }
         }
 
@@ -146,5 +152,47 @@ namespace ACFG_LaboGSB
         }
 
         #endregion
+
+        private void StackPanel_GotFocus(object sender, RoutedEventArgs e)
+        {
+        }
+
+        private void TextboxIdentifiant_GotFocus(object sender, RoutedEventArgs e)
+        {
+            if (this.TextboxMdp.IsFocused == false)
+            {
+                if (this.TextboxMdp.Text == "")
+                {
+                    this.TextboxMdp.Text = "Mot de passe";
+                }
+            }
+
+            if (this.TextboxIdentifiant.IsFocused == true)
+            {
+                if (this.TextboxIdentifiant.Text == "Identifiant")
+                {
+                    this.TextboxIdentifiant.Text = "";
+                }
+            }
+        }
+
+        private void TextboxMdp_GotFocus(object sender, RoutedEventArgs e)
+        {
+            if (this.TextboxIdentifiant.IsFocused == false)
+            {
+                if (this.TextboxIdentifiant.Text == "")
+                {
+                    this.TextboxIdentifiant.Text = "Identifiant";
+                }
+            }
+
+            if (this.TextboxMdp.IsFocused == true)
+            {
+                if (this.TextboxMdp.Text == "Mot de passe")
+                {
+                    this.TextboxMdp.Text = "";
+                }
+            }
+        }
     }
 }
