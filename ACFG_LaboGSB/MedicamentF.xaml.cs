@@ -73,7 +73,11 @@ namespace ACFG_LaboGSB
             }
 
         }
-
+        private void ButtonAjouter_Click(object sender, RoutedEventArgs e)
+        {
+            Ajout ajout = new Ajout();
+            ajout.ShowDialog();
+        }
         private void ButtonSupprimer_MouseEnter(object sender, MouseEventArgs e)
         {
             //this.ButtonSupprimer.Background = Color.FromRgb("255,105,105");
@@ -89,5 +93,7 @@ namespace ACFG_LaboGSB
         }
 
         #endregion
+
+        
     }
 }
