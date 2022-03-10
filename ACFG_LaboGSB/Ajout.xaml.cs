@@ -23,5 +23,15 @@ namespace ACFG_LaboGSB
         {
             InitializeComponent();
         }
+
+        private void Btn_Ajout_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

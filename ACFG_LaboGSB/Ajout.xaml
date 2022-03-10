@@ -13,11 +13,12 @@
         <Label Content="Type : " HorizontalAlignment="Left" Margin="34,140,0,0" VerticalAlignment="Top" FontSize="14"/>
         <Label Content="Dosage : " HorizontalAlignment="Left" Margin="34,169,0,0" VerticalAlignment="Top" FontSize="14"/>
         <Label Content="Description : " HorizontalAlignment="Left" Margin="34,0,0,0" VerticalAlignment="Center" FontSize="14"/>
-        <Button x:Name="Btn_Ajout" Content="Ajouter" HorizontalAlignment="Left" Margin="73,330,0,0" VerticalAlignment="Top" FontSize="18"/>
+        <Button x:Name="Btn_Ajout" Content="Ajouter" HorizontalAlignment="Left" Margin="73,330,0,0" VerticalAlignment="Top" FontSize="18" Click="Btn_Ajout_Click"/>
         <TextBox x:Name="Tbx_NomCommercialAjout" HorizontalAlignment="Left" Margin="168,77,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <TextBox x:Name="Tbx_NomDCIAjout" HorizontalAlignment="Left" Margin="116,111,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <TextBox x:Name="Tbx_TypeAjout" HorizontalAlignment="Left" Margin="89,145,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <TextBox x:Name="Tbx_DosageAjout" HorizontalAlignment="Left" Margin="106,174,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <TextBox x:Name="Tbx_DescriptionAjout" HorizontalAlignment="Left" Margin="124,211,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="208" Height="98"/>
+        <Button Content="Retour" HorizontalAlignment="Left" Margin="275,330,0,0" VerticalAlignment="Top" FontSize="18" Click="Button_Click"/>
     </Grid>
 </Window>
