@@ -62,7 +62,7 @@ AS
 	AND VIS_MDP = @Mdp
 go
 
---Création de la procédure stockée CREATE des CRUD
+-- Création de la procédure stockée CREATE des CRUD
 CREATE PROC PS_CREATE_MEDICAMENT
 	@NomCommercial VARCHAR(38),
 	@NomDCI VARCHAR(38),
@@ -84,6 +84,36 @@ AS
 			SELECT 0
 		end
 go
+
+-- Création de la procédure stockée UPDATE des CRUD
+CREATE PROC PS_UPDATE_MEDICAMENT
+	@id int,
+	@NomCommercial VARCHAR(38),
+	@NomDCI VARCHAR(38),
+	@Dosage VARCHAR(38),
+	@Description TEXT,
+	@Type VARCHAR(38)
+AS
+	declare @placeHolder VARCHAR(38)
+	BEGIN
+		SET ROWCOUNT 0
+		SELECT @placeHolder = MED_NOM_COMMERCIAL FROM MEDICAMENT WHERE MED_ID = @id
+		-- Vérifie que la modification effectuée, si elle change le nom, ne correspond pas à un nom de
+		-- médicament déjà existant
+		IF @NomCommercial != @placeHolder and @NomCommercial in (SELECT MED_NOM_COMMERCIAL FROM MEDICAMENT)
+			BEGIN
+				SELECT 1 AS 'stateMessage'
+			END
+		-- Sinon, effectue la modification
+		ELSE
+			BEGIN
+				UPDATE MEDICAMENT
+				SET MED_NOM_COMMERCIAL = @NomCommercial, MED_NOM_DCI = @NomDCI, MED_DOSAGE = @Dosage, MED_DESCRIPTION = @Description, MED_TYPE = @Type
+				WHERE MED_ID = @id
+				SELECT 0 as 'stateMessage'
+			END
+	END
+
 
 -- Création de la procédure stockée de SELECT de tous les médicaments
 CREATE PROC PS_SELECT_ALL_MEDICAMENT
