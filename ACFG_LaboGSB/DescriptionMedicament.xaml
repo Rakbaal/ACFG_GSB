@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="DescriptionMedicament" Height="450" Width="800">
     <Grid>
-        <Label Content="Déscription détaillé :" HorizontalAlignment="Left" Margin="36,27,0,0" VerticalAlignment="Top" FontSize="16"/>
+        <Label Content="Description détaillée :" HorizontalAlignment="Left" Margin="36,27,0,0" VerticalAlignment="Top" FontSize="16" Width="184"/>
         <Label Content="Nom commercial : " HorizontalAlignment="Left" Margin="34,72,0,0" VerticalAlignment="Top" FontSize="14"/>
         <Label Content="Nom DCI : " HorizontalAlignment="Left" Margin="34,106,0,0" VerticalAlignment="Top" FontSize="14"/>
         <Label Content="Type : " HorizontalAlignment="Left" Margin="34,140,0,0" VerticalAlignment="Top" FontSize="14"/>
