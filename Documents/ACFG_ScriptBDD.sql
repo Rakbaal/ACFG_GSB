@@ -62,7 +62,7 @@ AS
 	AND VIS_MDP = @Mdp
 go
 
---Création de la procédure stockée CREATE des CRUD
+-- Création de la procédure stockée CREATE des CRUD
 CREATE PROC PS_CREATE_MEDICAMENT
 	@NomCommercial VARCHAR(38),
 	@NomDCI VARCHAR(38),
@@ -74,16 +74,31 @@ AS
 	IF exists(SELECT MED_NOM_COMMERCIAL FROM MEDICAMENT WHERE MED_NOM_COMMERCIAL = @NomCommercial)
 	begin
 		-- Annule l'insertion si le libellé existe déjà
-		SELECT 1
+		SELECT 1 as 'stateMessage'
 	end
 	ELSE
 	begin
 		-- Effectue l'insertion si le libellé n'existe pas
 		INSERT INTO MEDICAMENT(MED_NOM_COMMERCIAL, MED_NOM_DCI, MED_DOSAGE, MED_DESCRIPTION, MED_TYPE) 
 			VALUES(@NomCommercial, @NomDCI, @Dosage, @Description, @Type)
-		SELECT 0
+		SELECT 0 as 'stateMessage'
 	end
 go
+
+-- Création de la procédure stockée UPDATE des CRUD
+CREATE PROC PS_UPDATE_MEDICAMENT
+	@id int,
+	@NomCommercial VARCHAR(38),
+	@NomDCI VARCHAR(38),
+	@Dosage VARCHAR(38),
+	@Description TEXT,
+	@Type VARCHAR(38)
+AS
+	SET ROWCOUNT 0
+	UPDATE MEDICAMENT
+	SET MED_NOM_COMMERCIAL = @NomCommercial, MED_NOM_DCI = @NomDCI, MED_DOSAGE = @Dosage, MED_DESCRIPTION = @Description, MED_TYPE = @Type
+	WHERE MED_ID = @id
+
 
 -- Création de la procédure stockée de SELECT de tous les médicaments
 CREATE PROC PS_SELECT_ALL_MEDICAMENT
