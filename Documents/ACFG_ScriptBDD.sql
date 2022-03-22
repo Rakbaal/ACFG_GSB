@@ -27,6 +27,24 @@ CREATE TABLE MEDICAMENT (
  )
  go
 
+--Création du trigger pour Hasher le mdp en SHA512 en base
+CREATE TRIGGER TRI_HASHAGE
+ON VISITEUR
+INSTEAD OF INSERT
+AS
+BEGIN
+	SET NOCOUNT ON;
+
+	DECLARE @MDPHASH VARCHAR(1000)
+	
+	SELECT @MDPHASH = CONVERT(NVARCHAR(512),HashBytes('SHA2_512', VIS_MDP),2) FROM inserted 
+
+	  INSERT dbo.VISITEUR(VIS_PRENOM, VIS_NOM, VIS_LOGIN, VIS_MDP)
+		SELECT VIS_PRENOM, VIS_NOM, VIS_LOGIN, @MDPHASH
+		FROM inserted
+END
+go
+
 --Insertion Table VISITEUR
 INSERT INTO VISITEUR (VIS_PRENOM, VIS_NOM, VIS_MDP, VIS_LOGIN)
 VALUES ('Sebastien', 'AUBERT', 'sebaub273', 'sAUB')
@@ -113,7 +131,7 @@ AS
 				SELECT 0 as 'stateMessage'
 			END
 	END
-
+go
 
 -- Création de la procédure stockée de SELECT de tous les médicaments SANS description
 CREATE PROC PS_SELECT_ALL_MEDICAMENT
@@ -131,6 +149,7 @@ AS
 			FROM MEDICAMENT
 			WHERE MED_ID = @IdMedicament
 		end
+go
 
 -- Suppression d'un médicaments
 CREATE PROC PS_DELETE_MEDICAMENT
@@ -141,6 +160,7 @@ AS
 			DELETE FROM MEDICAMENT 
 			WHERE MED_ID = @IdMedicament
 		end
+
 
 
 	
