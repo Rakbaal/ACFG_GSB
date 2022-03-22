@@ -100,6 +100,45 @@ namespace ACFG_LaboGSB.SQL
             return listMedicament;
         }
 
+        public static Medicament PS_MEDICAMENT_DESCRIPTION(int id)
+        {
+            SqlCommand myCommand = null;
+            SqlDataReader mySqlDataReader = null;
+            SqlConnection conn = BDD.openBDDApplication("ACFG_LaboGSB");
+            string Requete = "exec PS_SELECT_MEDICAMENT_DESCRIPTION '"+ id + "'";
+            Medicament medicament = null;
+
+            try // On essaye d'executer la requête
+            {
+                myCommand = new SqlCommand(Requete, conn);
+                mySqlDataReader = myCommand.ExecuteReader();
+                while (mySqlDataReader.Read())
+                {
+                    if (mySqlDataReader["MED_ID"] != DBNull.Value)
+                    {
+                        medicament = new Medicament();
+                        medicament.MED_ID = Convert.ToInt32(mySqlDataReader["MED_ID"]);
+                        medicament.MED_NOM_COMMERCIAL = Convert.ToString(mySqlDataReader["MED_NOM_COMMERCIAL"]);
+                        medicament.MED_NOM_DCI = Convert.ToString(mySqlDataReader["MED_NOM_DCI"]);
+                        medicament.MED_DOSAGE = Convert.ToString(mySqlDataReader["MED_DOSAGE"]);
+                        medicament.MED_TYPE = Convert.ToString(mySqlDataReader["MED_TYPE"]);
+                        medicament.MED_DESCRIPTION = Convert.ToString(mySqlDataReader["MED_DESCRIPTION"]);
+                    }
+                }
+            }
+            catch (Exception erreur) // En cas d'erreur un message s'affiche sur la console
+            {
+                Console.WriteLine("Erreur lors de la requête SELECT ListeMedicament " + erreur.Message);
+                throw;
+            }
+
+            finally
+            {
+                conn.Close();
+            }
+            return medicament;
+        }
+
         public static void PS_DELETE_MEDICAMENT(Medicament medicament)
         {
             SqlCommand myCommand = null;

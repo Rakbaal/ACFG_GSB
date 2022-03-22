@@ -17,7 +17,7 @@ namespace ACFG_LaboGSB.Classes
         {
             SqlConnection conn = new SqlConnection();
             conn.ConnectionString =
-            "Data Source=LAPTOP-VFE;" +
+            "Data Source=TGA_laptop;" +
             "Initial Catalog = ACFG_LaboGSB;" +
             "User id=sa;" +
             "Password=info";
