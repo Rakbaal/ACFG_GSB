@@ -25,7 +25,6 @@ namespace ACFG_LaboGSB
         {
             InitializeComponent();
             ActualiserDataGrid();
-            
         }
 
         #region Méthodes 
@@ -54,7 +53,7 @@ namespace ACFG_LaboGSB
 
                 //On demande la confirmation à l'utilisateur
                 string messageErreur = "Voulez-vous vraiment supprimer le médicament " + medicamentSuppression.MED_NOM_COMMERCIAL + " ?";
-                MessageBoxResult result = MessageBox.Show(messageErreur, "Confirmation", MessageBoxButton.YesNo, MessageBoxImage.Hand);
+                MessageBoxResult result = MessageBox.Show(messageErreur, "Confirmation", MessageBoxButton.YesNo, MessageBoxImage.Exclamation);
 
                 if (result == MessageBoxResult.Yes)
                 {
@@ -77,6 +76,7 @@ namespace ACFG_LaboGSB
         {
             Ajout ajout = new Ajout();
             ajout.ShowDialog();
+            
         }
         private void ButtonSupprimer_MouseEnter(object sender, MouseEventArgs e)
         {
@@ -95,6 +95,7 @@ namespace ACFG_LaboGSB
 
         #endregion
 
+
         private void Window_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             // lors d'un double clique sur une ligne ouvre un le formulaire de détail
@@ -103,6 +104,12 @@ namespace ACFG_LaboGSB
             var ligne = DataGridMedicaments.Items[index];
             DescriptionMedicament descriptionMedicament = new DescriptionMedicament();
             descriptionMedicament.Show();
+        }
+
+        private void Window_Activated(object sender, EventArgs e)
+        {
+            ActualiserDataGrid();
+
         }
     }
 }

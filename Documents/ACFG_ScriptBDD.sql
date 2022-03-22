@@ -147,6 +147,7 @@ AS
 		end
 go
 
+
 -- Création de la procédure stockée UPDATE des CRUD
 CREATE PROC PS_UPDATE_MEDICAMENT
 	@id int,
