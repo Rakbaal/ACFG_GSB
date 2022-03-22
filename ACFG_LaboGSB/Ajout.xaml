@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ACFG_LaboGSB"
         mc:Ignorable="d"
-        Title="Ajout" Height="449" Width="440">
+        Title="Ajout" Height="449" Width="440" WindowStartupLocation="CenterScreen">
     <Grid Margin="0,0,10,-6">
         <Label Content="Ajout d'un médicament : " HorizontalAlignment="Left" Margin="34,33,0,0" VerticalAlignment="Top" FontSize="18"/>
         <Label Content="Nom commercial : " HorizontalAlignment="Left" Margin="34,72,0,0" VerticalAlignment="Top" FontSize="14"/>
