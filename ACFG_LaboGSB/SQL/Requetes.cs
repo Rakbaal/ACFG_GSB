@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ACFG_LaboGSB.Classes;
 
 namespace ACFG_LaboGSB.SQL
 {
@@ -105,7 +104,7 @@ namespace ACFG_LaboGSB.SQL
             SqlCommand myCommand = null;
             SqlDataReader mySqlDataReader = null;
             SqlConnection conn = BDD.openBDDApplication("ACFG_LaboGSB");
-            string Requete = "exec PS_SELECT_MEDICAMENT_DESCRIPTION '"+ id + "'";
+            string Requete = "exec PS_SELECT_MEDICAMENT_DESCRIPTION '" + id + "'";
             Medicament medicament = null;
 
             try // On essaye d'executer la requête
@@ -167,15 +166,31 @@ namespace ACFG_LaboGSB.SQL
 
         public static void PS_UPDATE_MEDICAMENT(Medicament medicament)
         {
-            SqlConnection connection = BDD.openBDDApplication("ACFG_LaboGSB");
+            SqlCommand myCommand = null;
+            SqlDataReader mySqlDataReader = null;
+            SqlConnection conn = BDD.openBDDApplication("ACFG_LaboGSB");
+            var description = medicament.MED_DESCRIPTION.Replace("'", "''");
 
             string Requete = $"exec PS_UPDATE_MEDICAMENT " +
-                $"{medicament.MED_ID} " +
-                $"{medicament.MED_NOM_COMMERCIAL} " +
-                $"{medicament.MED_NOM_DCI} " +
-                $"{medicament.MED_DOSAGE} " +
-                $"{medicament.MED_DESCRIPTION} " +
-                $"{medicament.MED_TYPE}";
+                $"{medicament.MED_ID}, " +
+                $"'{medicament.MED_NOM_COMMERCIAL}', " +
+                $"'{medicament.MED_NOM_DCI}', " +
+                $"'{medicament.MED_DOSAGE}', " +
+                $"'{description}', " +
+                $"'{medicament.MED_TYPE}'";
+
+            try
+            {
+                myCommand = new SqlCommand(Requete, conn);
+                mySqlDataReader = myCommand.ExecuteReader();
+                mySqlDataReader.Read();
+            }
+            catch (Exception erreur)
+            {
+                Console.WriteLine("Erreur lors de la requête UPDATE Medicament " + erreur.Message);
+                throw;
+            }
+        }
 
         public static void PS_CREATE_MEDICAMENT(Medicament medicament)
         {
@@ -191,14 +206,12 @@ namespace ACFG_LaboGSB.SQL
                 myCommand = new SqlCommand(Requete, conn);
                 mySqlDataReader = myCommand.ExecuteReader();
                 mySqlDataReader.Read();
-
             }
             catch (Exception erreur) // En cas d'erreur un message s'affiche sur la console
             {
                 Console.WriteLine("Erreur lors de la requête CREATE Medicament " + erreur.Message);
                 throw;
             }
-
             finally
             {
                 conn.Close();
