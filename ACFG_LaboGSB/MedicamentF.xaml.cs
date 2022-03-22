@@ -95,7 +95,7 @@ namespace ACFG_LaboGSB
 
         #endregion
 
-        private void Window_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        private void DataGridMedicaments_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             this.DataGridMedicaments.SelectionMode = DataGridSelectionMode.Single;
             int index = DataGridMedicaments.SelectedIndex;
