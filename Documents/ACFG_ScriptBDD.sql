@@ -142,7 +142,7 @@ AS
 			WHERE MED_ID = @IdMedicament
 		end
 
-exec PS_DELETE_MEDICAMENT 
+
 	
 
 --Création du trigger pour Hasher le mdp en SHA512 en base

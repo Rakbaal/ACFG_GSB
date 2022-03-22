@@ -13,13 +13,16 @@
             <ColumnDefinition Width="118*"/>
         </Grid.ColumnDefinitions>
         <TextBlock HorizontalAlignment="Left" Margin="393,182,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="44" Width="128" Grid.Column="1"><Run Language="fr-fr" Text="Login"/></TextBlock>
-        <TextBox x:Name="TextboxIdentifiant" HorizontalAlignment="Left" Text="Identifiant" TextWrapping="Wrap" VerticalAlignment="Top" Width="165" TextAlignment="Center" Margin="66,234,0,0"  MouseLeave="TextboxIdentifiant_MouseLeave" FontFamily="Malgun Gothic" Grid.ColumnSpan="2" TextChanged="TextboxIdentifiant_TextChanged" Height="20" GotFocus="TextboxIdentifiant_GotFocus"/>
-        <TextBox x:Name="TextboxMdp" HorizontalAlignment="Left" Margin="66,273,0,0" Text="Mot de passe" TextWrapping="Wrap" VerticalAlignment="Top" Width="164" TextAlignment="Center" FontFamily="Malgun Gothic" TextChanged="TextboxMdp_TextChanged" MouseLeave="TextboxMdp_MouseLeave" Height="19" Grid.ColumnSpan="2" KeyDown="TextboxMdp_KeyDown" GotFocus="TextboxMdp_GotFocus"/>
+        <TextBox x:Name="TextboxIdentifiant" HorizontalAlignment="Left"  TextWrapping="Wrap" VerticalAlignment="Top" Width="165" TextAlignment="Center" Margin="66,234,0,0"  MouseLeave="TextboxIdentifiant_MouseLeave" FontFamily="Malgun Gothic" Grid.ColumnSpan="2" TextChanged="TextboxIdentifiant_TextChanged" Height="20" GotFocus="TextboxIdentifiant_GotFocus"/>
+
         <Button x:Name="ButtonValider" Content="Valider" HorizontalAlignment="Left" Margin="88,336,0,0" VerticalAlignment="Top" Height="26" Width="120" Click="Button_Click" FontFamily="Malgun Gothic" Grid.ColumnSpan="2" Cursor="Hand"/>
         <TextBlock HorizontalAlignment="Left" Margin="24,15,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="62" Width="248" FontSize="48" FontFamily="Malgun Gothic" TextAlignment="Center" Grid.ColumnSpan="2" FontWeight="Normal"><Run Language="fr-fr" Text="Connexion"/></TextBlock>
         <Image x:Name="ImageGSB" HorizontalAlignment="Left" Height="124" Margin="67,94,0,0" VerticalAlignment="Top" Width="170" Source="/logo.png" Grid.ColumnSpan="2"/>
         <Label x:Name="LabelErreur" Content="*Votre identifiant ou mot de passe est incorrect" HorizontalAlignment="Left" Margin="19,297,0,0" VerticalAlignment="Top" Width="259" Background="White" Foreground="Red" Height="39" Grid.ColumnSpan="2" Visibility="Hidden"/>
         <Label Grid.Column="1" Content="Edwin" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="371,304,0,0"/>
-        
+        <PasswordBox x:Name="TextboxMdp" HorizontalAlignment="Left"  Margin="66,297,0,0" VerticalAlignment="Top" Width="164" FontFamily="Malgun Gothic" MouseLeave="TextboxMdp_MouseLeave" Height="19" Grid.ColumnSpan="2" KeyDown="TextboxMdp_KeyDown" GotFocus="TextboxMdp_GotFocus" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+        <Label Content="Identifiant" HorizontalAlignment="Left" Margin="116,208,0,0" VerticalAlignment="Top" Width="64" Grid.ColumnSpan="2"/>
+        <Label Content="Mot de passe" HorizontalAlignment="Left" Margin="106,271,0,0" VerticalAlignment="Top" Width="84" Grid.ColumnSpan="2"/>
+
     </Grid>
 </Window>
