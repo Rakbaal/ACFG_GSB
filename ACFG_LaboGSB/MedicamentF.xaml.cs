@@ -89,11 +89,19 @@ namespace ACFG_LaboGSB
 
         private void DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            
         }
+
 
         #endregion
 
-        
+        private void Window_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            this.DataGridMedicaments.SelectionMode = DataGridSelectionMode.Single;
+            int index = DataGridMedicaments.SelectedIndex;
+            var ligne = DataGridMedicaments.Items[index];
+            DescriptionMedicament descriptionMedicament = new DescriptionMedicament();
+            descriptionMedicament.Show();
+        }
     }
 }

@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using ACFG_LaboGSB.SQL;
 
 namespace ACFG_LaboGSB
 {
@@ -28,6 +29,7 @@ namespace ACFG_LaboGSB
             Tbx_Description_Type.Visibility = Visibility.Hidden;
             Tbx_Description_Dosage.Visibility = Visibility.Hidden;
             Tbx_Decription_Description.Visibility = Visibility.Hidden;
+
         }
 
         private void Btn_Modifier_Click(object sender, RoutedEventArgs e)
