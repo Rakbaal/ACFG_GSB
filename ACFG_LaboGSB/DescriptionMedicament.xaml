@@ -12,19 +12,18 @@
         <Label Content="Nom DCI : " HorizontalAlignment="Left" Margin="34,106,0,0" VerticalAlignment="Top" FontSize="14"/>
         <Label Content="Type : " HorizontalAlignment="Left" Margin="34,140,0,0" VerticalAlignment="Top" FontSize="14"/>
         <Label Content="Dosage : " HorizontalAlignment="Left" Margin="34,174,0,0" VerticalAlignment="Top" FontSize="14" RenderTransformOrigin="-0.246,0.989"/>
-        <Label Content="Description : " HorizontalAlignment="Left" Margin="34,0,0,0" VerticalAlignment="Center" FontSize="14"/>
+        <Label Content="Description : " HorizontalAlignment="Left" Margin="34,208,0,0" VerticalAlignment="Top" FontSize="14"/>
         <Label x:Name="Lbl_Description_NomCommerciale" Content="Label" HorizontalAlignment="Left" Margin="189,72,0,0" VerticalAlignment="Top" FontSize="14"/>
         <Label x:Name="Lbl_Description_NomDCI" Content="Label" HorizontalAlignment="Left" Margin="189,106,0,0" VerticalAlignment="Top" FontSize="14"/>
         <Label x:Name="Lbl_Description_Type" Content="Label" HorizontalAlignment="Left" Margin="189,140,0,0" VerticalAlignment="Top" FontSize="14"/>
         <Label x:Name="Lbl_Description_Dosage" Content="Label" HorizontalAlignment="Left" Margin="189,174,0,0" VerticalAlignment="Top" FontSize="14" RenderTransformOrigin="-0.246,0.989"/>
-        <Label x:Name="Lbl_Description_Description" Content="Label" HorizontalAlignment="Left" Margin="189,0,0,0" VerticalAlignment="Center" FontSize="14"/>
+        <Label x:Name="Lbl_Description_Description" Content="Label" HorizontalAlignment="Left" Margin="189,208,0,0" VerticalAlignment="Top" FontSize="14"/>
         <Button x:Name="Btn_Modifier" Content="Modifier" HorizontalAlignment="Left" Margin="36,262,0,0" VerticalAlignment="Top" FontSize="16" Click="Btn_Modifier_Click"/>
         <Button x:Name="Btn_Valider" Content="Valider" HorizontalAlignment="Left" Margin="168,262,0,0" VerticalAlignment="Top" FontSize="16" Click="Btn_Valider_Click"/>
         <TextBox x:Name="Tbx_Description_NomCommercial" HorizontalAlignment="Left" Margin="189,72,0,0" Text="TextBox" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" FontSize="14"/>
         <TextBox x:Name="Tbx_Description_NomDCI" HorizontalAlignment="Left" Margin="189,106,0,0" Text="TextBox" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" FontSize="14"/>
         <TextBox x:Name="Tbx_Description_Type" HorizontalAlignment="Left" Margin="189,140,0,0" Text="TextBox" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" FontSize="14"/>
         <TextBox x:Name="Tbx_Description_Dosage" HorizontalAlignment="Left" Margin="189,174,0,0" Text="TextBox" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" FontSize="14"/>
-        <TextBox x:Name="Tbx_Decription_Description" HorizontalAlignment="Left" Margin="189,211,0,0" Text="TextBox" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" FontSize="14"/>
-
+        <TextBox x:Name="Tbx_Decription_Description" HorizontalAlignment="Left" Margin="189,208,0,0" Text="TextBox" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" FontSize="14"/>
     </Grid>
 </Window>

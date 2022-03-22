@@ -116,24 +116,9 @@ CREATE PROC PS_UPDATE_MEDICAMENT
 AS
 	declare @placeHolder VARCHAR(38)
 	BEGIN
-		SET ROWCOUNT 0
-		SELECT @placeHolder = MED_NOM_COMMERCIAL FROM MEDICAMENT WHERE MED_ID = @id
-		-- Vérifie que la modification effectuée, si elle change le nom, ne correspond pas à un nom de
-		-- médicament déjà existant
-		IF @NomCommercial != @placeHolder and @NomCommercial in (SELECT MED_NOM_COMMERCIAL FROM MEDICAMENT)
-			BEGIN
-				-- Renvoie un code 1 pour "Exécution arrêtée"
-				SELECT 1 AS 'stateMessage'
-			END
-		-- Sinon, effectue la modification
-		ELSE
-			BEGIN
-				UPDATE MEDICAMENT
-				SET MED_NOM_COMMERCIAL = @NomCommercial, MED_NOM_DCI = @NomDCI, MED_DOSAGE = @Dosage, MED_DESCRIPTION = @Description, MED_TYPE = @Type
-				WHERE MED_ID = @id
-				-- Renvoie un Code 0 pour "Exécution réussie"
-				SELECT 0 as 'stateMessage'
-			END
+		UPDATE MEDICAMENT
+		SET MED_NOM_COMMERCIAL = @NomCommercial, MED_NOM_DCI = @NomDCI, MED_DOSAGE = @Dosage, MED_DESCRIPTION = @Description, MED_TYPE = @Type
+		WHERE MED_ID = @id
 	END
 go
 
@@ -142,6 +127,7 @@ CREATE PROC PS_SELECT_ALL_MEDICAMENT
 AS
 	SELECT MED_ID, MED_NOM_COMMERCIAL, MED_NOM_DCI, MED_DOSAGE, MED_TYPE
 	FROM MEDICAMENT
+go
 
 -- Création de la procédure stockée de SELECT du médicament concerné AVEC description
 CREATE PROC PS_SELECT_MEDICAMENT_DESCRIPTION
@@ -164,25 +150,4 @@ AS
 			DELETE FROM MEDICAMENT 
 			WHERE MED_ID = @IdMedicament
 		end
-
-
-
-	
-
---Création du trigger pour Hasher le mdp en SHA512 en base
-CREATE TRIGGER TRI_HASHAGE
-ON VISITEUR
-INSTEAD OF INSERT
-AS
-BEGIN
-	SET NOCOUNT ON;
-
-	DECLARE @MDPHASH VARCHAR(500)
-	
-	SELECT @MDPHASH = CONVERT(NVARCHAR(512),HashBytes('SHA2_512', VIS_MDP),2) FROM inserted 
-
-	  INSERT dbo.VISITEUR(VIS_PRENOM, VIS_NOM, VIS_LOGIN, VIS_MDP)
-		SELECT VIS_PRENOM, VIS_NOM, VIS_LOGIN, @MDPHASH
-		FROM inserted
-END
 go

@@ -21,7 +21,9 @@ namespace ACFG_LaboGSB
     /// </summary>
     public partial class DescriptionMedicament : Window
     {
-        public DescriptionMedicament()
+        Medicament medicamentChoisi = new Medicament();
+
+        public DescriptionMedicament(Medicament medicament)
         {
             InitializeComponent();
             Btn_Valider.Visibility = Visibility.Hidden;
@@ -30,7 +32,12 @@ namespace ACFG_LaboGSB
             Tbx_Description_Type.Visibility = Visibility.Hidden;
             Tbx_Description_Dosage.Visibility = Visibility.Hidden;
             Tbx_Decription_Description.Visibility = Visibility.Hidden;
-
+            Lbl_Description_NomCommerciale.Content = medicament.MED_NOM_COMMERCIAL;
+            Lbl_Description_NomDCI.Content = medicament.MED_NOM_DCI;
+            Lbl_Description_Dosage.Content = medicament.MED_DOSAGE;
+            Lbl_Description_Description.Content = medicament.MED_DESCRIPTION;
+            Lbl_Description_Type.Content = medicament.MED_TYPE;
+            medicamentChoisi = medicament;
         }
 
         private void Btn_Modifier_Click(object sender, RoutedEventArgs e)
@@ -69,14 +76,14 @@ namespace ACFG_LaboGSB
             Btn_Valider.Visibility = Visibility.Hidden;
             Btn_Modifier.Visibility = Visibility.Visible;
 
-            Medicament medicament = new Medicament();
-            medicament.MED_NOM_COMMERCIAL = Tbx_Description_NomCommercial.Text;
-            medicament.MED_NOM_DCI = Tbx_Description_NomDCI.Text;
-            medicament.MED_DOSAGE = Tbx_Description_Dosage.Text;
-            medicament.MED_DESCRIPTION = Tbx_Decription_Description.Text;
-            medicament.MED_TYPE = Tbx_Description_Type.Text;
+            medicamentChoisi.MED_NOM_COMMERCIAL = Tbx_Description_NomCommercial.Text;
+            medicamentChoisi.MED_NOM_DCI = Tbx_Description_NomDCI.Text;
+            medicamentChoisi.MED_DOSAGE = Tbx_Description_Dosage.Text;
+            medicamentChoisi.MED_DESCRIPTION = Tbx_Decription_Description.Text;
+            medicamentChoisi.MED_TYPE = Tbx_Description_Type.Text;
             
-            Requetes.PS_UPDATE_MEDICAMENT(medicament);
+            Requetes.PS_UPDATE_MEDICAMENT(medicamentChoisi);
+            this.Close();
         }
 
     }
