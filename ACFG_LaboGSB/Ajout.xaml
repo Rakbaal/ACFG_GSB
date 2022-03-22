@@ -35,5 +35,7 @@
             <ComboBoxItem Content="Collyre"/>
             <ComboBoxItem Content="Pommade"/>
         </ComboBox>
+        <Label x:Name="LabelTimer" Content="" Visibility="Hidden" HorizontalAlignment="Left" Margin="154,293,0,0" VerticalAlignment="Top" Width="116"/>
+        <Label x:Name="LabelValidation" Content="Medicament Ajouté" Visibility="Hidden" HorizontalAlignment="Center" Margin="0,293,0,0" VerticalAlignment="Top" Width="116" Foreground="#FF14A600"/>
     </Grid>
 </Window>
