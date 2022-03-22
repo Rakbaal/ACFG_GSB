@@ -5,20 +5,35 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ACFG_LaboGSB"
         mc:Ignorable="d"
-        Title="Ajout" Height="449" Width="440">
+        Title="Ajout" Height="449" Width="440" WindowStartupLocation="CenterScreen">
     <Grid Margin="0,0,10,-6">
-        <Label Content="Ajout d'un médicament : " HorizontalAlignment="Left" Margin="34,33,0,0" VerticalAlignment="Top" FontSize="18"/>
-        <Label Content="Nom commercial : " HorizontalAlignment="Left" Margin="34,72,0,0" VerticalAlignment="Top" FontSize="14"/>
-        <Label Content="Nom DCI : " HorizontalAlignment="Left" Margin="34,106,0,0" VerticalAlignment="Top" FontSize="14"/>
-        <Label Content="Type : " HorizontalAlignment="Left" Margin="34,140,0,0" VerticalAlignment="Top" FontSize="14"/>
-        <Label Content="Dosage : " HorizontalAlignment="Left" Margin="34,169,0,0" VerticalAlignment="Top" FontSize="14"/>
-        <Label Content="Description : " HorizontalAlignment="Left" Margin="34,0,0,0" VerticalAlignment="Center" FontSize="14"/>
-        <Button x:Name="Btn_Ajout" Content="Ajouter" HorizontalAlignment="Left" Margin="73,330,0,0" VerticalAlignment="Top" FontSize="18" Click="Btn_Ajout_Click"/>
-        <TextBox x:Name="Tbx_NomCommercialAjout" HorizontalAlignment="Left" Margin="168,77,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="Tbx_NomDCIAjout" HorizontalAlignment="Left" Margin="116,111,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="Tbx_TypeAjout" HorizontalAlignment="Left" Margin="89,145,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="Tbx_DosageAjout" HorizontalAlignment="Left" Margin="106,174,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="Tbx_DescriptionAjout" HorizontalAlignment="Left" Margin="124,211,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="208" Height="98"/>
-        <Button Content="Retour" HorizontalAlignment="Left" Margin="275,330,0,0" VerticalAlignment="Top" FontSize="18" Click="Button_Click"/>
+        <Label Content="Nom commercial : " HorizontalAlignment="Left" Margin="92,89,0,0" VerticalAlignment="Top" FontSize="12" Height="29" Width="108"/>
+        <Label Content="Nom DCI : " HorizontalAlignment="Left" Margin="92,114,0,0" VerticalAlignment="Top" FontSize="12" Height="29" Width="75"/>
+        <Label Content="Type : " HorizontalAlignment="Left" Margin="92,141,0,0" VerticalAlignment="Top" FontSize="12" Width="40" Height="30"/>
+        <Label Content="Dosage : " HorizontalAlignment="Left" Margin="92,169,0,0" VerticalAlignment="Top" FontSize="12" Height="32" Width="64"/>
+        <Label Content="Description : " HorizontalAlignment="Left" Margin="92,194,0,0" VerticalAlignment="Top" FontSize="12"/>
+        <Button x:Name="Btn_Ajout" Content="Ajouter" HorizontalAlignment="Left" Margin="238,330,0,0" VerticalAlignment="Top" FontSize="12" Click="Btn_Ajout_Click" Width="94" Background="#FFCFFAFF"/>
+        <TextBox x:Name="TextboxNomCom" HorizontalAlignment="Left" Margin="212,95,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="TextboxNomDCI" HorizontalAlignment="Left" Margin="212,120,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="TextboxDosage" HorizontalAlignment="Left" Margin="212,176,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="TextboxDesc" HorizontalAlignment="Left" Margin="92,220,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="240" Height="61"/>
+        <Button Content="Retour" HorizontalAlignment="Left" Margin="98,330,0,0" VerticalAlignment="Top" FontSize="12" Click="Button_Click" Width="86" Background="#FFFFB8B8"/>
+        <Label x:Name="PanelTop" Content="Ajout Médicament&#xA;" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Foreground="#FFF1F1F1" FontSize="30" Margin="0,0,-11,362" Background="#FF4A4741"/>
+        <ComboBox x:Name="ComboBoxType" HorizontalAlignment="Left" Margin="212,143,0,0" VerticalAlignment="Top" Width="120" Height="23" BorderBrush="White">
+            <ComboBox.Background>
+                <LinearGradientBrush EndPoint="0,1">
+                    <GradientStop Color="#FFF0F0F0"/>
+                    <GradientStop Color="#FFFFFDFD" Offset="1"/>
+                </LinearGradientBrush>
+            </ComboBox.Background>
+            <ComboBoxItem Content="Comprimé"/>
+            <ComboBoxItem Content="Sirop"/>
+            <ComboBoxItem Content="Gélule"/>
+            <ComboBoxItem Content="Injectable"/>
+            <ComboBoxItem Content="Suspension"/>
+            <ComboBoxItem Content="Crème"/>
+            <ComboBoxItem Content="Collyre"/>
+            <ComboBoxItem Content="Pommade"/>
+        </ComboBox>
     </Grid>
 </Window>

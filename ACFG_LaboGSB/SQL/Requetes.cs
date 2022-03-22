@@ -126,6 +126,34 @@ namespace ACFG_LaboGSB.SQL
             }
         }
 
+        public static void PS_CREATE_MEDICAMENT(Medicament medicament)
+        {
+            SqlCommand myCommand = null;
+            SqlDataReader mySqlDataReader = null;
+            SqlConnection conn = BDD.openBDDApplication("ACFG_LaboGSB");
+            string description = medicament.MED_DESCRIPTION;
+            description = description.Replace("'", "''");
+            string Requete = "exec PS_CREATE_MEDICAMENT '" + medicament.MED_NOM_COMMERCIAL + "' , '" + medicament.MED_NOM_DCI + "' , '" + medicament.MED_DOSAGE + "' , '" + description + "' , '" + medicament.MED_TYPE + "'";
+
+            try // On essaye d'executer la requête
+            {
+                myCommand = new SqlCommand(Requete, conn);
+                mySqlDataReader = myCommand.ExecuteReader();
+                mySqlDataReader.Read();
+
+            }
+            catch (Exception erreur) // En cas d'erreur un message s'affiche sur la console
+            {
+                Console.WriteLine("Erreur lors de la requête CREATE Medicament " + erreur.Message);
+                throw;
+            }
+
+            finally
+            {
+                conn.Close();
+            }
+        }
+
         #endregion
     }
 }

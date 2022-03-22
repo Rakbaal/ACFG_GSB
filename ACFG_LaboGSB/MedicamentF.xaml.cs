@@ -25,7 +25,6 @@ namespace ACFG_LaboGSB
         {
             InitializeComponent();
             ActualiserDataGrid();
-            
         }
 
         #region Méthodes 
@@ -77,6 +76,7 @@ namespace ACFG_LaboGSB
         {
             Ajout ajout = new Ajout();
             ajout.ShowDialog();
+            
         }
         private void ButtonSupprimer_MouseEnter(object sender, MouseEventArgs e)
         {
@@ -92,8 +92,12 @@ namespace ACFG_LaboGSB
 
         }
 
+
         #endregion
 
-        
+        private void Window_Activated(object sender, EventArgs e)
+        {
+            ActualiserDataGrid();
+        }
     }
 }
