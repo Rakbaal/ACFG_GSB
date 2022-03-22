@@ -101,6 +101,18 @@ INSERT INTO MEDICAMENT (MED_NOM_COMMERCIAL, MED_NOM_DCI, MED_DOSAGE, MED_DESCRIP
 VALUES ('Cortisone', 'Hydrocortisone', '1%', 'C''est le nom de l''hormone cortisol lorsqu''elle est fournie comme médicament. Les utilisations comprennent des affections telles que l''insuffisance surrénocorticale, le syndrome surrénogénital, l''hypocalcémie, la thyroïdite, la polyarthrite rhumatoïde, la dermatite, l''asthme et la BPCO', 'Pommade')
 go
 
+--insertion Table Praticien
+INSERT INTO PRATICIEN (PRA_NOM,PRA_PRENOM,PRA_PROFESSION)
+VALUES ('Delamare', 'Paul', 'Chirurgien cardiaque')
+INSERT INTO PRATICIEN (PRA_NOM,PRA_PRENOM,PRA_PROFESSION)
+VALUES ('Roost', 'Didier', 'Pharmacien')
+INSERT INTO PRATICIEN (PRA_NOM,PRA_PRENOM,PRA_PROFESSION)
+VALUES ('Plaza', 'Stephane', 'Infirmier')
+INSERT INTO PRATICIEN (PRA_NOM,PRA_PRENOM,PRA_PROFESSION)
+VALUES ('Deschamps', 'Marie-Jeanne', 'Gynécologue')
+INSERT INTO PRATICIEN (PRA_NOM,PRA_PRENOM,PRA_PROFESSION)
+VALUES ('Lagrosse', 'Bertha', 'Infirmière')
+
 --Création de la procedure Login Validation
 CREATE PROC PS_LOGIN_VALIDATION
 	@Login CHAR(4),
