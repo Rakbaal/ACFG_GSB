@@ -92,14 +92,16 @@ AS
 	IF exists(SELECT MED_NOM_COMMERCIAL FROM MEDICAMENT WHERE MED_NOM_COMMERCIAL = @NomCommercial)
 		begin
 			-- Annule l'insertion si le libellé existe déjà
-			SELECT 1
+			-- Renvoie un Code 1 pour "Exécution arrêtée"
+			SELECT 1 as 'stateMessage'
 		end
 	ELSE
 		begin
 			-- Effectue l'insertion si le libellé n'existe pas
 			INSERT INTO MEDICAMENT(MED_NOM_COMMERCIAL, MED_NOM_DCI, MED_DOSAGE, MED_DESCRIPTION, MED_TYPE) 
 				VALUES(@NomCommercial, @NomDCI, @Dosage, @Description, @Type)
-			SELECT 0
+			-- Renvoie un Code 0 pour "Exécution réussie"
+			SELECT 0 as 'stateMessage'
 		end
 go
 
@@ -120,6 +122,7 @@ AS
 		-- médicament déjà existant
 		IF @NomCommercial != @placeHolder and @NomCommercial in (SELECT MED_NOM_COMMERCIAL FROM MEDICAMENT)
 			BEGIN
+				-- Renvoie un code 1 pour "Exécution arrêtée"
 				SELECT 1 AS 'stateMessage'
 			END
 		-- Sinon, effectue la modification
@@ -128,6 +131,7 @@ AS
 				UPDATE MEDICAMENT
 				SET MED_NOM_COMMERCIAL = @NomCommercial, MED_NOM_DCI = @NomDCI, MED_DOSAGE = @Dosage, MED_DESCRIPTION = @Description, MED_TYPE = @Type
 				WHERE MED_ID = @id
+				-- Renvoie un Code 0 pour "Exécution réussie"
 				SELECT 0 as 'stateMessage'
 			END
 	END

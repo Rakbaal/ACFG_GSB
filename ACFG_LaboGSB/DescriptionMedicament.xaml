@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="DescriptionMedicament" Height="450" Width="800">
     <Grid>
-        <Label Content="Déscription détaillé :" HorizontalAlignment="Left" Margin="36,27,0,0" VerticalAlignment="Top" FontSize="16"/>
+        <Label Content="Description détaillée :" HorizontalAlignment="Left" Margin="36,27,0,0" VerticalAlignment="Top" FontSize="16" Width="184"/>
         <Label Content="Nom commercial : " HorizontalAlignment="Left" Margin="34,72,0,0" VerticalAlignment="Top" FontSize="14"/>
         <Label Content="Nom DCI : " HorizontalAlignment="Left" Margin="34,106,0,0" VerticalAlignment="Top" FontSize="14"/>
         <Label Content="Type : " HorizontalAlignment="Left" Margin="34,140,0,0" VerticalAlignment="Top" FontSize="14"/>
@@ -20,7 +20,7 @@
         <Label x:Name="Lbl_Description_Description" Content="Label" HorizontalAlignment="Left" Margin="189,0,0,0" VerticalAlignment="Center" FontSize="14"/>
         <Button x:Name="Btn_Modifier" Content="Modifier" HorizontalAlignment="Left" Margin="36,262,0,0" VerticalAlignment="Top" FontSize="16" Click="Btn_Modifier_Click"/>
         <Button x:Name="Btn_Valider" Content="Valider" HorizontalAlignment="Left" Margin="168,262,0,0" VerticalAlignment="Top" FontSize="16" Click="Btn_Valider_Click"/>
-        <TextBox x:Name="Tbx_Description_NomCommercial" HorizontalAlignment="Left" Margin="189,72,0,0" Text="TextBox" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" FontSize="14" TextChanged="TextBox_TextChanged"/>
+        <TextBox x:Name="Tbx_Description_NomCommercial" HorizontalAlignment="Left" Margin="189,72,0,0" Text="TextBox" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" FontSize="14"/>
         <TextBox x:Name="Tbx_Description_NomDCI" HorizontalAlignment="Left" Margin="189,106,0,0" Text="TextBox" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" FontSize="14"/>
         <TextBox x:Name="Tbx_Description_Type" HorizontalAlignment="Left" Margin="189,140,0,0" Text="TextBox" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" FontSize="14"/>
         <TextBox x:Name="Tbx_Description_Dosage" HorizontalAlignment="Left" Margin="189,174,0,0" Text="TextBox" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" FontSize="14"/>

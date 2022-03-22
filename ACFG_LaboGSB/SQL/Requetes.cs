@@ -165,6 +165,19 @@ namespace ACFG_LaboGSB.SQL
             }
         }
 
+        public static void PS_UPDATE_MEDICAMENT(Medicament medicament)
+        {
+            SqlConnection connection = BDD.openBDDApplication("ACFG_LaboGSB");
+
+            string Requete = $"exec PS_UPDATE_MEDICAMENT " +
+                $"{medicament.MED_ID} " +
+                $"{medicament.MED_NOM_COMMERCIAL} " +
+                $"{medicament.MED_NOM_DCI} " +
+                $"{medicament.MED_DOSAGE} " +
+                $"{medicament.MED_DESCRIPTION} " +
+                $"{medicament.MED_TYPE}";
+        }
+
         #endregion
     }
 }
