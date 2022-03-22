@@ -97,6 +97,7 @@ namespace ACFG_LaboGSB
 
         private void Window_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
+            // lors d'un double clique sur une ligne ouvre un le formulaire de détail
             this.DataGridMedicaments.SelectionMode = DataGridSelectionMode.Single;
             int index = DataGridMedicaments.SelectedIndex;
             var ligne = DataGridMedicaments.Items[index];
