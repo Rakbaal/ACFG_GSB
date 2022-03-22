@@ -11,6 +11,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using ACFG_LaboGSB.SQL;
+using ACFG_LaboGSB.Classes;
 
 namespace ACFG_LaboGSB
 {
@@ -34,21 +36,21 @@ namespace ACFG_LaboGSB
         {
             Btn_Modifier.Visibility = Visibility.Hidden;
             Btn_Valider.Visibility = Visibility.Visible;
+            Tbx_Description_NomCommercial.Text = (string)Lbl_Description_NomCommerciale.Content;
             Tbx_Description_NomCommercial.Visibility = Visibility.Visible;
+            Tbx_Description_NomDCI.Text = (string)Lbl_Description_NomDCI.Content;
             Tbx_Description_NomDCI.Visibility = Visibility.Visible;
+            Tbx_Description_Type.Text = (string)Lbl_Description_Type.Content;
             Tbx_Description_Type.Visibility = Visibility.Visible;
+            Tbx_Description_Dosage.Text = (string)Lbl_Description_Dosage.Content;
             Tbx_Description_Dosage.Visibility = Visibility.Visible;
+            Tbx_Decription_Description.Text = (string)Lbl_Description_Description.Content;
             Tbx_Decription_Description.Visibility = Visibility.Visible;
             Lbl_Description_NomCommerciale.Visibility = Visibility.Hidden;
             Lbl_Description_NomDCI.Visibility = Visibility.Hidden;
             Lbl_Description_Type.Visibility = Visibility.Hidden;
             Lbl_Description_Dosage.Visibility = Visibility.Hidden;
             Lbl_Description_Description.Visibility = Visibility.Hidden;
-        }
-
-        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
         }
 
         private void Btn_Valider_Click(object sender, RoutedEventArgs e)
@@ -65,6 +67,16 @@ namespace ACFG_LaboGSB
             Lbl_Description_Description.Visibility = Visibility.Visible;
             Btn_Valider.Visibility = Visibility.Hidden;
             Btn_Modifier.Visibility = Visibility.Visible;
+
+            Medicament medicament = new Medicament();
+            medicament.MED_NOM_COMMERCIAL = Tbx_Description_NomCommercial.Text;
+            medicament.MED_NOM_DCI = Tbx_Description_NomDCI.Text;
+            medicament.MED_DOSAGE = Tbx_Description_Dosage.Text;
+            medicament.MED_DESCRIPTION = Tbx_Decription_Description.Text;
+            medicament.MED_TYPE = Tbx_Description_Type.Text;
+            
+            Requetes.PS_UPDATE_MEDICAMENT(medicament);
         }
+
     }
 }

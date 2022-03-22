@@ -87,13 +87,6 @@ namespace ACFG_LaboGSB
 
         #region DataGrid
 
-        private void DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
-
         #endregion
-
-        
     }
 }
