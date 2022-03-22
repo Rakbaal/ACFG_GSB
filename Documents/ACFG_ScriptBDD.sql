@@ -27,6 +27,38 @@ CREATE TABLE MEDICAMENT (
  )
  go
 
+--Création de la table PRATICIEN
+CREATE TABLE PRATICIEN (
+ PRA_ID INT IDENTITY (1,1),
+ PRA_NOM VARCHAR(38) NOT NULL,
+ PRA_PRENOM VARCHAR(38) NOT NULL,
+ PRA_PROFESSION VARCHAR(38) NOT NULL,
+ CONSTRAINT PK_PRATICIEN_ID PRIMARY KEY (PRA_ID)
+ )
+ go
+
+--Création de la table AVIS
+CREATE TABLE AVIS(
+AVI_ID INT IDENTITY (1,1),
+AVI_DATE DATE NOT NULL,
+AVI_NOTE INT NOT NULL,
+AVI_COMMENTAIRES TEXT NOT NULL,
+MED_ID INT NOT NULL,
+CONSTRAINT PK_AVIS_ID PRIMARY KEY (AVI_ID),
+CONSTRAINT FK_AVIS_MEDICAMENT FOREIGN KEY (MED_ID) REFERENCES MEDICAMENT (MED_ID)
+)
+go
+
+--Création de la table ECRIRE
+CREATE TABLE ECRIRE(
+AVI_ID INT NOT NULL,
+PRA_ID INT NOT NULL,
+CONSTRAINT PK_ECRIRE_ID PRIMARY KEY (AVI_ID,PRA_ID),
+CONSTRAINT FK_ECRIRE_AVIS FOREIGN KEY (AVI_ID) REFERENCES AVIS (AVI_ID),
+CONSTRAINT FK_ECRIRE_PRATICIEN FOREIGN KEY (PRA_ID) REFERENCES PRATICIEN (PRA_ID)
+)
+go
+
 --Création du trigger pour Hasher le mdp en SHA512 en base
 CREATE TRIGGER TRI_HASHAGE
 ON VISITEUR
@@ -69,6 +101,18 @@ INSERT INTO MEDICAMENT (MED_NOM_COMMERCIAL, MED_NOM_DCI, MED_DOSAGE, MED_DESCRIP
 VALUES ('Cortisone', 'Hydrocortisone', '1%', 'C''est le nom de l''hormone cortisol lorsqu''elle est fournie comme médicament. Les utilisations comprennent des affections telles que l''insuffisance surrénocorticale, le syndrome surrénogénital, l''hypocalcémie, la thyroïdite, la polyarthrite rhumatoïde, la dermatite, l''asthme et la BPCO', 'Pommade')
 go
 
+--insertion Table Praticien
+INSERT INTO PRATICIEN (PRA_NOM,PRA_PRENOM,PRA_PROFESSION)
+VALUES ('Delamare', 'Paul', 'Chirurgien cardiaque')
+INSERT INTO PRATICIEN (PRA_NOM,PRA_PRENOM,PRA_PROFESSION)
+VALUES ('Roost', 'Didier', 'Pharmacien')
+INSERT INTO PRATICIEN (PRA_NOM,PRA_PRENOM,PRA_PROFESSION)
+VALUES ('Plaza', 'Stephane', 'Infirmier')
+INSERT INTO PRATICIEN (PRA_NOM,PRA_PRENOM,PRA_PROFESSION)
+VALUES ('Deschamps', 'Marie-Jeanne', 'Gynécologue')
+INSERT INTO PRATICIEN (PRA_NOM,PRA_PRENOM,PRA_PROFESSION)
+VALUES ('Lagrosse', 'Bertha', 'Infirmière')
+
 --Création de la procedure Login Validation
 CREATE PROC PS_LOGIN_VALIDATION
 	@Login CHAR(4),
@@ -104,6 +148,7 @@ AS
 			SELECT 0 as 'stateMessage'
 		end
 go
+
 
 -- Création de la procédure stockée UPDATE des CRUD
 CREATE PROC PS_UPDATE_MEDICAMENT
