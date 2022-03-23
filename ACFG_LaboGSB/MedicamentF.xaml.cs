@@ -31,7 +31,7 @@ namespace ACFG_LaboGSB
 
         private void ActualiserDataGrid()
         {
-            //Affichage de tous les médicaments 
+            //Affichage de tous les médicaments
             List<Medicament> listeMedicaments = Requetes.PS_LISTE_MEDICAMENT();
 
             if (listeMedicaments != null)
@@ -95,14 +95,15 @@ namespace ACFG_LaboGSB
 
         #endregion
 
-
-        private void Window_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        private void DataGridMedicaments_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             // lors d'un double clique sur une ligne ouvre un le formulaire de détail
             this.DataGridMedicaments.SelectionMode = DataGridSelectionMode.Single;
             int index = DataGridMedicaments.SelectedIndex;
-            var ligne = DataGridMedicaments.Items[index];
-            DescriptionMedicament descriptionMedicament = new DescriptionMedicament();
+            var gridMedicament = (Medicament)DataGridMedicaments.Items[index];
+            var medicament =  Requetes.PS_MEDICAMENT_DESCRIPTION(gridMedicament.MED_ID);
+
+            DescriptionMedicament descriptionMedicament = new DescriptionMedicament(medicament);
             descriptionMedicament.Show();
         }
 
