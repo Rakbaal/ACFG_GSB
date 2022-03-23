@@ -29,6 +29,7 @@
             <Label Content="Laboratoire GSB&#xD;&#xA;" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Height="131" Foreground="#FFF1F1F1" FontSize="30"/>
         </StackPanel>
         <Button x:Name="ButtonSupprimer" Content="Supprimer" HorizontalAlignment="Right" Margin="0,174,10,0" VerticalAlignment="Top" Background="#FFFDACAC" Width="108" VerticalContentAlignment="Top" Click="ButtonSupprimer_Click" Height="23" MouseEnter="ButtonSupprimer_MouseEnter"/>
+        <Button x:Name="ButtonSupprimerPraticien" Content="Supprimer" HorizontalAlignment="Right" Margin="0,386,10,0" VerticalAlignment="Top" Background="#FFFDACAC" Width="108" VerticalContentAlignment="Top" Click="ButtonSupprimer_Click" Height="23" MouseEnter="ButtonSupprimer_MouseEnter"/>
 
     </Grid>
 </Window>

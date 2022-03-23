@@ -193,7 +193,15 @@ AS
 			WHERE MED_ID = @IdMedicament
 		end
 
-
+-- Supression d'un praticien
+CREATE PROC PS_DELETE_PRATICIEN
+	@IdPraticien INT 
+AS
+	IF exists(SELECT PRA_ID FROM PRATICIEN WHERE PRA_ID = @IdPraticien)
+		begin
+			DELETE FROM PRATICIEN 
+			WHERE PRA_ID = @IdPraticien
+		end
 
 	
 

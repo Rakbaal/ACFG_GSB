@@ -82,6 +82,34 @@ namespace ACFG_LaboGSB
         {
             //this.ButtonSupprimer.Background = Color.FromRgb("255,105,105");
         }
+        private void ButtonSupprimerPraticien_Click(object sender, RoutedEventArgs e)
+        {
+            if (this.DataGridMedicaments.SelectedItem != null)
+            {
+                //On récupère le praticien sélectionné
+                Medicament medicamentSuppression = this.DataGridMedicaments.SelectedItem as Medicament;
+
+                //On demande la confirmation à l'utilisateur
+                string messageErreur = "Voulez-vous vraiment supprimer le praticien " + medicamentSuppression.MED_NOM_COMMERCIAL + " ?";
+                MessageBoxResult result = MessageBox.Show(messageErreur, "Confirmation", MessageBoxButton.YesNo, MessageBoxImage.Hand);
+
+                if (result == MessageBoxResult.Yes)
+                {
+                    //On supprime le praticien en appellant la procédure stockée
+                    Requetes.PS_DELETE_MEDICAMENT(medicamentSuppression);
+                    ActualiserDataGrid();
+                }
+                else
+                {
+                    return;
+                }
+            }
+            else
+            {
+                MessageBox.Show("Veuillez selectionner un médicament à supprimer !", "Impossible de supprimer", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+            }
+
+        }
 
         #endregion
 
