@@ -87,25 +87,20 @@ namespace ACFG_LaboGSB
 
         #region DataGrid
 
-        private void DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            
-        }
-
-
-        #endregion
-
         private void DataGridMedicaments_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             // lors d'un double clique sur une ligne ouvre un le formulaire de détail
             this.DataGridMedicaments.SelectionMode = DataGridSelectionMode.Single;
             int index = DataGridMedicaments.SelectedIndex;
             var gridMedicament = (Medicament)DataGridMedicaments.Items[index];
-            var medicament =  Requetes.PS_MEDICAMENT_DESCRIPTION(gridMedicament.MED_ID);
+            var medicament = Requetes.PS_MEDICAMENT_DESCRIPTION(gridMedicament.MED_ID);
 
             DescriptionMedicament descriptionMedicament = new DescriptionMedicament(medicament);
             descriptionMedicament.Show();
         }
+
+        #endregion
+
 
         private void Window_Activated(object sender, EventArgs e)
         {
