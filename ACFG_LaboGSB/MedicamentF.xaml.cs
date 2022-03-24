@@ -21,6 +21,8 @@ namespace ACFG_LaboGSB
     /// </summary>
     public partial class MedicamentF : Window
     {
+
+        List<Praticien> listePraticiens = Requetes.PS_LISTE_PRATICIENS();
         public MedicamentF()
         {
             InitializeComponent();
@@ -37,6 +39,11 @@ namespace ACFG_LaboGSB
             if (listeMedicaments != null)
             {
                 this.DataGridMedicaments.ItemsSource = listeMedicaments;
+            }
+
+            if (listePraticiens!= null)
+            {
+                this.DataGridPraticien.ItemsSource = listePraticiens;
             }
         }
 
@@ -142,6 +149,14 @@ namespace ACFG_LaboGSB
 
         }
 
-        
+        private void DataGridPraticien_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            // lors d'un double clic sur une ligne, ouvre un formulaire détaillé du praticien
+            this.DataGridPraticien.SelectionMode = DataGridSelectionMode.Single;
+            int index = DataGridPraticien.SelectedIndex;
+            var praticien = (Praticien)DataGridMedicaments.Items[index];
+
+            DescriptionPraticien descriptionPraticien = new DescriptionPraticien(praticien);
+        }
     }
 }
