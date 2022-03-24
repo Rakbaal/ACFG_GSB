@@ -219,5 +219,46 @@ namespace ACFG_LaboGSB.SQL
         }
 
         #endregion
+
+        #region PS - Praticiens
+        public static List<Praticien> PS_LISTE_PRATICIENS()
+        {
+            SqlCommand myCommand = null;
+            SqlDataReader mySqlDataReader = null;
+            SqlConnection conn = BDD.openBDDApplication("ACFG_LaboGSB");
+            string Requete = "exec PS_SELECT_ALL_PRATICIEN";
+            List<Praticien> listPraticien = new List<Praticien>();
+            Praticien praticien = null;
+
+            try // On essaye d'executer la requête
+            {
+                myCommand = new SqlCommand(Requete, conn);
+                mySqlDataReader = myCommand.ExecuteReader();
+                while (mySqlDataReader.Read())
+                {
+                    if (mySqlDataReader["PRA_ID"] != DBNull.Value)
+                    {
+                        praticien = new Praticien();
+                        praticien.PRA_ID = Convert.ToInt32(mySqlDataReader["PRA_ID"]);
+                        praticien.PRA_NOM = Convert.ToString(mySqlDataReader["PRA_NOM"]);
+                        praticien.PRA_PRENOM = Convert.ToString(mySqlDataReader["PRA_PRENOM"]);
+                        praticien.PRA_PROFESSION = Convert.ToString(mySqlDataReader["PRA_PROFESSION"]);
+                        listPraticien.Add(praticien);
+                    }
+                }
+            }
+            catch (Exception erreur) // En cas d'erreur un message s'affiche sur la console
+            {
+                Console.WriteLine("Erreur lors de la requête SELECT ListeMedicament " + erreur.Message);
+                throw;
+            }
+
+            finally
+            {
+                conn.Close();
+            }
+            return listPraticien;
+        }
+        #endregion
     }
 }

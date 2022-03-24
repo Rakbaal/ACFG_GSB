@@ -112,7 +112,7 @@ INSERT INTO PRATICIEN (PRA_NOM,PRA_PRENOM,PRA_PROFESSION)
 VALUES ('Deschamps', 'Marie-Jeanne', 'Gynécologue')
 INSERT INTO PRATICIEN (PRA_NOM,PRA_PRENOM,PRA_PROFESSION)
 VALUES ('Lagrosse', 'Bertha', 'Infirmière')
-
+go 
 --Création de la procedure Login Validation
 CREATE PROC PS_LOGIN_VALIDATION
 	@Login CHAR(4),
