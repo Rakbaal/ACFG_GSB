@@ -82,6 +82,40 @@ namespace ACFG_LaboGSB
         {
             //this.ButtonSupprimer.Background = Color.FromRgb("255,105,105");
         }
+        private void ButtonSupprimerPraticien_Click(object sender, RoutedEventArgs e)
+        {
+            if (this.DataGridPraticien.SelectedItem != null)
+            {
+                //On récupère le praticien sélectionné
+                Praticien praticienSuppression = this.DataGridPraticien.SelectedItem as Praticien;
+
+                //On demande la confirmation à l'utilisateur
+                string messageErreur = "Voulez-vous vraiment supprimer le praticien " + praticienSuppression.PRA_NOM + " ?";
+                MessageBoxResult result = MessageBox.Show(messageErreur, "Confirmation", MessageBoxButton.YesNo, MessageBoxImage.Hand);
+
+                if (result == MessageBoxResult.Yes)
+                {
+                    //On supprime le praticien en appellant la procédure stockée
+                    Requetes.PS_DELETE_PRATICIEN(praticienSuppression);
+                    ActualiserDataGrid();
+                }
+                else
+                {
+                    return;
+                }
+            }
+            else
+            {
+                MessageBox.Show("Veuillez selectionner un praticien à supprimer !", "Impossible de supprimer", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+            }
+
+        }
+
+        private void Btn_AjoutPraticien_Click(object sender, RoutedEventArgs e)
+        {
+            AjoutPraticien ajoutPraticien = new AjoutPraticien();
+            ajoutPraticien.ShowDialog();
+        }
 
         #endregion
 
@@ -107,5 +141,7 @@ namespace ACFG_LaboGSB
             ActualiserDataGrid();
 
         }
+
+        
     }
 }
