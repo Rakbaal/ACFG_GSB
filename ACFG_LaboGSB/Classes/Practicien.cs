@@ -6,11 +6,7 @@ using System.Threading.Tasks;
 
 namespace ACFG_LaboGSB.Classes
 {
-<<<<<<< HEAD
-    internal class Praticien
-=======
     public class Praticien
->>>>>>> CRUD_Delete_Praticien
     {
         public int PRA_ID { get; set; }
         public string PRA_NOM { get; set; }
