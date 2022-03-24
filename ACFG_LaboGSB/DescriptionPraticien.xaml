@@ -5,23 +5,29 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ACFG_LaboGSB"
         mc:Ignorable="d"
-        Title="DescriptionPraticien" Height="450" Width="800">
+        Title="Practicien" Height="339" Width="800" WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="61*"/>
             <ColumnDefinition Width="39*"/>
         </Grid.ColumnDefinitions>
         <Label Content="Prénom : " HorizontalAlignment="Left" Margin="34,107,0,0" VerticalAlignment="Top" FontSize="14"/>
-        <Label Content="Nom : " HorizontalAlignment="Left" Margin="34,134,0,0" VerticalAlignment="Top" FontSize="14"/>
+        <Label Content="Nom : " HorizontalAlignment="Left" Margin="34,136,0,0" VerticalAlignment="Top" FontSize="14"/>
         <Label Content="Profession : " HorizontalAlignment="Left" Margin="34,163,0,0" VerticalAlignment="Top" FontSize="14"/>
-        <Label x:Name="Lbl_Description_NomCommerciale" Content="Label" HorizontalAlignment="Left" Margin="161,107,0,0" VerticalAlignment="Top" FontSize="14"/>
-        <Label x:Name="Lbl_Description_NomDCI" Content="Label" HorizontalAlignment="Left" Margin="161,134,0,0" VerticalAlignment="Top" FontSize="14"/>
-        <Label x:Name="Lbl_Description_Type" Content="Label" HorizontalAlignment="Left" Margin="161,163,0,0" VerticalAlignment="Top" FontSize="14"/>
-        <Button x:Name="Btn_Modifier" Content="Modifier" HorizontalAlignment="Left" Margin="34,220,0,0" VerticalAlignment="Top" FontSize="16"  Width="106"/>
-        <Button x:Name="Btn_Valider" Content="Valider" HorizontalAlignment="Left" Margin="175,220,0,0" VerticalAlignment="Top" FontSize="16"  Width="106"/>
-        <TextBox x:Name="Tbx_Description_NomCommercial" HorizontalAlignment="Left" Margin="161,111,0,0" Text="TextBox" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" FontSize="14"/>
-        <TextBox x:Name="Tbx_Description_NomDCI" HorizontalAlignment="Left" Margin="161,138,0,0" Text="TextBox" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" FontSize="14"/>
-        <TextBox x:Name="Tbx_Description_Type" HorizontalAlignment="Left" Margin="161,167,0,0" Text="TextBox" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" FontSize="14"/>
-        <Label x:Name="PanelTop" Content="Description du Praticien" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Foreground="#FFF1F1F1" FontSize="30" Margin="0,0,0,349" Background="#FF4A4741" Grid.ColumnSpan="2"/>
+        <Label x:Name="Lbl_Description_Prenom" Content="XXXXXXX" HorizontalAlignment="Left" Margin="161,107,0,0" VerticalAlignment="Top" FontSize="14"/>
+        <Label x:Name="Lbl_Description_Nom" Content="XXXXXXX" HorizontalAlignment="Left" Margin="161,133,0,0" VerticalAlignment="Top" FontSize="14"/>
+        <Button x:Name="Btn_Modifier" Content="Modifier" HorizontalAlignment="Left" Margin="34,220,0,0" VerticalAlignment="Top" FontSize="16"  Width="106" Click="Btn_Modifier_Click" Background="#FF535353" Foreground="#FFCFCFCF" MouseEnter="Btn_Modifier_MouseEnter"/>
+        <Button x:Name="Btn_Valider" Content="Valider" HorizontalAlignment="Left" Margin="34,220,0,0" VerticalAlignment="Top" FontSize="16"  Width="106" Click="Btn_Valider_Click" Background="#FFCFFAFF">
+        </Button>
+        <TextBox x:Name="Tbx_Description_Prenom" HorizontalAlignment="Left" Margin="161,111,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="155" FontSize="14"/>
+        <TextBox x:Name="Tbx_Description_Nom" HorizontalAlignment="Left" Margin="161,140,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="156" FontSize="14"/>
+        <Label x:Name="PanelTop" Content="Description du Practicien" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Foreground="#FFF1F1F1" FontSize="30" Margin="0,0,0,240" Background="#FF4A4741" Grid.ColumnSpan="2"/>
+        <ComboBox x:Name="ComboBoxProfession" HorizontalAlignment="Left" Margin="161,167,0,0" VerticalAlignment="Top" Width="155" IsEnabled="False">
+            <ComboBoxItem Content="Chirurgien Cardiaque"/>
+            <ComboBoxItem Content="Pharmacien"/>
+            <ComboBoxItem Content="Infirmier"/>
+            <ComboBoxItem Content="Infirmière"/>
+            <ComboBoxItem Content="Gynécologue"/>
+        </ComboBox>
     </Grid>
 </Window>
