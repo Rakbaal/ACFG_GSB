@@ -16,7 +16,6 @@
                 <DataGridTextColumn x:Name="Dosage" Header="Dosage" Width="0.2*" Binding="{Binding MED_DOSAGE}"/>
                 <DataGridTextColumn x:Name="Type" Header="Type" Width="0.6*" Binding="{Binding MED_TYPE}"/>
             </DataGrid.Columns>
-
         </DataGrid>
         <Button x:Name="ButtonAjouter" Content="Ajouter ..." HorizontalAlignment="Right" Margin="0,132,10,0" VerticalAlignment="Top" Background="#FFBFE5FF" Width="108" VerticalContentAlignment="Top" Height="23" HorizontalContentAlignment="Center" Click="ButtonAjouter_Click">
             <Button.Style>
