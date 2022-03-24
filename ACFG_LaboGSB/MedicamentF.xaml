@@ -7,7 +7,15 @@
         mc:Ignorable="d"
         Title="Medicament" Height="450" Width="800" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" WindowState="Maximized" Background="#FF707070" Activated="Window_Activated">
     <Grid>
+<<<<<<< HEAD
         <DataGrid x:Name="DataGridMedicaments" IsReadOnly="True" ItemsSource="{Binding Source=listeMedicament}" Margin="0,96,123,186" AutoGenerateColumns="False" HorizontalContentAlignment="Stretch" Background="White" FontSize="20" FontWeight="Light" MouseDoubleClick="DataGridMedicaments_MouseDoubleClick">
+=======
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="23*"/>
+            <ColumnDefinition Width="2*"/>
+        </Grid.ColumnDefinitions>
+        <DataGrid x:Name="DataGridMedicaments" IsReadOnly="True" ItemsSource="{Binding Source=listeMedicament}" Margin="0,96,59,186" AutoGenerateColumns="False" HorizontalContentAlignment="Stretch" Background="White" FontSize="20" FontWeight="Light" MouseDoubleClick="DataGridMedicaments_MouseDoubleClick">
+>>>>>>> CRUD_Delete_Praticien
 
             <DataGrid.Columns >
                 <DataGridTextColumn x:Name="ID" Header="ID" Width="0.10*" Binding="{Binding MED_ID}" />
@@ -18,16 +26,17 @@
             </DataGrid.Columns>
 
         </DataGrid>
-        <Button x:Name="ButtonAjouter" Content="Ajouter ..." HorizontalAlignment="Right" Margin="0,132,10,0" VerticalAlignment="Top" Background="#FFBFE5FF" Width="108" VerticalContentAlignment="Top" Height="23" HorizontalContentAlignment="Center" Click="ButtonAjouter_Click">
+        <Button x:Name="ButtonAjouter" Content="Ajouter ..." HorizontalAlignment="Right" Margin="0,132,10,0" VerticalAlignment="Top" Background="#FFBFE5FF" Width="108" VerticalContentAlignment="Top" Height="23" HorizontalContentAlignment="Center" Click="ButtonAjouter_Click" Grid.ColumnSpan="2">
             <Button.Style>
                 <Style
                     
                 />
             </Button.Style>
         </Button>
-        <StackPanel x:Name="PanelTop" Background="#FF4A4741" Height="100px" VerticalAlignment="Top">
+        <StackPanel x:Name="PanelTop" Background="#FF4A4741" Height="100px" VerticalAlignment="Top" Grid.ColumnSpan="2">
             <Label Content="Laboratoire GSB&#xD;&#xA;" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Height="131" Foreground="#FFF1F1F1" FontSize="30"/>
         </StackPanel>
+<<<<<<< HEAD
         <Button x:Name="ButtonSupprimer" Content="Supprimer" HorizontalAlignment="Right" Margin="0,174,10,0" VerticalAlignment="Top" Background="#FFFDACAC" Width="108" VerticalContentAlignment="Top" Click="ButtonSupprimer_Click" Height="23" MouseEnter="ButtonSupprimer_MouseEnter"/>
         <DataGrid x:Name="DataGridPracticien" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="0,253,123,0"/>
         <Button x:Name="Btn_AjoutPraticien" Content="Ajouter ..." HorizontalAlignment="Right" Margin="0,276,10,0" VerticalAlignment="Top" Background="#FFBFE5FF" Width="108" VerticalContentAlignment="Top" Height="23" HorizontalContentAlignment="Center" Click="Btn_AjoutPraticien_Click">
@@ -37,6 +46,11 @@
                 />
             </Button.Style>
         </Button>
+=======
+        <Button x:Name="ButtonSupprimer" Content="Supprimer" HorizontalAlignment="Right" Margin="0,174,10,0" VerticalAlignment="Top" Background="#FFFDACAC" Width="108" VerticalContentAlignment="Top" Click="ButtonSupprimer_Click" Height="23" MouseEnter="ButtonSupprimer_MouseEnter" Grid.ColumnSpan="2"/>
+        <Button x:Name="ButtonSupprimerPraticien" Content="Supprimer" HorizontalAlignment="Right" Margin="0,386,10,0" VerticalAlignment="Top" Background="#FFFDACAC" Width="108" VerticalContentAlignment="Top" Click="ButtonSupprimer_Click" Height="23" MouseEnter="ButtonSupprimer_MouseEnter" Grid.ColumnSpan="2"/>
+        <DataGrid x:Name="DataGridPraticien" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="0,253,59,0"/>
+>>>>>>> CRUD_Delete_Praticien
 
     </Grid>
 </Window>

@@ -195,6 +195,7 @@ AS
 			DELETE FROM MEDICAMENT 
 			WHERE MED_ID = @IdMedicament
 		end
+<<<<<<< HEAD
 go
 
 
@@ -219,4 +220,38 @@ AS
 			-- Renvoie un Code 0 pour "Exécution réussie"
 			SELECT 0 as 'stateMessage'
 		end
+=======
+<<<<<<< HEAD
+
+-- Supression d'un praticien
+CREATE PROC PS_DELETE_PRATICIEN
+	@IdPraticien INT 
+AS
+	IF exists(SELECT PRA_ID FROM PRATICIEN WHERE PRA_ID = @IdPraticien)
+		begin
+			DELETE FROM PRATICIEN 
+			WHERE PRA_ID = @IdPraticien
+		end
+
+	
+
+--Création du trigger pour Hasher le mdp en SHA512 en base
+CREATE TRIGGER TRI_HASHAGE
+ON VISITEUR
+INSTEAD OF INSERT
+AS
+BEGIN
+	SET NOCOUNT ON;
+
+	DECLARE @MDPHASH VARCHAR(500)
+	
+	SELECT @MDPHASH = CONVERT(NVARCHAR(512),HashBytes('SHA2_512', VIS_MDP),2) FROM inserted 
+
+	  INSERT dbo.VISITEUR(VIS_PRENOM, VIS_NOM, VIS_LOGIN, VIS_MDP)
+		SELECT VIS_PRENOM, VIS_NOM, VIS_LOGIN, @MDPHASH
+		FROM inserted
+END
+=======
+>>>>>>> 39330758e7a5170ea6c6fd5a45633d2b8b94f3a8
+>>>>>>> CRUD_Delete_Praticien
 go

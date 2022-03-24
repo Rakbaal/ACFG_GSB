@@ -220,28 +220,54 @@ namespace ACFG_LaboGSB.SQL
 
         #endregion
 
+<<<<<<< HEAD
         public static void PS_CREATE_PRATICIEN(Praticien praticien)
+=======
+        #region PS - Praticien
+
+        public static void PS_DELETE_PRATICIEN(Praticien practicien)
+>>>>>>> CRUD_Delete_Praticien
         {
             SqlCommand myCommand = null;
             SqlDataReader mySqlDataReader = null;
             SqlConnection conn = BDD.openBDDApplication("ACFG_LaboGSB");
+<<<<<<< HEAD
             string Requete = "exec PS_CREATE_PRATICIEN '" + praticien.PRA_NOM + "' , '" + praticien.PRA_PRENOM + "' , '" + praticien.PRA_PROFESSION + "'";
+=======
+            string Requete = "exec PS_DELETE_PRATICIEN '" + practicien.PRA_ID + "'";
+>>>>>>> CRUD_Delete_Praticien
 
             try // On essaye d'executer la requête
             {
                 myCommand = new SqlCommand(Requete, conn);
                 mySqlDataReader = myCommand.ExecuteReader();
                 mySqlDataReader.Read();
+<<<<<<< HEAD
             }
             catch (Exception erreur) // En cas d'erreur un message s'affiche sur la console
             {
                 Console.WriteLine("Erreur lors de la requête CREATE praticien " + erreur.Message);
                 throw;
             }
+=======
+
+            }
+            catch (Exception erreur) // En cas d'erreur un message s'affiche sur la console
+            {
+                Console.WriteLine("Erreur lors de la requête DELETE Praticien " + erreur.Message);
+                throw;
+            }
+
+>>>>>>> CRUD_Delete_Praticien
             finally
             {
                 conn.Close();
             }
         }
+<<<<<<< HEAD
+=======
+
+        #endregion
+>>>>>>> CRUD_Delete_Praticien
     }
 }
