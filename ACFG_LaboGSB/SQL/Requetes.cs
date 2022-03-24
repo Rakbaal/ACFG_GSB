@@ -219,5 +219,29 @@ namespace ACFG_LaboGSB.SQL
         }
 
         #endregion
+
+        public static void PS_CREATE_PRATICIEN(Praticien praticien)
+        {
+            SqlCommand myCommand = null;
+            SqlDataReader mySqlDataReader = null;
+            SqlConnection conn = BDD.openBDDApplication("ACFG_LaboGSB");
+            string Requete = "exec PS_CREATE_PRATICIEN '" + praticien.PRA_NOM + "' , '" + praticien.PRA_PRENOM + "' , '" + praticien.PRA_PROFESSION + "'";
+
+            try // On essaye d'executer la requête
+            {
+                myCommand = new SqlCommand(Requete, conn);
+                mySqlDataReader = myCommand.ExecuteReader();
+                mySqlDataReader.Read();
+            }
+            catch (Exception erreur) // En cas d'erreur un message s'affiche sur la console
+            {
+                Console.WriteLine("Erreur lors de la requête CREATE praticien " + erreur.Message);
+                throw;
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
     }
 }

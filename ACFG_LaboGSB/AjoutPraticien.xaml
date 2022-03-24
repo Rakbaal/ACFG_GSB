@@ -1,0 +1,22 @@
+﻿<Window x:Class="ACFG_LaboGSB.AjoutPraticien"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ACFG_LaboGSB"
+        mc:Ignorable="d"
+        Title="Ajout" Height="449" Width="440" WindowStartupLocation="CenterScreen">
+    <Grid Margin="0,0,10,-6">
+        <Label Content="Nom : " HorizontalAlignment="Left" Margin="98,111,0,0" VerticalAlignment="Top" FontSize="12" Height="29" Width="108"/>
+        <Label Content="Prenom : " HorizontalAlignment="Left" Margin="90,170,0,0" VerticalAlignment="Top" FontSize="12" Height="29" Width="75"/>
+        <Label Content="Profession : " HorizontalAlignment="Left" Margin="90,239,0,0" VerticalAlignment="Top" FontSize="12" Width="40" Height="30"/>
+        <Button x:Name="Btn_AjoutPraticien" Content="Ajouter" HorizontalAlignment="Left" Margin="238,330,0,0" VerticalAlignment="Top" FontSize="12" Click="Btn_Ajout_Click" Width="94" Background="#FFCFFAFF"/>
+        <TextBox x:Name="TextboxNomPraticien" HorizontalAlignment="Left" Margin="212,117,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="TextboxPrenomPraticien" HorizontalAlignment="Left" Margin="212,176,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="TextboxProfession" HorizontalAlignment="Left" Margin="212,239,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Button Content="Retour" HorizontalAlignment="Left" Margin="98,330,0,0" VerticalAlignment="Top" FontSize="12" Click="Button_Click" Width="86" Background="#FFFFB8B8"/>
+        <Label x:Name="PanelTop" Content="Ajout praticien" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Foreground="#FFF1F1F1" FontSize="30" Margin="0,0,-11,362" Background="#FF4A4741"/>
+        <Label x:Name="LabelTimer" Content="" Visibility="Hidden" HorizontalAlignment="Left" Margin="154,293,0,0" VerticalAlignment="Top" Width="116"/>
+        <Label x:Name="LabelValidation" Content="Praticien Ajouté" Visibility="Hidden" HorizontalAlignment="Center" Margin="0,293,0,0" VerticalAlignment="Top" Width="116" Foreground="#FF14A600"/>
+    </Grid>
+</Window>

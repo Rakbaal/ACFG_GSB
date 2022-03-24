@@ -83,6 +83,12 @@ namespace ACFG_LaboGSB
             //this.ButtonSupprimer.Background = Color.FromRgb("255,105,105");
         }
 
+        private void Btn_AjoutPraticien_Click(object sender, RoutedEventArgs e)
+        {
+            AjoutPraticien ajoutPraticien = new AjoutPraticien();
+            ajoutPraticien.ShowDialog();
+        }
+
         #endregion
 
         #region DataGrid
@@ -107,5 +113,7 @@ namespace ACFG_LaboGSB
             ActualiserDataGrid();
 
         }
+
+        
     }
 }

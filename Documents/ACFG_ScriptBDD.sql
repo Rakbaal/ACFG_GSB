@@ -196,3 +196,27 @@ AS
 			WHERE MED_ID = @IdMedicament
 		end
 go
+
+
+-- Création de la procédure stockée CREATE des CRUD des praticiens
+CREATE PROC PS_CREATE_PRATICIEN
+	@Nom VARCHAR(38),
+	@Prenom VARCHAR(38),
+	@Profession VARCHAR(38)
+AS
+	SET ROWCOUNT 0
+	IF exists(SELECT PRA_NOM, PRA_PRENOM FROM PRATICIEN WHERE PRA_NOM = @Nom AND PRA_PRENOM = @Prenom)
+		begin
+			-- Annule l'insertion si le libellé existe déjà
+			-- Renvoie un Code 1 pour "Exécution arrêtée"
+			SELECT 1 as 'stateMessage'
+		end
+	ELSE
+		begin
+			-- Effectue l'insertion si le libellé n'existe pas
+			INSERT INTO PRATICIEN(PRA_NOM, PRA_PRENOM, PRA_PROFESSION) 
+				VALUES(@Nom, @Prenom, @Profession)
+			-- Renvoie un Code 0 pour "Exécution réussie"
+			SELECT 0 as 'stateMessage'
+		end
+go
