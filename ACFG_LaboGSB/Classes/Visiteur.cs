@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 
 namespace ACFG_LaboGSB.Classes
 {
-    [AddINotifyPropertyChangedInterface]
     public partial class Visiteur
     {
         public int VIS_ID { get; set; }

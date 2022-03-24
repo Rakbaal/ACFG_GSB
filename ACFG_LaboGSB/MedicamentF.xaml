@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="Medicament" Height="450" Width="800" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" WindowState="Maximized" Background="#FF707070" Activated="Window_Activated">
     <Grid>
-        <DataGrid x:Name="DataGridMedicaments" IsReadOnly="True" ItemsSource="{Binding Source=listeMedicament}" Margin="0,96,123,186" AutoGenerateColumns="False" SelectionChanged="DataGrid_SelectionChanged" HorizontalContentAlignment="Stretch" Background="White" FontSize="20" FontWeight="Light" MouseDoubleClick="DataGridMedicaments_MouseDoubleClick">
+        <DataGrid x:Name="DataGridMedicaments" IsReadOnly="True" ItemsSource="{Binding Source=listeMedicament}" Margin="0,96,123,186" AutoGenerateColumns="False" HorizontalContentAlignment="Stretch" Background="White" FontSize="20" FontWeight="Light" MouseDoubleClick="DataGridMedicaments_MouseDoubleClick">
 
             <DataGrid.Columns >
                 <DataGridTextColumn x:Name="ID" Header="ID" Width="0.10*" Binding="{Binding MED_ID}" />

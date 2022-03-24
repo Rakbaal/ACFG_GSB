@@ -124,75 +124,137 @@ AS
 	AND VIS_MDP = @Mdp
 go
 
--- Création de la procédure stockée CREATE des CRUD
-CREATE PROC PS_CREATE_MEDICAMENT
-	@NomCommercial VARCHAR(38),
-	@NomDCI VARCHAR(38),
-	@Dosage VARCHAR(38),
-	@Description TEXT,
-	@Type VARCHAR(38)
-AS
-	SET ROWCOUNT 0
-	IF exists(SELECT MED_NOM_COMMERCIAL FROM MEDICAMENT WHERE MED_NOM_COMMERCIAL = @NomCommercial)
-		begin
-			-- Annule l'insertion si le libellé existe déjà
-			-- Renvoie un Code 1 pour "Exécution arrêtée"
-			SELECT 1 as 'stateMessage'
-		end
-	ELSE
-		begin
-			-- Effectue l'insertion si le libellé n'existe pas
-			INSERT INTO MEDICAMENT(MED_NOM_COMMERCIAL, MED_NOM_DCI, MED_DOSAGE, MED_DESCRIPTION, MED_TYPE) 
-				VALUES(@NomCommercial, @NomDCI, @Dosage, @Description, @Type)
-			-- Renvoie un Code 0 pour "Exécution réussie"
-			SELECT 0 as 'stateMessage'
-		end
-go
+
+-- MEDICAMENTS
+
+		-- Création de la procédure stockée CREATE des CRUD
+		CREATE PROC PS_CREATE_MEDICAMENT
+			@NomCommercial VARCHAR(38),
+			@NomDCI VARCHAR(38),
+			@Dosage VARCHAR(38),
+			@Description TEXT,
+			@Type VARCHAR(38)
+		AS
+			SET ROWCOUNT 0
+			IF exists(SELECT MED_NOM_COMMERCIAL FROM MEDICAMENT WHERE MED_NOM_COMMERCIAL = @NomCommercial)
+				begin
+					-- Annule l'insertion si le libellé existe déjà
+					-- Renvoie un Code 1 pour "Exécution arrêtée"
+					SELECT 1 as 'stateMessage'
+				end
+			ELSE
+				begin
+					-- Effectue l'insertion si le libellé n'existe pas
+					INSERT INTO MEDICAMENT(MED_NOM_COMMERCIAL, MED_NOM_DCI, MED_DOSAGE, MED_DESCRIPTION, MED_TYPE) 
+						VALUES(@NomCommercial, @NomDCI, @Dosage, @Description, @Type)
+					-- Renvoie un Code 0 pour "Exécution réussie"
+					SELECT 0 as 'stateMessage'
+				end
+		go
 
 
--- Création de la procédure stockée UPDATE des CRUD
-CREATE PROC PS_UPDATE_MEDICAMENT
-	@id int,
-	@NomCommercial VARCHAR(38),
-	@NomDCI VARCHAR(38),
-	@Dosage VARCHAR(38),
-	@Description TEXT,
-	@Type VARCHAR(38)
-AS
-	declare @placeHolder VARCHAR(38)
-	BEGIN
-		UPDATE MEDICAMENT
-		SET MED_NOM_COMMERCIAL = @NomCommercial, MED_NOM_DCI = @NomDCI, MED_DOSAGE = @Dosage, MED_DESCRIPTION = @Description, MED_TYPE = @Type
-		WHERE MED_ID = @id
-	END
-go
+		-- Création de la procédure stockée UPDATE des CRUD
+		CREATE PROC PS_UPDATE_MEDICAMENT
+			@id int,
+			@NomCommercial VARCHAR(38),
+			@NomDCI VARCHAR(38),
+			@Dosage VARCHAR(38),
+			@Description TEXT,
+			@Type VARCHAR(38)
+		AS
+			declare @placeHolder VARCHAR(38)
+			BEGIN
+				UPDATE MEDICAMENT
+				SET MED_NOM_COMMERCIAL = @NomCommercial, MED_NOM_DCI = @NomDCI, MED_DOSAGE = @Dosage, MED_DESCRIPTION = @Description, MED_TYPE = @Type
+				WHERE MED_ID = @id
+			END
+		go
 
--- Création de la procédure stockée de SELECT de tous les médicaments SANS description
-CREATE PROC PS_SELECT_ALL_MEDICAMENT
-AS
-	SELECT MED_ID, MED_NOM_COMMERCIAL, MED_NOM_DCI, MED_DOSAGE, MED_TYPE
-	FROM MEDICAMENT
-go
-
--- Création de la procédure stockée de SELECT du médicament concerné AVEC description
-CREATE PROC PS_SELECT_MEDICAMENT_DESCRIPTION
-	@IdMedicament INT
-AS
-	IF exists(SELECT MED_ID FROM MEDICAMENT WHERE MED_ID = @IdMedicament)
-		begin
-			SELECT MED_ID, MED_NOM_COMMERCIAL, MED_NOM_DCI, MED_DOSAGE, MED_TYPE, MED_DESCRIPTION
+		-- Création de la procédure stockée de SELECT de tous les médicaments SANS description des CRUD
+		CREATE PROC PS_SELECT_ALL_MEDICAMENT
+		AS
+			SELECT MED_ID, MED_NOM_COMMERCIAL, MED_NOM_DCI, MED_DOSAGE, MED_TYPE
 			FROM MEDICAMENT
-			WHERE MED_ID = @IdMedicament
-		end
-go
+		go
 
--- Suppression d'un médicaments
-CREATE PROC PS_DELETE_MEDICAMENT
-	@IdMedicament INT
-AS
-	IF exists(SELECT MED_ID FROM MEDICAMENT WHERE MED_ID = @IdMedicament)
-		begin
-			DELETE FROM MEDICAMENT 
-			WHERE MED_ID = @IdMedicament
-		end
-go
+		-- Création de la procédure stockée de SELECT du médicament concerné AVEC description des CRUD
+		CREATE PROC PS_SELECT_MEDICAMENT_DESCRIPTION
+			@IdMedicament INT
+		AS
+			IF exists(SELECT MED_ID FROM MEDICAMENT WHERE MED_ID = @IdMedicament)
+				begin
+					SELECT MED_ID, MED_NOM_COMMERCIAL, MED_NOM_DCI, MED_DOSAGE, MED_TYPE, MED_DESCRIPTION
+					FROM MEDICAMENT
+					WHERE MED_ID = @IdMedicament
+				end
+		go
+
+		-- Création de la procédure stockée de DELETE du médicament concerné des CRUD
+		CREATE PROC PS_DELETE_MEDICAMENT
+			@IdMedicament INT
+		AS
+			IF exists(SELECT MED_ID FROM MEDICAMENT WHERE MED_ID = @IdMedicament)
+				begin
+					DELETE FROM MEDICAMENT 
+					WHERE MED_ID = @IdMedicament
+				end
+		go
+
+
+
+-- PRACTICIEN
+
+		-- Création de la procédure stockée CREATE des CRUD
+		CREATE PROC PS_CREATE_PRATICIEN
+			@Nom VARCHAR(38),
+			@Prenom VARCHAR(38),
+			@Profession VARCHAR(38)
+		AS
+			SET ROWCOUNT 0
+			IF exists(SELECT PRA_NOM, PRA_PRENOM FROM PRATICIEN WHERE PRA_NOM = @Nom AND PRA_PRENOM = @Prenom)
+				begin
+					-- Annule l'insertion si le libellé existe déjà
+					-- Renvoie un Code 1 pour "Exécution arrêtée"
+					SELECT 1 as 'stateMessage'
+				end
+			ELSE
+				begin
+					-- Effectue l'insertion si le libellé n'existe pas
+					INSERT INTO PRATICIEN(PRA_NOM, PRA_PRENOM, PRA_PROFESSION) 
+						VALUES(@Nom, @Prenom, @Profession)
+					-- Renvoie un Code 0 pour "Exécution réussie"
+					SELECT 0 as 'stateMessage'
+				end
+
+		-- Création de la procédure stockée de SELECT de tous les praticiens
+		CREATE PROC PS_SELECT_ALL_PRATICIEN
+		AS
+			SELECT PRA_ID, PRA_NOM, PRA_PRENOM, PRA_PROFESSION
+			FROM PRATICIEN
+		go
+
+		-- Création de la procédure stockée UPDATE des CRUD
+		CREATE PROC PS_UPDATE_PRATICIEN
+			@id int,
+			@Nom VARCHAR(38),
+			@Prenom VARCHAR(38),
+			@Profession VARCHAR(38)
+		AS
+			BEGIN
+				UPDATE PRATICIEN
+				SET PRA_NOM = @Nom, PRA_PRENOM = @Prenom, PRA_PROFESSION = @Profession
+				WHERE PRA_ID = @id
+			END
+		go
+
+		-- Création de la procédure stockée DELETE des CRUD
+		CREATE PROC PS_DELETE_PRATICIEN
+			@IdPraticien INT 
+		AS
+			IF exists(SELECT PRA_ID FROM PRATICIEN WHERE PRA_ID = @IdPraticien)
+				begin
+					DELETE FROM PRATICIEN 
+					WHERE PRA_ID = @IdPraticien
+				end
+
+-- AVIS
