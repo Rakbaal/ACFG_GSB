@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ACFG_LaboGSB.Classes
 {
-    internal class Medicament
+    public class Medicament
     {
         public int MED_ID { get; set; }
         public string MED_NOM_COMMERCIAL { get; set; }

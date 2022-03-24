@@ -101,6 +101,18 @@ INSERT INTO MEDICAMENT (MED_NOM_COMMERCIAL, MED_NOM_DCI, MED_DOSAGE, MED_DESCRIP
 VALUES ('Cortisone', 'Hydrocortisone', '1%', 'C''est le nom de l''hormone cortisol lorsqu''elle est fournie comme médicament. Les utilisations comprennent des affections telles que l''insuffisance surrénocorticale, le syndrome surrénogénital, l''hypocalcémie, la thyroïdite, la polyarthrite rhumatoïde, la dermatite, l''asthme et la BPCO', 'Pommade')
 go
 
+--insertion Table Praticien
+INSERT INTO PRATICIEN (PRA_NOM,PRA_PRENOM,PRA_PROFESSION)
+VALUES ('Delamare', 'Paul', 'Chirurgien cardiaque')
+INSERT INTO PRATICIEN (PRA_NOM,PRA_PRENOM,PRA_PROFESSION)
+VALUES ('Roost', 'Didier', 'Pharmacien')
+INSERT INTO PRATICIEN (PRA_NOM,PRA_PRENOM,PRA_PROFESSION)
+VALUES ('Plaza', 'Stephane', 'Infirmier')
+INSERT INTO PRATICIEN (PRA_NOM,PRA_PRENOM,PRA_PROFESSION)
+VALUES ('Deschamps', 'Marie-Jeanne', 'Gynécologue')
+INSERT INTO PRATICIEN (PRA_NOM,PRA_PRENOM,PRA_PROFESSION)
+VALUES ('Lagrosse', 'Bertha', 'Infirmière')
+
 --Création de la procedure Login Validation
 CREATE PROC PS_LOGIN_VALIDATION
 	@Login CHAR(4),
@@ -124,16 +136,19 @@ AS
 	IF exists(SELECT MED_NOM_COMMERCIAL FROM MEDICAMENT WHERE MED_NOM_COMMERCIAL = @NomCommercial)
 		begin
 			-- Annule l'insertion si le libellé existe déjà
-			SELECT 1
+			-- Renvoie un Code 1 pour "Exécution arrêtée"
+			SELECT 1 as 'stateMessage'
 		end
 	ELSE
 		begin
 			-- Effectue l'insertion si le libellé n'existe pas
 			INSERT INTO MEDICAMENT(MED_NOM_COMMERCIAL, MED_NOM_DCI, MED_DOSAGE, MED_DESCRIPTION, MED_TYPE) 
 				VALUES(@NomCommercial, @NomDCI, @Dosage, @Description, @Type)
-			SELECT 0
+			-- Renvoie un Code 0 pour "Exécution réussie"
+			SELECT 0 as 'stateMessage'
 		end
 go
+
 
 -- Création de la procédure stockée UPDATE des CRUD
 CREATE PROC PS_UPDATE_MEDICAMENT
@@ -146,22 +161,9 @@ CREATE PROC PS_UPDATE_MEDICAMENT
 AS
 	declare @placeHolder VARCHAR(38)
 	BEGIN
-		SET ROWCOUNT 0
-		SELECT @placeHolder = MED_NOM_COMMERCIAL FROM MEDICAMENT WHERE MED_ID = @id
-		-- Vérifie que la modification effectuée, si elle change le nom, ne correspond pas à un nom de
-		-- médicament déjà existant
-		IF @NomCommercial != @placeHolder and @NomCommercial in (SELECT MED_NOM_COMMERCIAL FROM MEDICAMENT)
-			BEGIN
-				SELECT 1 AS 'stateMessage'
-			END
-		-- Sinon, effectue la modification
-		ELSE
-			BEGIN
-				UPDATE MEDICAMENT
-				SET MED_NOM_COMMERCIAL = @NomCommercial, MED_NOM_DCI = @NomDCI, MED_DOSAGE = @Dosage, MED_DESCRIPTION = @Description, MED_TYPE = @Type
-				WHERE MED_ID = @id
-				SELECT 0 as 'stateMessage'
-			END
+		UPDATE MEDICAMENT
+		SET MED_NOM_COMMERCIAL = @NomCommercial, MED_NOM_DCI = @NomDCI, MED_DOSAGE = @Dosage, MED_DESCRIPTION = @Description, MED_TYPE = @Type
+		WHERE MED_ID = @id
 	END
 go
 
@@ -170,6 +172,7 @@ CREATE PROC PS_SELECT_ALL_MEDICAMENT
 AS
 	SELECT MED_ID, MED_NOM_COMMERCIAL, MED_NOM_DCI, MED_DOSAGE, MED_TYPE
 	FROM MEDICAMENT
+go
 
 -- Création de la procédure stockée de SELECT du médicament concerné AVEC description
 CREATE PROC PS_SELECT_MEDICAMENT_DESCRIPTION
@@ -192,6 +195,7 @@ AS
 			DELETE FROM MEDICAMENT 
 			WHERE MED_ID = @IdMedicament
 		end
+<<<<<<< HEAD
 
 -- Supression d'un praticien
 CREATE PROC PS_DELETE_PRATICIEN
@@ -221,4 +225,6 @@ BEGIN
 		SELECT VIS_PRENOM, VIS_NOM, VIS_LOGIN, @MDPHASH
 		FROM inserted
 END
+=======
+>>>>>>> 39330758e7a5170ea6c6fd5a45633d2b8b94f3a8
 go

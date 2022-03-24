@@ -25,14 +25,13 @@ namespace ACFG_LaboGSB
         {
             InitializeComponent();
             ActualiserDataGrid();
-            
         }
 
         #region Méthodes 
 
         private void ActualiserDataGrid()
         {
-            //Affichage de tous les médicaments 
+            //Affichage de tous les médicaments
             List<Medicament> listeMedicaments = Requetes.PS_LISTE_MEDICAMENT();
 
             if (listeMedicaments != null)
@@ -54,7 +53,7 @@ namespace ACFG_LaboGSB
 
                 //On demande la confirmation à l'utilisateur
                 string messageErreur = "Voulez-vous vraiment supprimer le médicament " + medicamentSuppression.MED_NOM_COMMERCIAL + " ?";
-                MessageBoxResult result = MessageBox.Show(messageErreur, "Confirmation", MessageBoxButton.YesNo, MessageBoxImage.Hand);
+                MessageBoxResult result = MessageBox.Show(messageErreur, "Confirmation", MessageBoxButton.YesNo, MessageBoxImage.Exclamation);
 
                 if (result == MessageBoxResult.Yes)
                 {
@@ -77,6 +76,7 @@ namespace ACFG_LaboGSB
         {
             Ajout ajout = new Ajout();
             ajout.ShowDialog();
+            
         }
         private void ButtonSupprimer_MouseEnter(object sender, MouseEventArgs e)
         {
@@ -84,19 +84,19 @@ namespace ACFG_LaboGSB
         }
         private void ButtonSupprimerPraticien_Click(object sender, RoutedEventArgs e)
         {
-            if (this.DataGridMedicaments.SelectedItem != null)
+            if (this.DataGridPraticien.SelectedItem != null)
             {
                 //On récupère le praticien sélectionné
-                Medicament medicamentSuppression = this.DataGridMedicaments.SelectedItem as Medicament;
+                Praticien praticienSuppression = this.DataGridPraticien.SelectedItem as Praticien;
 
                 //On demande la confirmation à l'utilisateur
-                string messageErreur = "Voulez-vous vraiment supprimer le praticien " + medicamentSuppression.MED_NOM_COMMERCIAL + " ?";
+                string messageErreur = "Voulez-vous vraiment supprimer le praticien " + praticienSuppression.PRA_NOM + " ?";
                 MessageBoxResult result = MessageBox.Show(messageErreur, "Confirmation", MessageBoxButton.YesNo, MessageBoxImage.Hand);
 
                 if (result == MessageBoxResult.Yes)
                 {
                     //On supprime le praticien en appellant la procédure stockée
-                    Requetes.PS_DELETE_MEDICAMENT(medicamentSuppression);
+                    Requetes.PS_DELETE_PRATICIEN(praticienSuppression);
                     ActualiserDataGrid();
                 }
                 else
@@ -106,7 +106,7 @@ namespace ACFG_LaboGSB
             }
             else
             {
-                MessageBox.Show("Veuillez selectionner un médicament à supprimer !", "Impossible de supprimer", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                MessageBox.Show("Veuillez selectionner un praticien à supprimer !", "Impossible de supprimer", MessageBoxButton.OK, MessageBoxImage.Exclamation);
             }
 
         }
@@ -115,22 +115,25 @@ namespace ACFG_LaboGSB
 
         #region DataGrid
 
-        private void DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            
-        }
-
-
-        #endregion
-
-        private void Window_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        private void DataGridMedicaments_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             // lors d'un double clique sur une ligne ouvre un le formulaire de détail
             this.DataGridMedicaments.SelectionMode = DataGridSelectionMode.Single;
             int index = DataGridMedicaments.SelectedIndex;
-            var ligne = DataGridMedicaments.Items[index];
-            DescriptionMedicament descriptionMedicament = new DescriptionMedicament();
+            var gridMedicament = (Medicament)DataGridMedicaments.Items[index];
+            var medicament = Requetes.PS_MEDICAMENT_DESCRIPTION(gridMedicament.MED_ID);
+
+            DescriptionMedicament descriptionMedicament = new DescriptionMedicament(medicament);
             descriptionMedicament.Show();
+        }
+
+        #endregion
+
+
+        private void Window_Activated(object sender, EventArgs e)
+        {
+            ActualiserDataGrid();
+
         }
     }
 }

@@ -58,8 +58,6 @@ namespace ACFG_LaboGSB
             else
             {
                 this.LabelErreur.Visibility = Visibility.Visible;
-                this.TextboxIdentifiant.Text = "Identifiant";
-                this.TextboxMdp.Password = "Mot de passe";
             }
 
             
@@ -145,8 +143,10 @@ namespace ACFG_LaboGSB
 
                 if (resultatProc != 0)
                 {
+                    
                     MedicamentF MedicamentF = new MedicamentF();
                     MedicamentF.ShowDialog();
+                    
                 }
                 else
                 {
@@ -204,6 +204,10 @@ namespace ACFG_LaboGSB
             }
         */
         }
-        
+
+        private void Window_Deactivated(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }
