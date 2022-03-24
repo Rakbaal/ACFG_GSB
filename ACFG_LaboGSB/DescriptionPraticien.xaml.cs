@@ -24,16 +24,16 @@ namespace ACFG_LaboGSB
         // Variables Globales
         Praticien praticienConcerner = new Praticien();
 
-        public DescriptionPraticien(/*Praticien praticien*/)
+        public DescriptionPraticien(Praticien praticien)
         {
             InitializeComponent();
             this.Btn_Valider.Visibility = Visibility.Hidden;
             this.Tbx_Description_Prenom.Visibility = Visibility.Hidden;
             this.Tbx_Description_Nom.Visibility = Visibility.Hidden;
-            /*this.Lbl_Description_Prenom.Content = praticien.PRA_PRENOM;
+            this.Lbl_Description_Prenom.Content = praticien.PRA_PRENOM;
             this.Lbl_Description_Nom.Content = praticien.PRA_NOM;
             this.ComboBoxProfession.Text = praticien.PRA_PROFESSION;
-            praticienConcerner = praticien;*/
+            praticienConcerner = praticien;
         }
 
         private void Btn_Modifier_Click(object sender, RoutedEventArgs e)

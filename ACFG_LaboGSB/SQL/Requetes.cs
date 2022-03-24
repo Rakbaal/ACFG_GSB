@@ -292,7 +292,7 @@ namespace ACFG_LaboGSB.SQL
             var profession = praticien.PRA_PROFESSION.Replace("'", "''");
 
             string Requete = $"exec PS_UPDATE_PRATICIEN " +
-                $"'{praticien.PRA_ID}, " +
+                $"{praticien.PRA_ID}, " +
                 $"'{praticien.PRA_NOM}', " +
                 $"'{praticien.PRA_PRENOM}', " +
                 $"'{profession}'";
