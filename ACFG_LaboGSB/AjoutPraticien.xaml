@@ -9,7 +9,7 @@
     <Grid Margin="0,0,10,-6">
         <Label Content="Nom : " HorizontalAlignment="Left" Margin="98,111,0,0" VerticalAlignment="Top" FontSize="12" Height="29" Width="108"/>
         <Label Content="Prenom : " HorizontalAlignment="Left" Margin="90,170,0,0" VerticalAlignment="Top" FontSize="12" Height="29" Width="75"/>
-        <Label Content="Profession : " HorizontalAlignment="Left" Margin="90,239,0,0" VerticalAlignment="Top" FontSize="12" Width="40" Height="30"/>
+        <Label Content="Profession : " HorizontalAlignment="Left" Margin="90,239,0,0" VerticalAlignment="Top" FontSize="12" Width="75" Height="30"/>
         <Button x:Name="Btn_AjoutPraticien" Content="Ajouter" HorizontalAlignment="Left" Margin="238,330,0,0" VerticalAlignment="Top" FontSize="12" Click="Btn_Ajout_Click" Width="94" Background="#FFCFFAFF"/>
         <TextBox x:Name="TextboxNomPraticien" HorizontalAlignment="Left" Margin="212,117,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <TextBox x:Name="TextboxPrenomPraticien" HorizontalAlignment="Left" Margin="212,176,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>

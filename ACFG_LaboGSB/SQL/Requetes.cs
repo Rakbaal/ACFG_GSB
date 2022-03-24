@@ -283,6 +283,33 @@ namespace ACFG_LaboGSB.SQL
                 conn.Close();
             }
         }
+
+        public static void PS_UPDATE_PRATICIEN(Praticien praticien)
+        {
+            SqlCommand myCommand = null;
+            SqlDataReader mySqlDataReader = null;
+            SqlConnection conn = BDD.openBDDApplication("ACFG_LaboGSB");
+            var profession = praticien.PRA_PROFESSION.Replace("'", "''");
+
+            string Requete = $"exec PS_UPDATE_PRATICIEN " +
+                $"'{praticien.PRA_ID}, " +
+                $"'{praticien.PRA_NOM}', " +
+                $"'{praticien.PRA_PRENOM}', " +
+                $"'{profession}'";
+
+            try
+            {
+                myCommand = new SqlCommand(Requete, conn);
+                mySqlDataReader = myCommand.ExecuteReader();
+                mySqlDataReader.Read();
+            }
+            catch (Exception erreur)
+            {
+                Console.WriteLine("Erreur lors de la requête UPDATE Praticien " + erreur.Message);
+                throw;
+            }
+        }
+
         public static void PS_DELETE_PRATICIEN(Praticien practicien)
 
         {
