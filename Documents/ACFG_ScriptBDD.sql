@@ -112,6 +112,7 @@ INSERT INTO PRATICIEN (PRA_NOM,PRA_PRENOM,PRA_PROFESSION)
 VALUES ('Deschamps', 'Marie-Jeanne', 'Gynécologue')
 INSERT INTO PRATICIEN (PRA_NOM,PRA_PRENOM,PRA_PROFESSION)
 VALUES ('Lagrosse', 'Bertha', 'Infirmière')
+go
 
 --Création de la procedure Login Validation
 CREATE PROC PS_LOGIN_VALIDATION
@@ -127,7 +128,7 @@ go
 
 -- MEDICAMENTS
 
-		-- Création de la procédure stockée CREATE des CRUD
+		-- Création de médicament
 		CREATE PROC PS_CREATE_MEDICAMENT
 			@NomCommercial VARCHAR(38),
 			@NomDCI VARCHAR(38),
@@ -152,14 +153,14 @@ go
 				end
 		go
 
-		-- Création de la procédure stockée de SELECT de tous les médicaments SANS description des CRUD
+		-- Lecture des médicaments (sans description)
 		CREATE PROC PS_SELECT_ALL_MEDICAMENT
 		AS
 			SELECT MED_ID, MED_NOM_COMMERCIAL, MED_NOM_DCI, MED_DOSAGE, MED_TYPE
 			FROM MEDICAMENT
 		go
 
-		-- Création de la procédure stockée de SELECT du médicament concerné AVEC description des CRUD
+		-- Lecture des médicaments (avec description)
 		CREATE PROC PS_SELECT_MEDICAMENT_DESCRIPTION
 			@IdMedicament INT
 		AS
@@ -172,7 +173,7 @@ go
 		go
 
 
-		-- Création de la procédure stockée UPDATE des CRUD
+		-- MAJ des médicaments
 		CREATE PROC PS_UPDATE_MEDICAMENT
 			@id int,
 			@NomCommercial VARCHAR(38),
@@ -191,7 +192,7 @@ go
 
 		
 
-		-- Création de la procédure stockée de DELETE du médicament concerné des CRUD
+		-- Suppression des médicaments
 		CREATE PROC PS_DELETE_MEDICAMENT
 			@IdMedicament INT
 		AS
@@ -203,9 +204,9 @@ go
 		go
 
 
--- PRACTICIEN
+-- PRATICIEN
 
-		-- Création de la procédure stockée CREATE des CRUD
+		-- Création de Praticien
 		CREATE PROC PS_CREATE_PRATICIEN
 			@Nom VARCHAR(38),
 			@Prenom VARCHAR(38),
@@ -226,15 +227,15 @@ go
 					-- Renvoie un Code 0 pour "Exécution réussie"
 					SELECT 0 as 'stateMessage'
 				end
-
-		-- Création de la procédure stockée de SELECT de tous les praticiens
+		go
+		-- Lecture des praticiens
 		CREATE PROC PS_SELECT_ALL_PRATICIEN
 		AS
 			SELECT PRA_ID, PRA_NOM, PRA_PRENOM, PRA_PROFESSION
 			FROM PRATICIEN
 		go
 
-		-- Création de la procédure stockée UPDATE des CRUD
+		-- MAJ des praticiens
 		CREATE PROC PS_UPDATE_PRATICIEN
 			@id int,
 			@Nom VARCHAR(38),
@@ -248,7 +249,7 @@ go
 			END
 		go
 
-		-- Création de la procédure stockée DELETE des CRUD
+		-- Suppression des praticiens
 		CREATE PROC PS_DELETE_PRATICIEN
 			@IdPraticien INT 
 		AS
@@ -257,5 +258,6 @@ go
 					DELETE FROM PRATICIEN 
 					WHERE PRA_ID = @IdPraticien
 				end
-
+		go
 -- AVIS
+
