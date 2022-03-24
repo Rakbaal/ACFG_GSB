@@ -17,7 +17,7 @@ namespace ACFG_LaboGSB.Classes
         {
             SqlConnection conn = new SqlConnection();
             conn.ConnectionString =
-            "Data Source={Environment.MachineName.ToString()};" +
+            $"Data Source={Environment.MachineName.ToString()};" +
             "Initial Catalog = ACFG_LaboGSB;" +
             "User id=sa;" +
             "Password=info";
