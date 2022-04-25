@@ -234,7 +234,7 @@ namespace ACFG_LaboGSB.SQL
             try // On essaye d'executer la requête
             {
                 myCommand = new SqlCommand(Requete, conn);
-                mySqlDataReader = myCommand.ExecuteReader(); 
+                mySqlDataReader = myCommand.ExecuteReader();
                 while (mySqlDataReader.Read())
                 {
                     if (mySqlDataReader["PRA_ID"] != DBNull.Value)
@@ -416,4 +416,3 @@ namespace ACFG_LaboGSB.SQL
         #endregion
     }
 }
-        

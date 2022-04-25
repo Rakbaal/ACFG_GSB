@@ -38,6 +38,12 @@ namespace ACFG_LaboGSB
             Lbl_Description_Description.Content = medicament.MED_DESCRIPTION;
             Lbl_Description_Type.Content = medicament.MED_TYPE;
             medicamentChoisi = medicament;
+            List<Avis> listeAvis = Requetes.PS_SELECT_AVIS_MEDICAMENT(medicament.MED_ID);
+            
+            if (listeAvis != null)
+            {
+                this.DataGridAvis.ItemsSource = listeAvis;
+            }
         }
 
         private void Btn_Modifier_Click(object sender, RoutedEventArgs e)
