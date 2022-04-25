@@ -193,6 +193,11 @@ go
 		CREATE PROC PS_DELETE_MEDICAMENT
 			@IdMedicament INT
 		AS
+			IF exists(SELECT AVI_ID FROM AVIS WHERE MED_ID = @IdMedicament)
+				begin
+					DELETE FROM AVIS
+					WHERE MED_ID = @IdMedicament
+				end
 			IF exists(SELECT MED_ID FROM MEDICAMENT WHERE MED_ID = @IdMedicament)
 				begin
 					DELETE FROM MEDICAMENT 
@@ -259,6 +264,11 @@ go
 		CREATE PROC PS_DELETE_PRATICIEN
 			@IdPraticien INT 
 		AS
+			IF exists(SELECT AVI_ID FROM AVIS WHERE PRA_ID = @IdPraticien)
+				begin
+					DELETE FROM AVIS
+					WHERE PRA_ID = @IdPraticien
+				end
 			IF exists(SELECT PRA_ID FROM PRATICIEN WHERE PRA_ID = @IdPraticien)
 				begin
 					DELETE FROM PRATICIEN 
