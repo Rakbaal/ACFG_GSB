@@ -1,3 +1,8 @@
+use master
+go
+
+drop database ACFG_LaboGSB
+go
 --Création de la base de donnee
 CREATE DATABASE ACFG_LaboGSB
 go
@@ -196,6 +201,15 @@ go
 		go
 
 -- PRATICIEN
+		
+		-- Sélection d'un praticien
+		CREATE PROC PS_SELECT_UNPRATICIEN
+				@ID int
+			AS
+				SELECT PRA_ID, PRA_NOM, PRA_PRENOM, PRA_PROFESSION
+				FROM PRATICIEN
+				WHERE PRA_ID = @ID
+		go
 
 		-- Création de Praticien
 		CREATE PROC PS_CREATE_PRATICIEN
@@ -219,6 +233,7 @@ go
 					SELECT 0 as 'stateMessage'
 				end
 		go
+
 		-- Lecture des praticiens
 		CREATE PROC PS_SELECT_ALL_PRATICIEN
 		AS
@@ -279,7 +294,7 @@ go
 		AS
 			IF exists(SELECT MED_ID FROM MEDICAMENT WHERE MED_ID = @IdMedicament)
 				begin
-					SELECT AVI_DATE, AVI_COMMENTAIRE, PRA_ID
+					SELECT AVI_ID, AVI_DATE, AVI_COMMENTAIRE, A.PRA_ID
 					FROM AVIS AS A
 					INNER JOIN MEDICAMENT AS M ON A.MED_ID = M.MED_ID
 					INNER JOIN PRATICIEN AS P ON P.PRA_ID = A.PRA_ID
