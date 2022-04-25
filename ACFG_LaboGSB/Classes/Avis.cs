@@ -10,8 +10,8 @@ namespace ACFG_LaboGSB.Classes
     {
         public int AVI_ID { get; set; }
         public DateTime AVI_DATE { get; set; }
-        public int AVI_NOTE { get; set; }
-        public string AVI_COMMENTAIRES { get; set; }
-        public int MED_ID { get; set; }
+        public string AVI_COMMENTAIRE { get; set; }
+        public Medicament medicament { get; set; }
+        public Praticien praticien { get; set; }
     }
 }
