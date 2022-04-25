@@ -1,0 +1,18 @@
+﻿<Window x:Class="ACFG_LaboGSB.AjoutAvis"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ACFG_LaboGSB"
+        mc:Ignorable="d"
+        Title="AjoutAvis" Height="450" Width="800" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Label x:Name="PanelTop" Content="Ajout avis" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Foreground="#FFF1F1F1" FontSize="30" Margin="0,0,0,362" Background="#FF4A4741"/>
+        <DatePicker HorizontalAlignment="Left" Height="30" Margin="400,158,0,0" VerticalAlignment="Top" Width="182"/>
+        <Label x:Name="Date" Content="Date : " HorizontalAlignment="Left" Height="30" Margin="212,158,0,0" VerticalAlignment="Top" Width="129"/>
+        <Label x:Name="Commentaire" Content="Commentaire : " HorizontalAlignment="Left" Height="30" Margin="212,217,0,0" VerticalAlignment="Top" Width="129"/>
+        <Button Content="Retour" HorizontalAlignment="Left" Margin="212,377,0,0" VerticalAlignment="Top" FontSize="12" Width="86" Background="#FFFFB8B8"/>
+        <Button x:Name="Btn_AjoutAvis" Content="Ajouter" HorizontalAlignment="Left" Margin="400,377,0,0" VerticalAlignment="Top" FontSize="12" Width="94" Background="#FFCFFAFF"/>
+        <TextBox x:Name="TextBoxCommentaire" HorizontalAlignment="Left" Height="104" Margin="400,217,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="182"/>
+    </Grid>
+</Window>
