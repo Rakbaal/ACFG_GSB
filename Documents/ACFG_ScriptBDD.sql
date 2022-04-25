@@ -38,24 +38,15 @@ CREATE TABLE PRATICIEN (
  go
 
 --Création de la table AVIS
-CREATE TABLE AVIS(
+CREATE TABLE AVIS (
 AVI_ID INT IDENTITY (1,1),
 AVI_DATE DATE NOT NULL,
-AVI_NOTE INT NOT NULL,
-AVI_COMMENTAIRES TEXT NOT NULL,
+AVI_COMMENTAIRE TEXT NOT NULL,
 MED_ID INT NOT NULL,
-CONSTRAINT PK_AVIS_ID PRIMARY KEY (AVI_ID),
-CONSTRAINT FK_AVIS_MEDICAMENT FOREIGN KEY (MED_ID) REFERENCES MEDICAMENT (MED_ID)
-)
-go
-
---Création de la table ECRIRE
-CREATE TABLE ECRIRE(
-AVI_ID INT NOT NULL,
 PRA_ID INT NOT NULL,
-CONSTRAINT PK_ECRIRE_ID PRIMARY KEY (AVI_ID,PRA_ID),
-CONSTRAINT FK_ECRIRE_AVIS FOREIGN KEY (AVI_ID) REFERENCES AVIS (AVI_ID),
-CONSTRAINT FK_ECRIRE_PRATICIEN FOREIGN KEY (PRA_ID) REFERENCES PRATICIEN (PRA_ID)
+CONSTRAINT PK_AVIS_ID PRIMARY KEY (AVI_ID),
+CONSTRAINT FK_AVIS_MEDICAMENT FOREIGN KEY (MED_ID) REFERENCES MEDICAMENT (MED_ID),
+CONSTRAINT FK_AVIS_PRATICIEN FOREIGN KEY (PRA_ID) REFERENCES PRATICIEN (PRA_ID)
 )
 go
 
@@ -160,7 +151,7 @@ go
 			FROM MEDICAMENT
 		go
 
-<<<<<<< HEAD
+
 		-- Lecture des médicaments (avec description)
 		CREATE PROC PS_SELECT_MEDICAMENT_DESCRIPTION
 			@IdMedicament INT
@@ -203,21 +194,6 @@ go
 					WHERE MED_ID = @IdMedicament
 				end
 		go
-=======
--- Suppression d'un médicaments
-CREATE PROC PS_DELETE_MEDICAMENT
-	@IdMedicament INT
-AS
-	IF exists(SELECT MED_ID FROM MEDICAMENT WHERE MED_ID = @IdMedicament)
-		begin
-			DELETE FROM MEDICAMENT 
-			WHERE MED_ID = @IdMedicament
-		end
-go
-
-
->>>>>>> TGA_Avis
-
 
 -- PRATICIEN
 
@@ -274,4 +250,51 @@ go
 					WHERE PRA_ID = @IdPraticien
 				end
 		go
+
 -- AVIS
+
+		-- Création d'un avis
+		CREATE PROC PS_CREATE_AVIS
+			@IdMedicament INT,
+			@date DATE,
+			@Commentaires TEXT,
+			@idPraticien INT
+
+		AS
+			IF exists(SELECT MED_ID FROM MEDICAMENT WHERE MED_ID = @IdMedicament)
+				begin
+					SELECT 1 as 'stateMessage'
+				end
+			ELSE
+				begin
+					INSERT INTO AVIS(AVI_DATE, AVI_COMMENTAIRE, PRA_ID, MED_ID) 
+						VALUES(@date, @Commentaires, @idPraticien, @IdMedicament)
+					SELECT 0 as 'stateMessage'
+				end
+		go
+
+		-- Lecture de la liste des avis pour un médicament précis
+		CREATE PROC PS_SELECT_AVIS_MEDICAMENT
+			@IdMedicament INT
+		AS
+			IF exists(SELECT MED_ID FROM MEDICAMENT WHERE MED_ID = @IdMedicament)
+				begin
+					SELECT AVI_DATE, AVI_COMMENTAIRE, PRA_ID
+					FROM AVIS AS A
+					INNER JOIN MEDICAMENT AS M ON A.MED_ID = M.MED_ID
+					INNER JOIN PRATICIEN AS P ON P.PRA_ID = A.PRA_ID
+					WHERE A.MED_ID = @IdMedicament
+				end
+		go
+
+		-- Supprimer un avis
+
+		CREATE PROC PS_DELETE_AVIS
+			@IdAvis INT
+		AS
+			IF exists(SELECT AVI_ID FROM AVIS WHERE AVI_ID = @IdAvis)
+				begin
+					DELETE FROM AVIS
+					WHERE AVI_ID = @IdAvis
+				end
+		go
