@@ -254,8 +254,24 @@ go
 -- AVIS
 
 		-- Création d'un avis
+		CREATE PROC PS_CREATE_AVIS
+			@IdMedicament INT,
+			@date DATE,
+			@Commentaires TEXT,
+			@idPraticien INT
 
-
+		AS
+			IF exists(SELECT MED_ID FROM MEDICAMENT WHERE MED_ID = @IdMedicament)
+				begin
+					SELECT 1 as 'stateMessage'
+				end
+			ELSE
+				begin
+					INSERT INTO AVIS(AVI_DATE, AVI_COMMENTAIRE, PRA_ID, MED_ID) 
+						VALUES(@date, @Commentaires, @idPraticien, @IdMedicament)
+					SELECT 0 as 'stateMessage'
+				end
+		go
 
 		-- Lecture de la liste des avis pour un médicament précis
 		CREATE PROC PS_SELECT_AVIS_MEDICAMENT
@@ -263,7 +279,7 @@ go
 		AS
 			IF exists(SELECT MED_ID FROM MEDICAMENT WHERE MED_ID = @IdMedicament)
 				begin
-					SELECT AVI_DATE, AVI_COMMENTAIRE, PRA_NOM, PRA_PRENOM
+					SELECT AVI_DATE, AVI_COMMENTAIRE, PRA_ID
 					FROM AVIS AS A
 					INNER JOIN MEDICAMENT AS M ON A.MED_ID = M.MED_ID
 					INNER JOIN PRATICIEN AS P ON P.PRA_ID = A.PRA_ID
@@ -272,3 +288,13 @@ go
 		go
 
 		-- Supprimer un avis
+
+		CREATE PROC PS_DELETE_AVIS
+			@IdAvis INT
+		AS
+			IF exists(SELECT AVI_ID FROM AVIS WHERE AVI_ID = @IdAvis)
+				begin
+					DELETE FROM AVIS
+					WHERE AVI_ID = @IdAvis
+				end
+		go
