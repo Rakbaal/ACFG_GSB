@@ -221,6 +221,7 @@ namespace ACFG_LaboGSB.SQL
         #endregion
 
         #region PS - Praticien
+
         public static List<Praticien> PS_LISTE_PRATICIENS()
         {
             SqlCommand myCommand = null;
@@ -259,6 +260,7 @@ namespace ACFG_LaboGSB.SQL
 
             return listPraticien;
         }
+
         public static void PS_CREATE_PRATICIEN(Praticien praticien)
         {
             SqlCommand myCommand = null;
@@ -331,6 +333,86 @@ namespace ACFG_LaboGSB.SQL
                 throw;
             }
         }
+
+        public static Praticien PS_SELECT_UNPRATICIEN(int id)
+        {
+            SqlCommand myCommand = null;
+            SqlDataReader mySqlDataReader = null;
+            SqlConnection conn = BDD.openBDDApplication("ACFG_LaboGSB");
+            string Requete = $"exec PS_SELECT_UNPRATICIEN {id}";
+            Praticien praticien = null;
+
+            try // On essaye d'executer la requête
+            {
+                myCommand = new SqlCommand(Requete, conn);
+                mySqlDataReader = myCommand.ExecuteReader();
+                while (mySqlDataReader.Read())
+                {
+                    if (mySqlDataReader["PRA_ID"] != DBNull.Value)
+                    {
+                        praticien = new Praticien();
+                        praticien.PRA_ID = Convert.ToInt32(mySqlDataReader["PRA_ID"]);
+                        praticien.PRA_NOM = Convert.ToString(mySqlDataReader["PRA_NOM"]);
+                        praticien.PRA_PRENOM = Convert.ToString(mySqlDataReader["PRA_PRENOM"]);
+                        praticien.PRA_PROFESSION = Convert.ToString(mySqlDataReader["PRA_PROFESSION"]);
+                    }
+                }
+            }
+            catch (Exception erreur) // En cas d'erreur un message s'affiche sur la console
+            {
+                Console.WriteLine("Erreur lors de la requête SELECT ListePraticiens " + erreur.Message);
+                throw;
+            }
+            finally
+            {
+                conn.Close();
+            }
+
+            return praticien;
+        }
+
+        #endregion
+
+        #region PS - Avis
+
+        public static List<Avis> PS_SELECT_AVIS_MEDICAMENT(int med_id)
+        {
+            SqlCommand myCommand = null;
+            SqlDataReader mySqlDataReader = null;
+            SqlConnection conn = BDD.openBDDApplication("ACFG_LaboGSB");
+            string Requete = "exec PS_SELECT_AVIS_MEDICAMENT '" + med_id + "'";
+            List<Avis> listAvis = new List<Avis>();
+            Avis avis = null;
+
+            try // On essaye d'executer la requête
+            {
+                myCommand = new SqlCommand(Requete, conn);
+                mySqlDataReader = myCommand.ExecuteReader();
+                while (mySqlDataReader.Read())
+                {
+                    if (mySqlDataReader["AVI_ID"] != DBNull.Value)
+                    {
+                        avis = new Avis();
+                        avis.AVI_DATE = Convert.ToDateTime(mySqlDataReader["AVI_DATE"]);
+                        avis.AVI_COMMENTAIRE = Convert.ToString(mySqlDataReader["AVI_COMMENTAIRE"]);
+                        avis.praticien = Requetes.PS_SELECT_UNPRATICIEN(Convert.ToInt32(mySqlDataReader["PRA_ID"]));
+                        listAvis.Add(avis);
+                    }
+                }
+            }
+            catch (Exception erreur) // En cas d'erreur un message s'affiche sur la console
+            {
+                Console.WriteLine("Erreur lors de la requête SELECT ListeAvis " + erreur.Message);
+                throw;
+            }
+            finally
+            {
+                conn.Close();
+            }
+
+            return listAvis;
+        }
+
         #endregion
     }
 }
