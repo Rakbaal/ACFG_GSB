@@ -160,7 +160,7 @@ go
 			FROM MEDICAMENT
 		go
 
-<<<<<<< HEAD
+
 		-- Lecture des médicaments (avec description)
 		CREATE PROC PS_SELECT_MEDICAMENT_DESCRIPTION
 			@IdMedicament INT
@@ -203,21 +203,6 @@ go
 					WHERE MED_ID = @IdMedicament
 				end
 		go
-=======
--- Suppression d'un médicaments
-CREATE PROC PS_DELETE_MEDICAMENT
-	@IdMedicament INT
-AS
-	IF exists(SELECT MED_ID FROM MEDICAMENT WHERE MED_ID = @IdMedicament)
-		begin
-			DELETE FROM MEDICAMENT 
-			WHERE MED_ID = @IdMedicament
-		end
-go
-
-
->>>>>>> TGA_Avis
-
 
 -- PRATICIEN
 
@@ -275,3 +260,5 @@ go
 				end
 		go
 -- AVIS
+
+
