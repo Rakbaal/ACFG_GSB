@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ACFG_LaboGSB"
         mc:Ignorable="d"
-        Title="Practicien" Height="339" Width="800" WindowStartupLocation="CenterScreen">
+        Title="Practicien" Height="339" Width="550" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="61*"/>
@@ -14,8 +14,8 @@
         <Label Content="Prénom : " HorizontalAlignment="Left" Margin="34,107,0,0" VerticalAlignment="Top" FontSize="14"/>
         <Label Content="Nom : " HorizontalAlignment="Left" Margin="34,136,0,0" VerticalAlignment="Top" FontSize="14"/>
         <Label Content="Profession : " HorizontalAlignment="Left" Margin="34,163,0,0" VerticalAlignment="Top" FontSize="14"/>
-        <Label x:Name="Lbl_Description_Prenom" Content="XXXXXXX" HorizontalAlignment="Left" Margin="161,107,0,0" VerticalAlignment="Top" FontSize="14"/>
-        <Label x:Name="Lbl_Description_Nom" Content="XXXXXXX" HorizontalAlignment="Left" Margin="161,133,0,0" VerticalAlignment="Top" FontSize="14"/>
+        <Label x:Name="Lbl_Description_Prenom" Content="XXXXXXX" HorizontalAlignment="Left" Margin="158,107,0,0" VerticalAlignment="Top" FontSize="14"/>
+        <Label x:Name="Lbl_Description_Nom" Content="XXXXXXX" HorizontalAlignment="Left" Margin="158,136,0,0" VerticalAlignment="Top" FontSize="14"/>
         <Button x:Name="Btn_Modifier" Content="Modifier" HorizontalAlignment="Left" Margin="34,220,0,0" VerticalAlignment="Top" FontSize="16"  Width="106" Click="Btn_Modifier_Click" Foreground="White" MouseEnter="Btn_Modifier_MouseEnter" Height="25">
             <Button.Style>
                 <Style TargetType="{x:Type Button}">

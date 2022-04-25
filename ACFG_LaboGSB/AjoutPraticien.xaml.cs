@@ -54,9 +54,36 @@ namespace ACFG_LaboGSB
         {
             // On implémente les données saisis dans une classe vide
             Praticien NouveauPraticien = new Praticien();
-            NouveauPraticien.PRA_NOM= this.TextboxNomPraticien.Text;
-            NouveauPraticien.PRA_PRENOM = this.TextboxPrenomPraticien.Text;
-            NouveauPraticien.PRA_PROFESSION = this.TextboxProfession.Text;
+            
+            if (TextboxNomPraticien.Text != "")
+            {
+                NouveauPraticien.PRA_NOM = this.TextboxNomPraticien.Text;
+            }
+            else
+            {
+                MessageBox.Show("Erreur", "Veuillez saisir un Nom", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
+            if (TextboxPrenomPraticien.Text != "")
+            {
+                NouveauPraticien.PRA_PRENOM = this.TextboxPrenomPraticien.Text;
+            }
+            else
+            {
+                MessageBox.Show("Erreur", "Veuillez saisir un Prénom", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
+            if (ComboBoxProfession.Text != "")
+            {
+                NouveauPraticien.PRA_PROFESSION = this.ComboBoxProfession.Text;
+            }
+            else
+            {
+                MessageBox.Show("Erreur", "Veuillez saisir une Profession", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
 
             // On appelle la procédure pour ajouter le médicament
             Requetes.PS_CREATE_PRATICIEN(NouveauPraticien);
@@ -64,7 +91,7 @@ namespace ACFG_LaboGSB
             // On vide tous les champs à saisir
             this.TextboxNomPraticien.Text = "";
             this.TextboxPrenomPraticien.Text = "";
-            this.TextboxProfession.Text = "";
+            this.ComboBoxProfession.Text = "";
 
             // On affiche le message de validation d'ajout
             this.LabelValidation.Visibility = Visibility.Visible;
