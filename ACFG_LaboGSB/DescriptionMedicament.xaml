@@ -5,27 +5,70 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ACFG_LaboGSB"
         mc:Ignorable="d"
-        Title="DescriptionMedicament" Height="450" Width="930">
+        Title="DescriptionMedicament" Height="736" Width="930" WindowStartupLocation="CenterScreen">
     <Grid HorizontalAlignment="Left" Width="920">
-        <Label Content="Description détaillée :" HorizontalAlignment="Left" Margin="36,27,0,0" VerticalAlignment="Top" FontSize="16" Width="184"/>
         <Label Content="Nom commercial : " HorizontalAlignment="Left" Margin="34,72,0,0" VerticalAlignment="Top" FontSize="14"/>
         <Label Content="Nom DCI : " HorizontalAlignment="Left" Margin="34,106,0,0" VerticalAlignment="Top" FontSize="14"/>
         <Label Content="Type : " HorizontalAlignment="Left" Margin="34,140,0,0" VerticalAlignment="Top" FontSize="14"/>
         <Label Content="Dosage : " HorizontalAlignment="Left" Margin="34,174,0,0" VerticalAlignment="Top" FontSize="14" RenderTransformOrigin="-0.246,0.989"/>
         <Label Content="Description : " HorizontalAlignment="Left" Margin="34,208,0,0" VerticalAlignment="Top" FontSize="14"/>
-        <Label x:Name="Lbl_Description_NomCommerciale" Content="Label" HorizontalAlignment="Left" Margin="189,72,0,0" VerticalAlignment="Top" FontSize="14"/>
-        <Label x:Name="Lbl_Description_NomDCI" Content="Label" HorizontalAlignment="Left" Margin="189,106,0,0" VerticalAlignment="Top" FontSize="14"/>
-        <Label x:Name="Lbl_Description_Type" Content="Label" HorizontalAlignment="Left" Margin="189,140,0,0" VerticalAlignment="Top" FontSize="14"/>
-        <Label x:Name="Lbl_Description_Dosage" Content="Label" HorizontalAlignment="Left" Margin="189,174,0,0" VerticalAlignment="Top" FontSize="14" RenderTransformOrigin="-0.246,0.989"/>
-        <Label x:Name="Lbl_Description_Description" Content="Label" HorizontalAlignment="Left" Margin="189,208,0,0" VerticalAlignment="Top" FontSize="14"/>
-        <Button x:Name="Btn_Modifier" Content="Modifier" HorizontalAlignment="Left" Margin="36,262,0,0" VerticalAlignment="Top" FontSize="16" Click="Btn_Modifier_Click"/>
-        <Button x:Name="Btn_Valider" Content="Valider" HorizontalAlignment="Left" Margin="168,262,0,0" VerticalAlignment="Top" FontSize="16" Click="Btn_Valider_Click"/>
-        <TextBox x:Name="Tbx_Description_NomCommercial" HorizontalAlignment="Left" Margin="189,72,0,0" Text="TextBox" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" FontSize="14"/>
-        <TextBox x:Name="Tbx_Description_NomDCI" HorizontalAlignment="Left" Margin="189,106,0,0" Text="TextBox" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" FontSize="14"/>
-        <TextBox x:Name="Tbx_Description_Type" HorizontalAlignment="Left" Margin="189,140,0,0" Text="TextBox" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" FontSize="14"/>
-        <TextBox x:Name="Tbx_Description_Dosage" HorizontalAlignment="Left" Margin="189,174,0,0" Text="TextBox" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" FontSize="14"/>
-        <TextBox x:Name="Tbx_Decription_Description" HorizontalAlignment="Left" Margin="189,208,0,0" Text="TextBox" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" FontSize="14"/>
-        <DataGrid x:Name="DataGridAvis" Margin="36,317,82,10" IsReadOnly="True" HorizontalContentAlignment="Stretch"  Background="White" FontSize="20" FontWeight="Light" AutoGenerateColumns="False" Grid.Column="0">
+        <TextBlock x:Name="Lbl_Description_NomCommerciale" Text="Label" HorizontalAlignment="Left" Margin="192,77,0,0" VerticalAlignment="Top" FontSize="14"/>
+        <TextBlock x:Name="Lbl_Description_NomDCI" Text="Label" HorizontalAlignment="Left" Margin="192,111,0,0" VerticalAlignment="Top" FontSize="14"/>
+        <TextBlock x:Name="Lbl_Description_Type" Text="Label" HorizontalAlignment="Left" Margin="192,145,0,0" VerticalAlignment="Top" FontSize="14"/>
+        <TextBlock x:Name="Lbl_Description_Dosage" Text="Label" HorizontalAlignment="Left" Margin="192,179,0,0" VerticalAlignment="Top" FontSize="14" RenderTransformOrigin="-0.246,0.989"/>
+        <TextBlock x:Name="Lbl_Description_Description" Text="Label" TextWrapping="WrapWithOverflow" HorizontalAlignment="Left" Margin="192,214,0,0" VerticalAlignment="Top" FontSize="14" Height="80" Width="646"/>
+
+        <Button x:Name="Btn_Modifier" Content="Modifier" HorizontalAlignment="Left" Margin="36,264,0,0" VerticalAlignment="Top" FontSize="16"  Width="106" Foreground="White"  Height="25" Click="Btn_Modifier_Click">
+            <Button.Style>
+                <Style TargetType="{x:Type Button}">
+                    <Setter Property="Background" Value="DarkGray"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type Button}">
+                                <Border Background="{TemplateBinding Background}">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="#FF8F8F8F"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
+
+
+        <Button x:Name="Btn_Valider" Content="Valider" Visibility="Hidden" HorizontalAlignment="Left" Margin="36,264,0,0" Foreground="#FF121212" VerticalAlignment="Top" FontSize="16"  Width="106" Click="Btn_Valider_Click" Height="25">
+            <Button.Style>
+                <Style TargetType="{x:Type Button}">
+                    <Setter Property="Background" Value="#FFB7F3FA"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type Button}">
+                                <Border Background="{TemplateBinding Background}">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="#FF84F1FF"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
+
+        <TextBox x:Name="Tbx_Description_NomCommercial" HorizontalAlignment="Left" Margin="189,76,0,0" Text="TextBox" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" FontSize="14"/>
+        <TextBox x:Name="Tbx_Description_NomDCI" HorizontalAlignment="Left" Margin="189,110,0,0" Text="TextBox" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" FontSize="14"/>
+        <TextBox x:Name="Tbx_Description_Dosage" HorizontalAlignment="Left" Margin="189,178,0,0" Text="TextBox" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" FontSize="14"/>
+        <TextBox x:Name="Tbx_Decription_Description" HorizontalAlignment="Left" Margin="189,213,0,0" Text="TextBox" TextWrapping="Wrap" VerticalAlignment="Top" Width="649" FontSize="14" Height="81"/>
+
+        <DataGrid x:Name="DataGridAvis" Margin="36,353,35,71" IsReadOnly="True" HorizontalContentAlignment="Stretch"  Background="White" FontSize="20" FontWeight="Light" AutoGenerateColumns="False" Grid.Column="0">
             <DataGrid.Columns>
                 <DataGridTextColumn x:Name="Date_AVI" Header="Date" Binding="{Binding AVI_DATE}" Width="0.8*"/>
                 <DataGridTextColumn x:Name="Commentaire_AVI" Header="Commentaire" Binding="{Binding AVI_COMMENTAIRE}" Width="*"/>
@@ -39,6 +82,67 @@
                 </DataGridTextColumn>
             </DataGrid.Columns>
         </DataGrid>
-        <Button x:Name="BtAjoutAvis" Content="Ajouter" HorizontalAlignment="Left" Margin="858,329,0,0" VerticalAlignment="Top" FontSize="16"/>
+        <Button x:Name="BtnAjoutAvis" Content="Ajouter un avis ..." HorizontalAlignment="Left" Margin="34,655,0,0" VerticalAlignment="Top" FontSize="16"  Width="174" Foreground="White"  Height="25">
+            <Button.Style>
+                <Style TargetType="{x:Type Button}">
+                    <Setter Property="Background" Value="DarkGray"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type Button}">
+                                <Border Background="{TemplateBinding Background}">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="#FF8F8F8F"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
+        <StackPanel Margin="0,0,-11,588">
+            <Label x:Name="PanelTop" Content="Description du Médicament" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Foreground="#FFF1F1F1" FontSize="30" Background="#FF4A4741" Height="57" Width="930"/>
+        </StackPanel>
+        <Button x:Name="BtnSupprAvis" Content="Supprimer un avis" HorizontalAlignment="Left" Margin="249,654,0,0" VerticalAlignment="Top" FontSize="16"  Width="174" Foreground="White"  Height="26">
+            <Button.Style>
+                <Style TargetType="{x:Type Button}">
+                    <Setter Property="Background" Value="DarkGray"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type Button}">
+                                <Border Background="{TemplateBinding Background}">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="#FFA03535"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
+        <StackPanel Margin="0,313,-11,372" Background="#FF4A4741"/>
+        <ComboBox x:Name="Tbx_Description_Type" HorizontalAlignment="Left" Margin="189,143,0,0" VerticalAlignment="Top" Width="120" Height="23" BorderBrush="White">
+            <ComboBox.Background>
+                <LinearGradientBrush EndPoint="0,1">
+                    <GradientStop Color="#FFF0F0F0"/>
+                    <GradientStop Color="#FFFFFDFD" Offset="1"/>
+                </LinearGradientBrush>
+            </ComboBox.Background>
+            <ComboBoxItem Content="Comprimé"/>
+            <ComboBoxItem Content="Sirop"/>
+            <ComboBoxItem Content="Gélule"/>
+            <ComboBoxItem Content="Injectable"/>
+            <ComboBoxItem Content="Suspension"/>
+            <ComboBoxItem Content="Crème"/>
+            <ComboBoxItem Content="Collyre"/>
+            <ComboBoxItem Content="Pommade"/>
+        </ComboBox>
     </Grid>
 </Window>
