@@ -284,7 +284,6 @@ go
 			@date DATE,
 			@Commentaires TEXT,
 			@idPraticien INT
-
 		AS
 			IF exists(SELECT MED_ID FROM MEDICAMENT WHERE MED_ID = @IdMedicament)
 				begin

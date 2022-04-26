@@ -82,7 +82,7 @@
                 </DataGridTextColumn>
             </DataGrid.Columns>
         </DataGrid>
-        <Button x:Name="BtnAjoutAvis" Content="Ajouter un avis ..." HorizontalAlignment="Left" Margin="34,655,0,0" VerticalAlignment="Top" FontSize="16"  Width="174" Foreground="White"  Height="25">
+        <Button x:Name="BtnAjoutAvis" Content="Ajouter un avis ..." HorizontalAlignment="Left" Margin="34,655,0,0" VerticalAlignment="Top" FontSize="16"  Width="174" Foreground="White"  Height="25" Click="BtnAjoutAvis_Click">
             <Button.Style>
                 <Style TargetType="{x:Type Button}">
                     <Setter Property="Background" Value="DarkGray"/>

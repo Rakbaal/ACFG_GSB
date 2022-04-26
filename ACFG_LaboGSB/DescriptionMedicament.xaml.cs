@@ -38,11 +38,15 @@ namespace ACFG_LaboGSB
             Tbx_Description_Type.Visibility = Visibility.Hidden;
             Tbx_Description_Dosage.Visibility = Visibility.Hidden;
             Tbx_Decription_Description.Visibility = Visibility.Hidden;
-
             ActualiserInformations(medicament.MED_ID);
+            Lbl_Description_NomCommerciale.Text = medicament.MED_NOM_COMMERCIAL;
+            Lbl_Description_NomDCI.Text = medicament.MED_NOM_DCI;
+            Lbl_Description_Dosage.Text = medicament.MED_DOSAGE;
+            Lbl_Description_Description.Text = medicament.MED_DESCRIPTION;
+            Lbl_Description_Type.Text = medicament.MED_TYPE;
+            medicamentChoisi = medicament;
 
             List<Avis> listeAvis = Requetes.PS_SELECT_AVIS_MEDICAMENT(medicament.MED_ID);
-            
             if (listeAvis != null)
             {
                 this.DataGridAvis.ItemsSource = listeAvis;
