@@ -1,4 +1,6 @@
-﻿using System;
+﻿using ACFG_LaboGSB.Classes;
+using ACFG_LaboGSB.SQL;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,6 +24,11 @@ namespace ACFG_LaboGSB
         public AjoutAvis()
         {
             InitializeComponent();
+            List<Praticien> listePraticiens = Requetes.PS_LISTE_PRATICIENS();
+            if (listePraticiens != null)
+            {
+                cbBoxPraticien.ItemsSource = listePraticiens;
+            }
         }
     }
 }
