@@ -92,5 +92,10 @@ namespace ACFG_LaboGSB
             this.Close();
         }
 
+        private void BtAjoutAvis_Click(object sender, RoutedEventArgs e)
+        {
+            AjoutAvis ajoutAvis = new AjoutAvis(medicamentChoisi);
+            ajoutAvis.ShowDialog();
+        }
     }
 }

@@ -276,7 +276,7 @@ go
 			@idPraticien INT
 
 		AS
-			IF exists(SELECT MED_ID FROM MEDICAMENT WHERE MED_ID = @IdMedicament)
+			IF exists(SELECT MED_ID FROM AVIS WHERE MED_ID = @IdMedicament)
 				begin
 					SELECT 1 as 'stateMessage'
 				end

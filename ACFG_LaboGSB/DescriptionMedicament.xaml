@@ -39,6 +39,6 @@
                 </DataGridTextColumn>
             </DataGrid.Columns>
         </DataGrid>
-        <Button x:Name="BtAjoutAvis" Content="Ajouter" HorizontalAlignment="Left" Margin="858,329,0,0" VerticalAlignment="Top" FontSize="16"/>
+        <Button x:Name="BtAjoutAvis" Content="Ajouter" HorizontalAlignment="Left" Margin="858,329,0,0" VerticalAlignment="Top" FontSize="16" Click="BtAjoutAvis_Click"/>
     </Grid>
 </Window>
