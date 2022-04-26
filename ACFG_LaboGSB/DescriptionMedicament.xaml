@@ -68,7 +68,7 @@
         <TextBox x:Name="Tbx_Description_Dosage" HorizontalAlignment="Left" Margin="189,178,0,0" Text="TextBox" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" FontSize="14"/>
         <TextBox x:Name="Tbx_Decription_Description" HorizontalAlignment="Left" Margin="189,213,0,0" Text="TextBox" TextWrapping="Wrap" VerticalAlignment="Top" Width="649" FontSize="14" Height="81"/>
 
-        <DataGrid x:Name="DataGridAvis" Margin="36,353,35,71" IsReadOnly="True" HorizontalContentAlignment="Stretch"  Background="White" FontSize="20" FontWeight="Light" AutoGenerateColumns="False" Grid.Column="0">
+        <DataGrid x:Name="DataGridAvis" Margin="36,353,35,93" IsReadOnly="True" HorizontalContentAlignment="Stretch"  Background="White" FontSize="20" FontWeight="Light" AutoGenerateColumns="False" Grid.Column="0">
             <DataGrid.Columns>
                 <DataGridTextColumn x:Name="Date_AVI" Header="Date" Binding="{Binding AVI_DATE}" Width="0.8*"/>
                 <DataGridTextColumn x:Name="Commentaire_AVI" Header="Commentaire" Binding="{Binding AVI_COMMENTAIRE}" Width="*"/>
@@ -83,7 +83,7 @@
             </DataGrid.Columns>
         </DataGrid>
 
-        <Button x:Name="BtnAjoutAvis" Content="Ajouter un avis ..." HorizontalAlignment="Left" Margin="34,655,0,0" VerticalAlignment="Top" FontSize="16"  Width="174" Foreground="White"  Height="25" Click="BtnAjoutAvis_Click">
+        <Button x:Name="BtnAjoutAvis" Content="Ajouter un avis ..." HorizontalAlignment="Left" Margin="34,641,0,0" VerticalAlignment="Top" FontSize="16"  Width="174" Foreground="White"  Height="26" Click="BtnAjoutAvis_Click">
             <Button.Style>
                 <Style TargetType="{x:Type Button}">
                     <Setter Property="Background" Value="DarkGray"/>
@@ -107,7 +107,7 @@
         <StackPanel Margin="0,0,-11,588">
             <Label x:Name="PanelTop" Content="Description du Médicament" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Foreground="#FFF1F1F1" FontSize="30" Background="#FF4A4741" Height="57" Width="930"/>
         </StackPanel>
-        <Button x:Name="BtnSupprAvis" Content="Supprimer un avis" HorizontalAlignment="Left" Margin="249,654,0,0" VerticalAlignment="Top" FontSize="16"  Width="174" Foreground="White"  Height="26" Click="BtnSupprAvis_Click">
+        <Button x:Name="BtnSupprAvis" Content="Supprimer un avis" HorizontalAlignment="Left" Margin="267,641,0,0" VerticalAlignment="Top" FontSize="16"  Width="174" Foreground="White"  Height="26" Click="BtnSupprAvis_Click">
             <Button.Style>
                 <Style TargetType="{x:Type Button}">
                     <Setter Property="Background" Value="DarkGray"/>
