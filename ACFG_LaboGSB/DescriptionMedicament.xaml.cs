@@ -115,7 +115,14 @@ namespace ACFG_LaboGSB
             ActualiserInformations(medicamentChoisi.MED_ID);
         }
 
+
         #endregion
+
+        private void BtAjoutAvis_Click(object sender, RoutedEventArgs e)
+        {
+            AjoutAvis ajoutAvis = new AjoutAvis(medicamentChoisi);
+            ajoutAvis.ShowDialog();
+        }
 
     }
 }
