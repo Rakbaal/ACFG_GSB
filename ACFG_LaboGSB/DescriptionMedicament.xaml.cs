@@ -117,5 +117,32 @@ namespace ACFG_LaboGSB
 
         #endregion
 
+        private void BtnSupprAvis_Click(object sender, RoutedEventArgs e)
+        {
+            if (this.DataGridAvis.SelectedItem != null || this.DataGridAvis.SelectedCells.Count > 1)
+            {
+                //On récupère l'avis sélectionné
+                Avis avisSuppression = this.DataGridAvis.SelectedItem as Avis;
+
+                //On demande la confirmation à l'utilisateur
+                string commentaireExtrait = avisSuppression.AVI_COMMENTAIRE.Substring(0, 20);
+                string messageErreur = "Voulez-vous vraiment supprimer l'avis '" + commentaireExtrait + "...' ?";
+                MessageBoxResult result = MessageBox.Show(messageErreur, "Confirmation", MessageBoxButton.YesNo, MessageBoxImage.Exclamation);
+
+                if (result == MessageBoxResult.Yes)
+                {
+                    //On supprime l'avis en appellant la procédure stockée
+                    Requetes.PS_DELETE_AVIS(avisSuppression);
+                }
+                else
+                {
+                    return;
+                }
+            }
+            else
+            {
+                MessageBox.Show("Veuillez selectionner un avis à supprimer !", "Impossible de supprimer", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+            }
+        }
     }
 }

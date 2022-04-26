@@ -413,6 +413,28 @@ namespace ACFG_LaboGSB.SQL
             return listAvis;
         }
 
+        public static void PS_DELETE_AVIS(Avis avis)
+
+        {
+            SqlCommand myCommand = null;
+            SqlDataReader mySqlDataReader = null;
+            SqlConnection conn = BDD.openBDDApplication("ACFG_LaboGSB");
+            string Requete = "exec PS_DELETE_AVIS '" + avis.AVI_ID + "'";
+
+
+            try // On essaye d'executer la requête
+            {
+                myCommand = new SqlCommand(Requete, conn);
+                mySqlDataReader = myCommand.ExecuteReader();
+                mySqlDataReader.Read();
+            }
+            catch (Exception erreur) // En cas d'erreur un message s'affiche sur la console
+            {
+                Console.WriteLine("Erreur lors de la requête DELETE Avis " + erreur.Message);
+                throw;
+            }
+        }
+
         #endregion
     }
 }
