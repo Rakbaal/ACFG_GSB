@@ -146,15 +146,24 @@ namespace ACFG_LaboGSB
                 //On récupère l'avis sélectionné
                 Avis avisSuppression = this.DataGridAvis.SelectedItem as Avis;
 
+                string messageErreur;
+
                 //On demande la confirmation à l'utilisateur
-                string commentaireExtrait = avisSuppression.AVI_COMMENTAIRE.Substring(0, 20);
-                string messageErreur = "Voulez-vous vraiment supprimer l'avis '" + commentaireExtrait + "...' ?";
+                if (avisSuppression.AVI_COMMENTAIRE.Length < 20)
+                {
+                    string commentaireExtrait = avisSuppression.AVI_COMMENTAIRE;
+                    messageErreur = $"Voulez-vous vraiment supprimer l'avis '{commentaireExtrait}' ?";
+                } else {
+                    string commentaireExtrait = avisSuppression.AVI_COMMENTAIRE.Substring(0, 20);
+                    messageErreur = $"Voulez-vous vraiment supprimer l'avis '{commentaireExtrait}...' ?";
+                }
                 MessageBoxResult result = MessageBox.Show(messageErreur, "Confirmation", MessageBoxButton.YesNo, MessageBoxImage.Exclamation);
 
                 if (result == MessageBoxResult.Yes)
                 {
                     //On supprime l'avis en appellant la procédure stockée
                     Requetes.PS_DELETE_AVIS(avisSuppression);
+                    ActualiserDataGrid();
                 }
                 else
                 {

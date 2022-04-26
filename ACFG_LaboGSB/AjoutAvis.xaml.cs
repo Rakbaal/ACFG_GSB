@@ -58,5 +58,10 @@ namespace ACFG_LaboGSB
                 MessageBox.Show($"Erreur : {ex.Message}");
             }
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
     }
 }

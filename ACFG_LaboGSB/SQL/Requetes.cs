@@ -313,12 +313,11 @@ namespace ACFG_LaboGSB.SQL
         }
 
         public static void PS_DELETE_PRATICIEN(Praticien practicien)
-
         {
             SqlCommand myCommand = null;
             SqlDataReader mySqlDataReader = null;
             SqlConnection conn = BDD.openBDDApplication("ACFG_LaboGSB");
-            string Requete = "exec PS_DELETE_PRATICIEN '" + practicien.PRA_ID + "'";
+            string Requete = $"exec PS_DELETE_PRATICIEN {practicien.PRA_ID}";
 
 
             try // On essaye d'executer la requête
@@ -380,23 +379,24 @@ namespace ACFG_LaboGSB.SQL
             SqlCommand myCommand = null;
             SqlDataReader mySqlDataReader = null;
             SqlConnection conn = BDD.openBDDApplication("ACFG_LaboGSB");
-            string Requete = "exec PS_SELECT_AVIS_MEDICAMENT '" + med_id + "'";
-            List<Avis> listAvis = new List<Avis>();
+            string requete = $"exec PS_SELECT_AVIS_MEDICAMENT {med_id}";
+            List<Avis> listeAvis = new List<Avis>();
             Avis avis = null;
 
             try // On essaye d'executer la requête
             {
-                myCommand = new SqlCommand(Requete, conn);
+                myCommand = new SqlCommand(requete, conn);
                 mySqlDataReader = myCommand.ExecuteReader();
                 while (mySqlDataReader.Read())
                 {
                     if (mySqlDataReader["AVI_ID"] != DBNull.Value)
                     {
                         avis = new Avis();
+                        avis.AVI_ID = (int)mySqlDataReader["AVI_ID"];
                         avis.AVI_DATE = Convert.ToDateTime(mySqlDataReader["AVI_DATE"]);
                         avis.AVI_COMMENTAIRE = Convert.ToString(mySqlDataReader["AVI_COMMENTAIRE"]);
                         avis.praticien = Requetes.PS_SELECT_UNPRATICIEN(Convert.ToInt32(mySqlDataReader["PRA_ID"]));
-                        listAvis.Add(avis);
+                        listeAvis.Add(avis);
                     }
                 }
             }
@@ -410,7 +410,7 @@ namespace ACFG_LaboGSB.SQL
                 conn.Close();
             }
 
-            return listAvis;
+            return listeAvis;
         }
 
         public static void PS_CREATE_AVIS(Avis avis)
@@ -418,8 +418,9 @@ namespace ACFG_LaboGSB.SQL
             SqlCommand myCommand = null;
             SqlDataReader mySqlDataReader = null;
             SqlConnection conn = BDD.openBDDApplication("ACFG_LaboGSB");
+            var commentaire = avis.AVI_COMMENTAIRE.Replace("'", "''");
 
-            string Requete = $"exec PS_CREATE_AVIS {avis.medicament.MED_ID}, '{avis.AVI_DATE}', '{avis.AVI_COMMENTAIRE}', {avis.praticien.PRA_ID}";
+            string Requete = $"exec PS_CREATE_AVIS {avis.medicament.MED_ID}, '{avis.AVI_DATE}', '{commentaire}', {avis.praticien.PRA_ID}";
 
             try // On essaye d'executer la requête
             {
@@ -438,17 +439,16 @@ namespace ACFG_LaboGSB.SQL
             }
         }
 
-
         public static void PS_DELETE_AVIS(Avis avis)
         {
             SqlCommand myCommand = null;
             SqlDataReader mySqlDataReader = null;
             SqlConnection conn = BDD.openBDDApplication("ACFG_LaboGSB");
-            string Requete = "exec PS_DELETE_AVIS '" + avis.AVI_ID + "'";
+            string requete = $"exec PS_DELETE_AVIS {avis.AVI_ID}";
 
             try // On essaye d'executer la requête
             {
-                myCommand = new SqlCommand(Requete, conn);
+                myCommand = new SqlCommand(requete, conn);
                 mySqlDataReader = myCommand.ExecuteReader();
                 mySqlDataReader.Read();
             }
