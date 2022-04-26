@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ACFG_LaboGSB"
         mc:Ignorable="d"
-        Title="DescriptionMedicament" Height="736" Width="930" WindowStartupLocation="CenterScreen" Activated="Window_Activated">
+        Title="DescriptionMedicament" Height="736" Width="930" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Activated="Window_Activated">
     <Grid HorizontalAlignment="Left" Width="920">
         <Label Content="Nom commercial : " HorizontalAlignment="Left" Margin="34,72,0,0" VerticalAlignment="Top" FontSize="14"/>
         <Label Content="Nom DCI : " HorizontalAlignment="Left" Margin="34,106,0,0" VerticalAlignment="Top" FontSize="14"/>
