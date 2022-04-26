@@ -413,6 +413,31 @@ namespace ACFG_LaboGSB.SQL
             return listAvis;
         }
 
+        public static void PS_CREATE_AVIS(Avis avis)
+        {
+            SqlCommand myCommand = null;
+            SqlDataReader mySqlDataReader = null;
+            SqlConnection conn = BDD.openBDDApplication("ACFG_LaboGSB");
+
+            string Requete = $"exec PS_CREATE_AVIS {avis.medicament.MED_ID}, '{avis.AVI_DATE}', '{avis.AVI_COMMENTAIRE}', {avis.praticien.PRA_ID}";
+
+            try // On essaye d'executer la requête
+            {
+                myCommand = new SqlCommand(Requete, conn);
+                mySqlDataReader = myCommand.ExecuteReader();
+                mySqlDataReader.Read();
+            }
+            catch (Exception erreur) // En cas d'erreur un message s'affiche sur la console
+            {
+                Console.WriteLine("Erreur lors de la requête CREATE praticien " + erreur.Message);
+                throw;
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+
         #endregion
     }
 }

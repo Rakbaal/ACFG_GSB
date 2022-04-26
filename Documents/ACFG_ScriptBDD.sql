@@ -285,16 +285,10 @@ go
 			@Commentaires TEXT,
 			@idPraticien INT
 		AS
-			IF exists(SELECT MED_ID FROM MEDICAMENT WHERE MED_ID = @IdMedicament)
-				begin
-					SELECT 1 as 'stateMessage'
-				end
-			ELSE
-				begin
-					INSERT INTO AVIS(AVI_DATE, AVI_COMMENTAIRE, PRA_ID, MED_ID) 
-						VALUES(@date, @Commentaires, @idPraticien, @IdMedicament)
-					SELECT 0 as 'stateMessage'
-				end
+			begin
+				INSERT INTO AVIS(AVI_DATE, AVI_COMMENTAIRE, PRA_ID, MED_ID) 
+					VALUES(@date, @Commentaires, @idPraticien, @IdMedicament)
+			end
 		go
 
 		-- Lecture de la liste des avis pour un médicament précis

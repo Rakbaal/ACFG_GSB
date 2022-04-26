@@ -32,7 +32,7 @@ namespace ACFG_LaboGSB
 
         private void ActualiserDataGrid()
         {
-            //Affichage de tous les médicaments
+            //Sélection de tous les médicaments
             List<Medicament> listeMedicaments = Requetes.PS_LISTE_MEDICAMENT();
 
             if (listeMedicaments != null)

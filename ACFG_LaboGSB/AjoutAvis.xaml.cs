@@ -13,6 +13,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace ACFG_LaboGSB
 {
@@ -21,9 +22,11 @@ namespace ACFG_LaboGSB
     /// </summary>
     public partial class AjoutAvis : Window
     {
-        public AjoutAvis()
+        Medicament medicamentChoisi = new Medicament();
+        public AjoutAvis(Medicament medicament)
         {
             InitializeComponent();
+            medicamentChoisi = medicament;
             ActualiserCbBox();
         }
 
@@ -34,6 +37,25 @@ namespace ACFG_LaboGSB
             {
                 cbBoxPraticien.ItemsSource = listePraticiens;
                 cbBoxPraticien.DisplayMemberPath = "PRA_NOMCOMPLET";
+            }
+        }
+
+        private void Btn_AjoutAvis_Click(object sender, RoutedEventArgs e)
+        {
+            Avis NouveauAvis = new Avis();
+            NouveauAvis.AVI_DATE = DateTime.Parse(DP_AVI_DATE.Text);
+            NouveauAvis.AVI_COMMENTAIRE = TBX_Commentaire.Text;
+            NouveauAvis.medicament = medicamentChoisi;
+            NouveauAvis.praticien = (Praticien)cbBoxPraticien.SelectedValue;
+
+            try
+            {
+                Requetes.PS_CREATE_AVIS(NouveauAvis);
+                MessageBox.Show($"Création de l'avis terminée");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erreur : {ex.Message}");
             }
         }
     }
