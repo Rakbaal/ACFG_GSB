@@ -12,7 +12,7 @@
         <Label x:Name="Date" Content="Date : " HorizontalAlignment="Left" Height="30" Margin="212,106,0,0" VerticalAlignment="Top" Width="129"/>
         <Label x:Name="Commentaire" Content="Commentaire : " HorizontalAlignment="Left" Height="30" Margin="212,165,0,0" VerticalAlignment="Top" Width="129"/>
         <Button Content="Retour" HorizontalAlignment="Left" Margin="212,377,0,0" VerticalAlignment="Top" FontSize="12" Width="86" Background="#FFFFB8B8"/>
-        <Button x:Name="Btn_AjoutAvis" Content="Ajouter" HorizontalAlignment="Left" Margin="400,377,0,0" VerticalAlignment="Top" FontSize="12" Width="94" Background="#FFCFFAFF"/>
+        <Button x:Name="Btn_AjoutAvis" Content="Ajouter" HorizontalAlignment="Left" Margin="400,377,0,0" VerticalAlignment="Top" FontSize="12" Width="94" Background="#FFCFFAFF" Click="Btn_AjoutAvis_Click"/>
         <TextBox x:Name="TextBoxCommentaire" HorizontalAlignment="Left" Height="104" Margin="400,0,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Center" Width="182"/>
         <Label x:Name="Praticien" Content="Praticien :" HorizontalAlignment="Left" Margin="217,282,0,0" VerticalAlignment="Top"/>
         <ComboBox x:Name="cbBoxPraticien" HorizontalAlignment="Left" Margin="432,282,0,0" VerticalAlignment="Top" Width="118"/>

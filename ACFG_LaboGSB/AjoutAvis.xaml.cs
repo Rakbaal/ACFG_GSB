@@ -24,10 +24,16 @@ namespace ACFG_LaboGSB
         public AjoutAvis()
         {
             InitializeComponent();
+            ActualiserCbBox();
+        }
+
+        private void ActualiserCbBox()
+        {
             List<Praticien> listePraticiens = Requetes.PS_LISTE_PRATICIENS();
             if (listePraticiens != null)
             {
                 cbBoxPraticien.ItemsSource = listePraticiens;
+                cbBoxPraticien.DisplayMemberPath = "PRA_NOMCOMPLET";
             }
         }
     }
