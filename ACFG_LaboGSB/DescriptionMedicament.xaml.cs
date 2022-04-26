@@ -67,6 +67,20 @@ namespace ACFG_LaboGSB
             medicamentChoisi = medicamentRefresh;
         }
 
+        private void ActualiserDataGrid()
+        {
+            List<Avis> listeAvis = Requetes.PS_SELECT_AVIS_MEDICAMENT(medicamentChoisi.MED_ID);
+            if (listeAvis != null)
+            {
+                DataGridAvis.ItemsSource = listeAvis;
+            }
+        }
+
+        private void Window_Activated(object sender, EventArgs e)
+        {
+            ActualiserDataGrid();
+        }
+
         #endregion
 
         #region Boutons
@@ -119,27 +133,12 @@ namespace ACFG_LaboGSB
             ActualiserInformations(medicamentChoisi.MED_ID);
         }
 
-
-        #endregion
-
         private void BtnAjoutAvis_Click(object sender, RoutedEventArgs e)
         {
             AjoutAvis ajoutAvis = new AjoutAvis(medicamentChoisi);
             ajoutAvis.ShowDialog();
         }
+        #endregion
 
-        private void ActualiserDataGrid()
-        {
-            List<Avis> listeAvis = Requetes.PS_SELECT_AVIS_MEDICAMENT(medicamentChoisi.MED_ID);
-            if (listeAvis != null)
-            {
-                DataGridAvis.ItemsSource = listeAvis;
-            }
-        }
-
-        private void Window_Activated(object sender, EventArgs e)
-        {
-            ActualiserDataGrid();
-        }
     }
 }
