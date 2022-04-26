@@ -23,6 +23,7 @@ namespace ACFG_LaboGSB
     public partial class AjoutAvis : Window
     {
         Medicament medicamentChoisi = new Medicament();
+
         public AjoutAvis(Medicament medicament)
         {
             InitializeComponent();

@@ -110,6 +110,42 @@ INSERT INTO PRATICIEN (PRA_NOM,PRA_PRENOM,PRA_PROFESSION)
 VALUES ('Lagrosse', 'Bertha', 'Infirmière')
 go
 
+
+--insertion Table Avis
+INSERT INTO AVIS (AVI_DATE, AVI_COMMENTAIRE, MED_ID, PRA_ID)
+VALUES ('26/04/2022','Pas mal','1','5')
+INSERT INTO AVIS (AVI_DATE, AVI_COMMENTAIRE, MED_ID, PRA_ID)
+VALUES ('25/02/2022','Aucun effet','1','4')
+INSERT INTO AVIS (AVI_DATE, AVI_COMMENTAIRE, MED_ID, PRA_ID)
+VALUES ('14/04/2022','Très efficace','2','3')
+INSERT INTO AVIS (AVI_DATE, AVI_COMMENTAIRE, MED_ID, PRA_ID)
+VALUES ('29/03/2022','Nul','2','2')
+INSERT INTO AVIS (AVI_DATE, AVI_COMMENTAIRE, MED_ID, PRA_ID)
+VALUES ('04/01/2022','Plutot efficace','3','3')
+INSERT INTO AVIS (AVI_DATE, AVI_COMMENTAIRE, MED_ID, PRA_ID)
+VALUES ('19/04/2022','Traitement rapide','3','2')
+INSERT INTO AVIS (AVI_DATE, AVI_COMMENTAIRE, MED_ID, PRA_ID)
+VALUES ('25/02/2022','JAVASCRIPT JAVASCRIPT JAVASCRIPT','4','1')
+INSERT INTO AVIS (AVI_DATE, AVI_COMMENTAIRE, MED_ID, PRA_ID)
+VALUES ('14/05/2022','Bon goût','4','5')
+INSERT INTO AVIS (AVI_DATE, AVI_COMMENTAIRE, MED_ID, PRA_ID)
+VALUES ('21/03/2022','Peu d''effets secondaire, je valide','5','4')
+INSERT INTO AVIS (AVI_DATE, AVI_COMMENTAIRE, MED_ID, PRA_ID)
+VALUES ('16/03/2022','Ca pue !','5','3')
+INSERT INTO AVIS (AVI_DATE, AVI_COMMENTAIRE, MED_ID, PRA_ID)
+VALUES ('24/05/2022','Assez efficace et sent bon','6','2')
+INSERT INTO AVIS (AVI_DATE, AVI_COMMENTAIRE, MED_ID, PRA_ID)
+VALUES ('19/01/2022','Bon traitement dans l''ensemble','6','1')
+INSERT INTO AVIS (AVI_DATE, AVI_COMMENTAIRE, MED_ID, PRA_ID)
+VALUES ('22/05/2022','Traitement efficace au bout de 24h','7','1')
+INSERT INTO AVIS (AVI_DATE, AVI_COMMENTAIRE, MED_ID, PRA_ID)
+VALUES ('05/02/2022','Efficace mais lent','7','5')
+INSERT INTO AVIS (AVI_DATE, AVI_COMMENTAIRE, MED_ID, PRA_ID)
+VALUES ('28/04/2022','Une pommade agréable et efficace','8','1')
+INSERT INTO AVIS (AVI_DATE, AVI_COMMENTAIRE, MED_ID, PRA_ID)
+VALUES ('20/01/2022','ARGHHHHHHHHHHHHHHHHHHHHHHHHHHH','8','5')
+
+
 --Création de la procedure Login Validation
 CREATE PROC PS_LOGIN_VALIDATION
 	@Login CHAR(4),
@@ -284,11 +320,18 @@ go
 			@date DATE,
 			@Commentaires TEXT,
 			@idPraticien INT
+
 		AS
-			begin
-				INSERT INTO AVIS(AVI_DATE, AVI_COMMENTAIRE, PRA_ID, MED_ID) 
-					VALUES(@date, @Commentaires, @idPraticien, @IdMedicament)
-			end
+			IF exists(SELECT MED_ID FROM MEDICAMENT WHERE MED_ID = @IdMedicament)
+				begin
+					SELECT 1 as 'stateMessage'
+				end
+			ELSE
+				begin
+					INSERT INTO AVIS(AVI_DATE, AVI_COMMENTAIRE, PRA_ID, MED_ID) 
+						VALUES(@date, @Commentaires, @idPraticien, @IdMedicament)
+					SELECT 0 as 'stateMessage'
+				end
 		go
 
 		-- Lecture de la liste des avis pour un médicament précis
@@ -315,4 +358,4 @@ go
 					DELETE FROM AVIS
 					WHERE AVI_ID = @IdAvis
 				end
-		go
+		go	
