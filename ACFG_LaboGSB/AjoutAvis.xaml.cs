@@ -104,8 +104,9 @@ namespace ACFG_LaboGSB
 
                 // Début du timer pour le message de validation d'ajout
                 timer.Interval = TimeSpan.FromSeconds(2);
-                timer.Tick += timer_Tick;
+                timer.Tick += timerTick;
                 timer.Start();
+                TBX_Commentaire.Text = "";
             }
             catch (Exception ex)
             {
@@ -115,22 +116,22 @@ namespace ACFG_LaboGSB
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            Close();
         }
 
-        public void timer_Tick(object sender, EventArgs e)
+        public void timerTick(object sender, EventArgs e)
         {
             // Algo permettant d'afficher un label pendant 3 secondes avant de disparaître
-            this.LabelTimer.Content = DateTime.Now.ToString("ss");
-            var labelStockage = this.LabelTimer.Content;
+            LabelTimer.Content = DateTime.Now.ToString("ss");
+            var labelStockage = LabelTimer.Content;
 
-            while (this.LabelTimer.Content == labelStockage)
+            while (LabelTimer.Content == labelStockage)
             {
                 var labelNouveauStockage = DateTime.Now.ToString("ss");
 
                 if (labelNouveauStockage != (String)labelStockage)
                 {
-                    this.LabelValidation.Visibility = Visibility.Hidden;
+                    LabelValidation.Visibility = Visibility.Hidden;
                     timer.Stop();
                     break;
                 }

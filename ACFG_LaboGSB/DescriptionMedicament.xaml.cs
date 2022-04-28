@@ -168,10 +168,10 @@ namespace ACFG_LaboGSB
 
         private void BtnSupprAvis_Click(object sender, RoutedEventArgs e)
         {
-            if (this.DataGridAvis.SelectedItem != null || this.DataGridAvis.SelectedCells.Count > 1)
+            if (DataGridAvis.SelectedItem != null || DataGridAvis.SelectedCells.Count > 1)
             {
                 //On récupère l'avis sélectionné
-                Avis avisSuppression = this.DataGridAvis.SelectedItem as Avis;
+                Avis avisSuppression = DataGridAvis.SelectedItem as Avis;
 
                 string messageErreur;
 
@@ -203,5 +203,10 @@ namespace ACFG_LaboGSB
             }
         }
         #endregion
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
     }
 }

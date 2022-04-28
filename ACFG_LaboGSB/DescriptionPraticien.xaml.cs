@@ -27,12 +27,13 @@ namespace ACFG_LaboGSB
         public DescriptionPraticien(Praticien praticien)
         {
             InitializeComponent();
-            this.Btn_Valider.Visibility = Visibility.Hidden;
-            this.Tbx_Description_Prenom.Visibility = Visibility.Hidden;
-            this.Tbx_Description_Nom.Visibility = Visibility.Hidden;
-            this.Lbl_Description_Prenom.Content = praticien.PRA_PRENOM;
-            this.Lbl_Description_Nom.Content = praticien.PRA_NOM;
-            this.ComboBoxProfession.Text = praticien.PRA_PROFESSION;
+            Btn_Valider.Visibility = Visibility.Hidden;
+            Tbx_Description_Prenom.Visibility = Visibility.Hidden;
+            Tbx_Description_Nom.Visibility = Visibility.Hidden;
+            ComboBoxProfession.Visibility = Visibility.Hidden;
+            Lbl_Description_Prenom.Content = praticien.PRA_PRENOM;
+            Lbl_Description_Nom.Content = praticien.PRA_NOM;
+            ComboBoxProfession.Text = praticien.PRA_PROFESSION;
             praticienChoisi = praticien;
 
             ActualiserDataGrid();
@@ -62,6 +63,9 @@ namespace ACFG_LaboGSB
             this.Tbx_Description_Nom.Text = (string)Lbl_Description_Nom.Content;
             this.Tbx_Description_Nom.Visibility = Visibility.Visible;
             this.Lbl_Description_Nom.Visibility = Visibility.Hidden;
+            this.ComboBoxProfession.Text = (string)Lbl_Description_Profession.Content;
+            this.ComboBoxProfession.Visibility = Visibility.Visible;
+            this.Lbl_Description_Profession.Visibility = Visibility.Hidden;
             this.ComboBoxProfession.IsEnabled = true;
         }
 
@@ -75,6 +79,8 @@ namespace ACFG_LaboGSB
             this.Lbl_Description_Nom.Content = Tbx_Description_Nom.Text;
             this.Lbl_Description_Nom.Visibility = Visibility.Visible;
             this.Tbx_Description_Nom.Visibility = Visibility.Hidden;
+            this.ComboBoxProfession.Visibility = Visibility.Hidden;
+            this.Lbl_Description_Profession.Visibility = Visibility.Visible;
             this.ComboBoxProfession.IsEnabled = false;
 
             Praticien praticienModifier = new Praticien();
@@ -110,6 +116,50 @@ namespace ACFG_LaboGSB
         {
             AjoutAvis ajoutAvis = new AjoutAvis(praticienChoisi, false);
             ajoutAvis.ShowDialog();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
+
+        private void BtnSupprAvis_Click(object sender, RoutedEventArgs e)
+        {
+            if (DataGridAvis.SelectedItem != null || DataGridAvis.SelectedCells.Count > 1)
+            {
+                //On récupère l'avis sélectionné
+                Avis avisSuppression = DataGridAvis.SelectedItem as Avis;
+
+                string messageErreur;
+
+                //On demande la confirmation à l'utilisateur
+                if (avisSuppression.AVI_COMMENTAIRE.Length < 20)
+                {
+                    string commentaireExtrait = avisSuppression.AVI_COMMENTAIRE;
+                    messageErreur = $"Voulez-vous vraiment supprimer l'avis '{commentaireExtrait}' ?";
+                }
+                else
+                {
+                    string commentaireExtrait = avisSuppression.AVI_COMMENTAIRE.Substring(0, 20);
+                    messageErreur = $"Voulez-vous vraiment supprimer l'avis '{commentaireExtrait}...' ?";
+                }
+                MessageBoxResult result = MessageBox.Show(messageErreur, "Confirmation", MessageBoxButton.YesNo, MessageBoxImage.Exclamation);
+
+                if (result == MessageBoxResult.Yes)
+                {
+                    //On supprime l'avis en appellant la procédure stockée
+                    Requetes.PS_DELETE_AVIS(avisSuppression);
+                    ActualiserDataGrid();
+                }
+                else
+                {
+                    return;
+                }
+            }
+            else
+            {
+                MessageBox.Show("Veuillez selectionner un avis à supprimer !", "Impossible de supprimer", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+            }
         }
     }
 }
