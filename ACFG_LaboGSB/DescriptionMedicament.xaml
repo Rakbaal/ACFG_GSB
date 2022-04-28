@@ -72,14 +72,7 @@
             <DataGrid.Columns>
                 <DataGridTextColumn x:Name="Date_AVI" Header="Date" Binding="{Binding AVI_DATE}" Width="0.8*"/>
                 <DataGridTextColumn x:Name="Commentaire_AVI" Header="Commentaire" Binding="{Binding AVI_COMMENTAIRE}" Width="*"/>
-                <DataGridTextColumn x:Name="Praticien_AVI" Header="Praticien" Width="*">
-                    <DataGridTextColumn.Binding>
-                        <MultiBinding StringFormat="{} {0} {1}">
-                            <Binding Path="praticien.PRA_NOM"/>
-                            <Binding Path="praticien.PRA_PRENOM"/>
-                        </MultiBinding>
-                    </DataGridTextColumn.Binding>
-                </DataGridTextColumn>
+                <DataGridTextColumn x:Name="Praticien_AVI" Header="Praticien" Width="*" Binding="{Binding praticien.PRA_NOMCOMPLET}"/>
             </DataGrid.Columns>
         </DataGrid>
 
