@@ -30,9 +30,10 @@ namespace ACFG_LaboGSB
             this.Btn_Valider.Visibility = Visibility.Hidden;
             this.Tbx_Description_Prenom.Visibility = Visibility.Hidden;
             this.Tbx_Description_Nom.Visibility = Visibility.Hidden;
+            this.ComboBoxProfession.Visibility = Visibility.Hidden;
             this.Lbl_Description_Prenom.Content = praticien.PRA_PRENOM;
             this.Lbl_Description_Nom.Content = praticien.PRA_NOM;
-            this.ComboBoxProfession.Text = praticien.PRA_PROFESSION;
+            this.Lbl_Description_Profession.Content = praticien.PRA_PROFESSION;
             praticienConcerner = praticien;
 
             List<Avis> listeAvis = Requetes.PS_SELECT_AVIS_PRATICIEN(praticien.PRA_ID);
@@ -68,6 +69,9 @@ namespace ACFG_LaboGSB
             this.Tbx_Description_Nom.Text = (string)Lbl_Description_Nom.Content;
             this.Tbx_Description_Nom.Visibility = Visibility.Visible;
             this.Lbl_Description_Nom.Visibility = Visibility.Hidden;
+            this.ComboBoxProfession.Text = (string)Lbl_Description_Profession.Content;
+            this.ComboBoxProfession.Visibility = Visibility.Visible;
+            this.Lbl_Description_Profession.Visibility = Visibility.Hidden;
             this.ComboBoxProfession.IsEnabled = true;
         }
 
@@ -81,6 +85,8 @@ namespace ACFG_LaboGSB
             this.Lbl_Description_Nom.Content = Tbx_Description_Nom.Text;
             this.Lbl_Description_Nom.Visibility = Visibility.Visible;
             this.Tbx_Description_Nom.Visibility = Visibility.Hidden;
+            this.ComboBoxProfession.Visibility = Visibility.Hidden;
+            this.Lbl_Description_Profession.Visibility = Visibility.Visible;
             this.ComboBoxProfession.IsEnabled = false;
 
             Praticien praticienModifier = new Praticien();
