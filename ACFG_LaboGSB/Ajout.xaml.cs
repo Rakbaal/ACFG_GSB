@@ -52,31 +52,65 @@ namespace ACFG_LaboGSB
 
         private void Btn_Ajout_Click(object sender, RoutedEventArgs e)
         {
-            // On implémente les données saisis dans une classe vide
-            Medicament NouveauMedicament = new Medicament();
-            NouveauMedicament.MED_NOM_COMMERCIAL = this.TextboxNomCom.Text;
-            NouveauMedicament.MED_NOM_DCI = this.TextboxNomDCI.Text;
-            NouveauMedicament.MED_DOSAGE = this.TextboxDosage.Text;
-            NouveauMedicament.MED_DESCRIPTION = this.TextboxDesc.Text;
-            NouveauMedicament.MED_TYPE = this.ComboBoxType.Text;
+            List<string> errorList = new List<string>();
+            
+            if (TextboxNomCom.Text == "")
+            {
+                errorList.Add("Un nom commercial doit être saisi.");
+            }
 
-            // On appelle la procédure pour ajouter le médicament
-            Requetes.PS_CREATE_MEDICAMENT(NouveauMedicament);
+            if (TextboxNomDCI.Text == "")
+            {
+                errorList.Add("Un nom commercial doit être saisi.");
+            }
 
-            // On vide tous les champs à saisir
-            this.TextboxNomCom.Text = "";
-            this.TextboxNomDCI.Text = "";
-            this.TextboxDosage.Text = "";
-            this.TextboxDesc.Text = "";
-            this.ComboBoxType.SelectedIndex = 0;
+            if (ComboBoxType.SelectedIndex == 0)
+            {
+                errorList.Add("Un type de médicament doit être choisi.");
+            }
 
-            // On affiche le message de validation d'ajout
-            this.LabelValidation.Visibility = Visibility.Visible;
+            if (TextboxDosage.Text == "")
+            {
+                errorList.Add("Un dosage doit être saisi.");
+            }
 
-            // Début du timer pour le message de validation d'ajout
-            timer.Interval = TimeSpan.FromSeconds(2);
-            timer.Tick += timer_Tick;
-            timer.Start();
+            if (TextboxDesc.Text == "")
+            {
+                errorList.Add("Une description doit être saisie.");
+            }
+
+            if (errorList.Count > 0)
+            {
+                // On implémente les données saisies dans une classe vide
+                Medicament NouveauMedicament = new Medicament();
+                NouveauMedicament.MED_NOM_COMMERCIAL = this.TextboxNomCom.Text;
+                NouveauMedicament.MED_NOM_DCI = this.TextboxNomDCI.Text;
+                NouveauMedicament.MED_DOSAGE = this.TextboxDosage.Text;
+                NouveauMedicament.MED_DESCRIPTION = this.TextboxDesc.Text;
+                NouveauMedicament.MED_TYPE = this.ComboBoxType.Text;
+
+                // On appelle la procédure pour ajouter le médicament
+                Requetes.PS_CREATE_MEDICAMENT(NouveauMedicament);
+
+                // On vide tous les champs à saisir
+                this.TextboxNomCom.Text = "";
+                this.TextboxNomDCI.Text = "";
+                this.TextboxDosage.Text = "";
+                this.TextboxDesc.Text = "";
+                this.ComboBoxType.SelectedIndex = 0;
+
+                // On affiche le message de validation d'ajout
+                this.LabelValidation.Visibility = Visibility.Visible;
+
+                // Début du timer pour le message de validation d'ajout
+                timer.Interval = TimeSpan.FromSeconds(2);
+                timer.Tick += timer_Tick;
+                timer.Start();
+            } else
+            {
+                MessageBox.Show($"Erreur: {Environment.NewLine}{String.Join("\n", errorList)}");
+            }
+            
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

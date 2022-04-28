@@ -23,22 +23,44 @@ namespace ACFG_LaboGSB
     public partial class AjoutAvis : Window
     {
         Medicament medicamentChoisi = new Medicament();
+        Praticien praticienChoisi = new Praticien();
 
         public AjoutAvis(Medicament medicament)
         {
             InitializeComponent();
             medicamentChoisi = medicament;
+            lblDisplay.Content = "Praticien :";
+            ActualiserCbBox();
+        }
+
+        public AjoutAvis(Praticien praticien)
+        {
+            InitializeComponent();
+            praticienChoisi = praticien;
+            lblDisplay.Content = "Médicament :";
             ActualiserCbBox();
         }
 
         private void ActualiserCbBox()
         {
-            List<Praticien> listePraticiens = Requetes.PS_LISTE_PRATICIENS();
-            if (listePraticiens != null)
+            if (medicamentChoisi.MED_NOM_COMMERCIAL != null)
             {
-                cbBoxPraticien.ItemsSource = listePraticiens;
-                cbBoxPraticien.DisplayMemberPath = "PRA_NOMCOMPLET";
+                List<Praticien> listePraticiens = Requetes.PS_LISTE_PRATICIENS();
+                if (listePraticiens != null)
+                {
+                    cbBoxDisplay.ItemsSource = listePraticiens;
+                    cbBoxDisplay.DisplayMemberPath = "PRA_NOMCOMPLET";
+                }
+            } else
+            {
+                List<Medicament> listeMedicaments = Requetes.PS_LISTE_MEDICAMENT();
+                if (listeMedicaments != null)
+                {
+                    cbBoxDisplay.ItemsSource = listeMedicaments;
+                    cbBoxDisplay.DisplayMemberPath = "PRA_NOM_COMMERCIAL";
+                }
             }
+
         }
 
         private void Btn_AjoutAvis_Click(object sender, RoutedEventArgs e)
@@ -46,8 +68,16 @@ namespace ACFG_LaboGSB
             Avis NouveauAvis = new Avis();
             NouveauAvis.AVI_DATE = DateTime.Parse(DP_AVI_DATE.Text);
             NouveauAvis.AVI_COMMENTAIRE = TBX_Commentaire.Text;
-            NouveauAvis.medicament = medicamentChoisi;
-            NouveauAvis.praticien = (Praticien)cbBoxPraticien.SelectedValue;
+
+            if (medicamentChoisi.MED_NOM_COMMERCIAL != null)
+            {
+                NouveauAvis.medicament = medicamentChoisi;
+                NouveauAvis.praticien = (Praticien)cbBoxDisplay.SelectedValue;
+            } else
+            {
+                NouveauAvis.medicament = (Medicament)cbBoxDisplay.SelectedValue;
+                NouveauAvis.praticien = praticienChoisi;
+            }
 
             try
             {
