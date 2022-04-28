@@ -61,7 +61,7 @@ namespace ACFG_LaboGSB
 
             if (TextboxNomDCI.Text == "")
             {
-                errorList.Add("Un nom commercial doit être saisi.");
+                errorList.Add("Un nom DCI doit être saisi.");
             }
 
             if (ComboBoxType.SelectedIndex == 0)
@@ -79,7 +79,7 @@ namespace ACFG_LaboGSB
                 errorList.Add("Une description doit être saisie.");
             }
 
-            if (errorList.Count > 0)
+            if (errorList == null)
             {
                 // On implémente les données saisies dans une classe vide
                 Medicament NouveauMedicament = new Medicament();
@@ -108,7 +108,7 @@ namespace ACFG_LaboGSB
                 timer.Start();
             } else
             {
-                MessageBox.Show($"Erreur: {Environment.NewLine}{String.Join("\n", errorList)}");
+                MessageBox.Show($"{String.Join("\n", errorList)}", "Erreur", MessageBoxButton.OK, MessageBoxImage.Exclamation);
             }
             
         }
