@@ -16,5 +16,7 @@
         <TextBox x:Name="TBX_Commentaire" HorizontalAlignment="Left" Height="104" Margin="135,120,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="182"/>
         <Label x:Name="Praticien" Content="Praticien :" HorizontalAlignment="Left" Margin="42,230,0,0" VerticalAlignment="Top"/>
         <ComboBox x:Name="cbBoxPraticien" HorizontalAlignment="Left" Margin="135,232,0,0" VerticalAlignment="Top" Width="182"/>
+        <Label x:Name="LabelTimer" Visibility="Hidden" Content="Label" HorizontalAlignment="Left" Margin="133,259,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="LabelValidation" Visibility="Hidden" Foreground="#FF14A600" Content="Avis ajouté" HorizontalAlignment="Left" Margin="145,259,0,0" VerticalAlignment="Top"/>
     </Grid>
 </Window>

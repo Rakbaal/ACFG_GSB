@@ -104,8 +104,8 @@
                 </Style>
             </Button.Style>
         </Button>
-        <StackPanel Margin="0,0,-11,588">
-            <Label x:Name="PanelTop" Content="Description du Médicament" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Foreground="#FFF1F1F1" FontSize="30" Background="#FF4A4741" Height="57" Width="930"/>
+        <StackPanel Margin="-3,0,-11,588">
+            <Label x:Name="PanelTop" Content="Description du Médicament" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Foreground="#FFF1F1F1" FontSize="30" Background="#FF4A4741" Height="57" Width="933"/>
         </StackPanel>
         <Button x:Name="BtnSupprAvis" Content="Supprimer un avis" HorizontalAlignment="Left" Margin="267,641,0,0" VerticalAlignment="Top" FontSize="16"  Width="174" Foreground="White"  Height="26" Click="BtnSupprAvis_Click">
             <Button.Style>

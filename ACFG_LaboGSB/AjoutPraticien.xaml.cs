@@ -28,6 +28,7 @@ namespace ACFG_LaboGSB
         public AjoutPraticien()
         {
             InitializeComponent();
+            this.ComboBoxProfession.SelectedIndex = 0;
         }
 
 
