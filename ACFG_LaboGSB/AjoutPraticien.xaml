@@ -11,8 +11,8 @@
         <Label Content="Prenom : " HorizontalAlignment="Left" Margin="52,110,0,0" VerticalAlignment="Top" FontSize="12" Height="28" Width="57"/>
         <Label Content="Profession : " HorizontalAlignment="Left" Margin="52,140,0,0" VerticalAlignment="Top" FontSize="12" Width="73" Height="30"/>
         <Button x:Name="Btn_AjoutPraticien" Content="Ajouter" HorizontalAlignment="Left" Margin="219,202,0,0" VerticalAlignment="Top" FontSize="12" Click="Btn_Ajout_Click" Width="94" Background="#FFCFFAFF"/>
-        <TextBox x:Name="TextboxNomPraticien" MaxHeight="25" HorizontalAlignment="Left" Margin="141,83,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="180" Height="24"/>
-        <TextBox x:Name="TextboxPrenomPraticien" MaxHeight="25" HorizontalAlignment="Left" Margin="141,112,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="180" Height="24"/>
+        <TextBox x:Name="TextboxNomPraticien" MaxHeight="21" HorizontalAlignment="Left" Margin="141,85,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="180" Height="21"/>
+        <TextBox x:Name="TextboxPrenomPraticien" MaxHeight="21" HorizontalAlignment="Left" Margin="141,114,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="180" Height="20"/>
         <Button Content="Retour" HorizontalAlignment="Left" Margin="71,202,0,0" VerticalAlignment="Top" FontSize="12" Click="Button_Click" Width="86" Background="#FFFFB8B8"/>
         <Label x:Name="LabelTimer" Content="" Visibility="Hidden" HorizontalAlignment="Left" Margin="154,293,0,0" VerticalAlignment="Top" Width="116"/>
         <Label x:Name="LabelValidation" Content="Praticien Ajouté" Visibility="Hidden" HorizontalAlignment="Left" Margin="144,171,0,0" VerticalAlignment="Top" Width="94" Foreground="#FF14A600"/>

@@ -24,6 +24,7 @@ namespace ACFG_LaboGSB
     {
         Medicament medicamentChoisi = new Medicament();
         Praticien praticienChoisi = new Praticien();
+        DispatcherTimer timer = new DispatcherTimer();
 
         public AjoutAvis(Medicament medicament)
         {
@@ -39,6 +40,27 @@ namespace ACFG_LaboGSB
             praticienChoisi = praticien;
             lblDisplay.Content = "Médicament :";
             ActualiserCbBox();
+            this.DP_AVI_DATE.DisplayDateEnd = DateTime.Now;
+            this.DP_AVI_DATE.SelectedDate = DateTime.Now;
+        }
+
+        void timer_Tick(object sender, EventArgs e)
+        {
+            // Algo permettant d'afficher un label pendant 3 secondes avant de disparaître
+            this.LabelTimer.Content = DateTime.Now.ToString("ss");
+            var labelStockage = this.LabelTimer.Content;
+
+            while (this.LabelTimer.Content == labelStockage)
+            {
+                var labelNouveauStockage = DateTime.Now.ToString("ss");
+
+                if (labelNouveauStockage != (String)labelStockage)
+                {
+                    this.LabelValidation.Visibility = Visibility.Hidden;
+                    timer.Stop();
+                    break;
+                }
+            }
         }
 
         private void ActualiserCbBox()
@@ -82,7 +104,14 @@ namespace ACFG_LaboGSB
             try
             {
                 Requetes.PS_CREATE_AVIS(NouveauAvis);
-                MessageBox.Show($"Création de l'avis terminée");
+
+                // On affiche le message de validation d'ajout
+                this.LabelValidation.Visibility = Visibility.Visible;
+
+                // Début du timer pour le message de validation d'ajout
+                timer.Interval = TimeSpan.FromSeconds(2);
+                timer.Tick += timer_Tick;
+                timer.Start();
             }
             catch (Exception ex)
             {

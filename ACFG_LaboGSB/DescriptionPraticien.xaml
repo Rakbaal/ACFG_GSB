@@ -59,8 +59,8 @@
                 </Style>
             </Button.Style>
         </Button>
-        <TextBox x:Name="Tbx_Description_Prenom" HorizontalAlignment="Left" Margin="161,111,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="155" FontSize="14"/>
-        <TextBox x:Name="Tbx_Description_Nom" HorizontalAlignment="Left" Margin="161,140,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="156" FontSize="14"/>
+        <TextBox x:Name="Tbx_Description_Prenom" HorizontalAlignment="Left" Margin="161,111,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="155" Height="21" MaxHeight="21" FontSize="14"/>
+        <TextBox x:Name="Tbx_Description_Nom" HorizontalAlignment="Left" Margin="161,140,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="156" Height="21" MaxHeight="21" FontSize="14"/>
         <Label x:Name="PanelTop" Content="Description du Praticien" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Foreground="#FFF1F1F1" FontSize="30" Margin="0,0,0,240" Background="#FF4A4741" Grid.ColumnSpan="2"/>
         <ComboBox x:Name="ComboBoxProfession" HorizontalAlignment="Left" Margin="161,167,0,0" VerticalAlignment="Top" Width="155" IsEnabled="False">
             <ComboBoxItem Content="Chirurgien Cardiaque"/>
