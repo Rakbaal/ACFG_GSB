@@ -127,7 +127,6 @@
                 </Style>
             </Button.Style>
         </Button>
-
         <StackPanel Margin="0,313,0,372" Background="#FF4A4741"/>
         <ComboBox x:Name="Tbx_Description_Type" HorizontalAlignment="Left" Margin="189,143,0,0" VerticalAlignment="Top" Width="181" Height="23" BorderBrush="White">
             <ComboBox.Background>
