@@ -30,7 +30,7 @@ namespace ACFG_LaboGSB
             InitializeComponent();
             medicamentChoisi = medicament;
             lblDisplay.Content = "Praticien :";
-            ActualiserCbBox();
+            ActualiserCbBoxFromMedicament();
         }
 
         public AjoutAvis(Praticien praticien)
@@ -38,32 +38,31 @@ namespace ACFG_LaboGSB
             InitializeComponent();
             praticienChoisi = praticien;
             lblDisplay.Content = "Médicament :";
-            ActualiserCbBox();
+            ActualiserCbBoxFromPraticien();
         }
 
-        private void ActualiserCbBox()
+        private void ActualiserCbBoxFromPraticien()
         {
-            if (medicamentChoisi.MED_NOM_COMMERCIAL != null)
+            List<Medicament> listeMedicaments = Requetes.PS_LISTE_MEDICAMENT();
+            if (listeMedicaments != null)
             {
-                List<Praticien> listePraticiens = Requetes.PS_LISTE_PRATICIENS();
-                if (listePraticiens != null)
-                {
-                    cbBoxDisplay.ItemsSource = listePraticiens;
-                    cbBoxDisplay.DisplayMemberPath = "PRA_NOMCOMPLET";
-                }
-            } else
-            {
-                List<Medicament> listeMedicaments = Requetes.PS_LISTE_MEDICAMENT();
-                if (listeMedicaments != null)
-                {
-                    cbBoxDisplay.ItemsSource = listeMedicaments;
-                    cbBoxDisplay.DisplayMemberPath = "PRA_NOM_COMMERCIAL";
-                }
+                cbBoxDisplay.ItemsSource = listeMedicaments;
+                cbBoxDisplay.DisplayMemberPath = "MED_NOM_COMMERCIAL";
             }
-
         }
 
-        private void Btn_AjoutAvis_Click(object sender, RoutedEventArgs e)
+        private void ActualiserCbBoxFromMedicament()
+        {
+            List<Praticien> listePraticiens = Requetes.PS_LISTE_PRATICIENS();
+            if (listePraticiens != null)
+            {
+                cbBoxDisplay.ItemsSource = listePraticiens;
+                cbBoxDisplay.DisplayMemberPath = "PRA_NOMCOMPLET";
+            }
+        }
+        
+
+    private void Btn_AjoutAvis_Click(object sender, RoutedEventArgs e)
         {
             Avis NouveauAvis = new Avis();
             NouveauAvis.AVI_DATE = DateTime.Parse(DP_AVI_DATE.Text);
