@@ -33,7 +33,7 @@ namespace ACFG_LaboGSB
             ComboBoxProfession.Visibility = Visibility.Hidden;
             Lbl_Description_Prenom.Content = praticien.PRA_PRENOM;
             Lbl_Description_Nom.Content = praticien.PRA_NOM;
-            ComboBoxProfession.Text = praticien.PRA_PROFESSION;
+            Lbl_Description_Profession.Content = praticien.PRA_PROFESSION;
             praticienChoisi = praticien;
 
             ActualiserDataGrid();
