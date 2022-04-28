@@ -89,7 +89,27 @@ namespace ACFG_LaboGSB
             praticienModifier.PRA_PRENOM = this.Tbx_Description_Prenom.Text;
             praticienModifier.PRA_PROFESSION = this.ComboBoxProfession.Text;
 
-            Requetes.PS_UPDATE_PRATICIEN(praticienModifier);
+            List<string> errorList = new List<string>();
+
+            if (Tbx_Description_Nom.Text == "")
+            {
+                errorList.Add("Un nom doit être saisi.");
+            }
+
+            if (Tbx_Description_Prenom.Text == "")
+            {
+                errorList.Add("Un prénom doit être saisi.");
+            }
+
+            if (errorList == null)
+            {
+                Requetes.PS_UPDATE_PRATICIEN(praticienModifier);
+            }
+            else
+            {
+                MessageBox.Show($"{String.Join("\n", errorList)}", "Erreur", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+            }
+            
         }
 
         private void Btn_Modifier_MouseEnter(object sender, MouseEventArgs e)

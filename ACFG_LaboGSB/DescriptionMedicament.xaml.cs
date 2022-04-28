@@ -128,9 +128,38 @@ namespace ACFG_LaboGSB
             medicamentChoisi.MED_DOSAGE = Tbx_Description_Dosage.Text;
             medicamentChoisi.MED_DESCRIPTION = Tbx_Decription_Description.Text;
             medicamentChoisi.MED_TYPE = Tbx_Description_Type.Text;
-            
-            Requetes.PS_UPDATE_MEDICAMENT(medicamentChoisi);
-            ActualiserInformations(medicamentChoisi.MED_ID);
+
+            List<string> errorList = new List<string>();
+
+            if (Tbx_Description_NomCommercial.Text == "")
+            {
+                errorList.Add("Un nom commercial doit être saisi.");
+            }
+
+            if (Tbx_Description_NomDCI.Text == "")
+            {
+                errorList.Add("Un nom DCI doit être saisi.");
+            }
+
+            if (Tbx_Description_Dosage.Text == "")
+            {
+                errorList.Add("Un dosage doit être saisi.");
+            }
+
+            if (Tbx_Decription_Description.Text == "")
+            {
+                errorList.Add("Une description doit être saisie.");
+            }
+
+            if (errorList == null)
+            {
+                Requetes.PS_UPDATE_MEDICAMENT(medicamentChoisi);
+                ActualiserInformations(medicamentChoisi.MED_ID);
+            }
+            else
+            {
+                MessageBox.Show($"{String.Join("\n", errorList)}", "Erreur", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+            }
         }
 
         private void BtnAjoutAvis_Click(object sender, RoutedEventArgs e)

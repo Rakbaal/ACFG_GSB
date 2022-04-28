@@ -64,11 +64,6 @@ namespace ACFG_LaboGSB
                 errorList.Add("Un nom DCI doit être saisi.");
             }
 
-            if (ComboBoxType.SelectedIndex == 0)
-            {
-                errorList.Add("Un type de médicament doit être choisi.");
-            }
-
             if (TextboxDosage.Text == "")
             {
                 errorList.Add("Un dosage doit être saisi.");

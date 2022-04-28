@@ -55,52 +55,45 @@ namespace ACFG_LaboGSB
         {
             // On implémente les données saisis dans une classe vide
             Praticien NouveauPraticien = new Praticien();
+
+            List<string> errorList = new List<string>();
+
+            if (TextboxNomPraticien.Text == "")
+            {
+                errorList.Add("Un nom doit être saisi.");
+            }
+
+            if (TextboxPrenomPraticien.Text == "")
+            {
+                errorList.Add("Un prénom doit être saisi.");
+            }
+
+            if (errorList == null)
+            {
+                // On appelle la procédure pour ajouter le médicament
+                Requetes.PS_CREATE_PRATICIEN(NouveauPraticien);
+
+                // On vide tous les champs à saisir
+                this.TextboxNomPraticien.Text = "";
+                this.TextboxPrenomPraticien.Text = "";
+                this.ComboBoxProfession.Text = "";
+
+                // On affiche le message de validation d'ajout
+                this.LabelValidation.Visibility = Visibility.Visible;
+
+                // Début du timer pour le message de validation d'ajout
+                timer.Interval = TimeSpan.FromSeconds(2);
+                timer.Tick += timer_Tick;
+                timer.Start();
+            }
+            else
+            {
+                MessageBox.Show($"{String.Join("\n", errorList)}", "Erreur", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+            }
+
+
+
             
-            if (TextboxNomPraticien.Text != "")
-            {
-                NouveauPraticien.PRA_NOM = this.TextboxNomPraticien.Text;
-            }
-            else
-            {
-                MessageBox.Show("Erreur", "Veuillez saisir un Nom", MessageBoxButton.OK, MessageBoxImage.Error);
-                return;
-            }
-
-            if (TextboxPrenomPraticien.Text != "")
-            {
-                NouveauPraticien.PRA_PRENOM = this.TextboxPrenomPraticien.Text;
-            }
-            else
-            {
-                MessageBox.Show("Erreur", "Veuillez saisir un Prénom", MessageBoxButton.OK, MessageBoxImage.Error);
-                return;
-            }
-
-            if (ComboBoxProfession.Text != "")
-            {
-                NouveauPraticien.PRA_PROFESSION = this.ComboBoxProfession.Text;
-            }
-            else
-            {
-                MessageBox.Show("Erreur", "Veuillez saisir une Profession", MessageBoxButton.OK, MessageBoxImage.Error);
-                return;
-            }
-
-            // On appelle la procédure pour ajouter le médicament
-            Requetes.PS_CREATE_PRATICIEN(NouveauPraticien);
-
-            // On vide tous les champs à saisir
-            this.TextboxNomPraticien.Text = "";
-            this.TextboxPrenomPraticien.Text = "";
-            this.ComboBoxProfession.Text = "";
-
-            // On affiche le message de validation d'ajout
-            this.LabelValidation.Visibility = Visibility.Visible;
-
-            // Début du timer pour le message de validation d'ajout
-            timer.Interval = TimeSpan.FromSeconds(2);
-            timer.Tick += timer_Tick;
-            timer.Start();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

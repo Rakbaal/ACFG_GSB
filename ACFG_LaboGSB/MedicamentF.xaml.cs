@@ -169,8 +169,9 @@ namespace ACFG_LaboGSB
                 DescriptionPraticien descriptionPraticien = new DescriptionPraticien(praticien);
                 descriptionPraticien.Show();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                Console.WriteLine(ex);
                 return;
             }
             

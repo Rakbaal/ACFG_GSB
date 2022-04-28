@@ -101,6 +101,15 @@ namespace ACFG_LaboGSB
                 NouveauAvis.praticien = praticienChoisi;
             }
 
+
+
+            if (this.TBX_Commentaire.Text == "")
+            {
+                MessageBox.Show("Un commentaire doit être saisi.","Erreur",MessageBoxButton.OK,MessageBoxImage.Exclamation);
+                return;
+            }
+
+
             try
             {
                 Requetes.PS_CREATE_AVIS(NouveauAvis);
