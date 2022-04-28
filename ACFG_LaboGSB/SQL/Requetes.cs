@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace ACFG_LaboGSB.SQL
 {
@@ -492,7 +493,7 @@ namespace ACFG_LaboGSB.SQL
             }
             catch (Exception erreur) // En cas d'erreur un message s'affiche sur la console
             {
-                Console.WriteLine("Erreur lors de la requête SELECT ListeAvis " + erreur.Message);
+                MessageBox.Show("Erreur lors de la requête SELECT ListeAvis " + erreur.Message);
                 throw;
             }
             finally

@@ -323,23 +323,17 @@ go
 			@idPraticien INT
 
 		AS
-			IF exists(SELECT MED_ID FROM MEDICAMENT WHERE MED_ID = @IdMedicament)
-				begin
-					SELECT 1 as 'stateMessage'
-				end
-			ELSE
-				begin
-					INSERT INTO AVIS(AVI_DATE, AVI_COMMENTAIRE, PRA_ID, MED_ID) 
-						VALUES(@date, @Commentaires, @idPraticien, @IdMedicament)
-					SELECT 0 as 'stateMessage'
-				end
+			begin
+				INSERT INTO AVIS(AVI_DATE, AVI_COMMENTAIRE, PRA_ID, MED_ID) 
+					VALUES(@date, @Commentaires, @idPraticien, @IdMedicament)
+			end
 		go
 
 		-- Lecture de la liste des avis pour un médicament précis
 		CREATE PROC PS_SELECT_AVIS_MEDICAMENT
 			@IdMedicament INT
 		AS
-			IF exists(SELECT MED_ID FROM MEDICAMENT WHERE MED_ID = @IdMedicament)
+			IF exists(SELECT MED_ID FROM AVIS WHERE MED_ID = @IdMedicament)
 				begin
 					SELECT AVI_ID, AVI_DATE, AVI_COMMENTAIRE, A.PRA_ID
 					FROM AVIS AS A
@@ -353,7 +347,7 @@ go
 		CREATE PROC PS_SELECT_AVIS_PRATICIEN
 			@IdPraticien INT
 		AS
-			IF exists(SELECT PRA_ID FROM PRATICIEN WHERE PRA_ID = @IdPraticien)
+			IF exists(SELECT PRA_ID FROM AVIS WHERE PRA_ID = @IdPraticien)
 				begin
 					SELECT AVI_ID, AVI_DATE, AVI_COMMENTAIRE, A.MED_ID
 					FROM AVIS AS A

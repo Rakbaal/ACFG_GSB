@@ -22,7 +22,7 @@ namespace ACFG_LaboGSB
     public partial class DescriptionPraticien : Window
     {
         // Variables Globales
-        Praticien praticienConcerner = new Praticien();
+        Praticien praticienChoisi = new Praticien();
 
         public DescriptionPraticien(Praticien praticien)
         {
@@ -33,18 +33,14 @@ namespace ACFG_LaboGSB
             this.Lbl_Description_Prenom.Content = praticien.PRA_PRENOM;
             this.Lbl_Description_Nom.Content = praticien.PRA_NOM;
             this.ComboBoxProfession.Text = praticien.PRA_PROFESSION;
-            praticienConcerner = praticien;
+            praticienChoisi = praticien;
 
-            List<Avis> listeAvis = Requetes.PS_SELECT_AVIS_PRATICIEN(praticien.PRA_ID);
-            if (listeAvis != null)
-            {
-                this.DataGridAvis.ItemsSource = listeAvis;
-            }
+            ActualiserDataGrid();
         }
 
         private void ActualiserDataGrid()
         {
-            List<Avis> listeAvis = Requetes.PS_SELECT_AVIS_PRATICIEN(praticienConcerner.PRA_ID);
+            List<Avis> listeAvis = Requetes.PS_SELECT_AVIS_PRATICIEN(praticienChoisi.PRA_ID);
             if (listeAvis != null)
             {
                 DataGridAvis.ItemsSource = listeAvis;
@@ -55,8 +51,6 @@ namespace ACFG_LaboGSB
         {
             ActualiserDataGrid();
         }
-
-
 
         private void Btn_Modifier_Click(object sender, RoutedEventArgs e)
         {
@@ -84,7 +78,7 @@ namespace ACFG_LaboGSB
             this.ComboBoxProfession.IsEnabled = false;
 
             Praticien praticienModifier = new Praticien();
-            praticienModifier.PRA_ID = praticienConcerner.PRA_ID;
+            praticienModifier.PRA_ID = praticienChoisi.PRA_ID;
             praticienModifier.PRA_NOM = this.Tbx_Description_Nom.Text;
             praticienModifier.PRA_PRENOM = this.Tbx_Description_Prenom.Text;
             praticienModifier.PRA_PROFESSION = this.ComboBoxProfession.Text;
@@ -112,9 +106,10 @@ namespace ACFG_LaboGSB
             
         }
 
-        private void Btn_Modifier_MouseEnter(object sender, MouseEventArgs e)
+        private void BtnAjoutAvis_Click(object sender, RoutedEventArgs e)
         {
-            
+            AjoutAvis ajoutAvis = new AjoutAvis(praticienChoisi, false);
+            ajoutAvis.ShowDialog();
         }
     }
 }

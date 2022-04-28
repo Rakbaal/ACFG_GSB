@@ -62,8 +62,6 @@ namespace ACFG_LaboGSB
             Lbl_Description_Description.Text = medicamentRefresh.MED_DESCRIPTION;
             Lbl_Description_Type.Text = medicamentRefresh.MED_TYPE;
 
-            
-
             medicamentChoisi = medicamentRefresh;
         }
 
@@ -164,7 +162,7 @@ namespace ACFG_LaboGSB
 
         private void BtnAjoutAvis_Click(object sender, RoutedEventArgs e)
         {
-            AjoutAvis ajoutAvis = new AjoutAvis(medicamentChoisi);
+            AjoutAvis ajoutAvis = new AjoutAvis(medicamentChoisi, true);
             ajoutAvis.ShowDialog();
         }
 
@@ -205,10 +203,5 @@ namespace ACFG_LaboGSB
             }
         }
         #endregion
-
-        private void DataGridAvis_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
     }
 }

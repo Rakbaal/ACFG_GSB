@@ -25,47 +25,35 @@ namespace ACFG_LaboGSB
         Medicament medicamentChoisi = new Medicament();
         Praticien praticienChoisi = new Praticien();
         DispatcherTimer timer = new DispatcherTimer();
+        bool fromMedicament;
 
-        public AjoutAvis(Medicament medicament)
+        public AjoutAvis(Medicament medicament, bool fromMed)
         {
             InitializeComponent();
+            fromMedicament = fromMed;
             medicamentChoisi = medicament;
             lblDisplay.Content = "Praticien :";
             ActualiserCbBox();
+            cbBoxDisplay.SelectedIndex = 0;
+            DP_AVI_DATE.DisplayDateEnd = DateTime.Now;
+            DP_AVI_DATE.SelectedDate = DateTime.Now;
         }
 
-        public AjoutAvis(Praticien praticien)
+        public AjoutAvis(Praticien praticien, bool fromMed)
         {
             InitializeComponent();
+            fromMedicament = fromMed;
             praticienChoisi = praticien;
             lblDisplay.Content = "Médicament :";
             ActualiserCbBox();
-            this.DP_AVI_DATE.DisplayDateEnd = DateTime.Now;
-            this.DP_AVI_DATE.SelectedDate = DateTime.Now;
-        }
-
-        void timer_Tick(object sender, EventArgs e)
-        {
-            // Algo permettant d'afficher un label pendant 3 secondes avant de disparaître
-            this.LabelTimer.Content = DateTime.Now.ToString("ss");
-            var labelStockage = this.LabelTimer.Content;
-
-            while (this.LabelTimer.Content == labelStockage)
-            {
-                var labelNouveauStockage = DateTime.Now.ToString("ss");
-
-                if (labelNouveauStockage != (String)labelStockage)
-                {
-                    this.LabelValidation.Visibility = Visibility.Hidden;
-                    timer.Stop();
-                    break;
-                }
-            }
+            cbBoxDisplay.SelectedIndex = 0;
+            DP_AVI_DATE.DisplayDateEnd = DateTime.Now;
+            DP_AVI_DATE.SelectedDate = DateTime.Now;
         }
 
         private void ActualiserCbBox()
         {
-            if (medicamentChoisi.MED_NOM_COMMERCIAL != null)
+            if (fromMedicament)
             {
                 List<Praticien> listePraticiens = Requetes.PS_LISTE_PRATICIENS();
                 if (listePraticiens != null)
@@ -79,7 +67,7 @@ namespace ACFG_LaboGSB
                 if (listeMedicaments != null)
                 {
                     cbBoxDisplay.ItemsSource = listeMedicaments;
-                    cbBoxDisplay.DisplayMemberPath = "PRA_NOM_COMMERCIAL";
+                    cbBoxDisplay.DisplayMemberPath = "MED_NOM_COMMERCIAL";
                 }
             }
 
@@ -91,7 +79,7 @@ namespace ACFG_LaboGSB
             NouveauAvis.AVI_DATE = DateTime.Parse(DP_AVI_DATE.Text);
             NouveauAvis.AVI_COMMENTAIRE = TBX_Commentaire.Text;
 
-            if (medicamentChoisi.MED_NOM_COMMERCIAL != null)
+            if (fromMedicament)
             {
                 NouveauAvis.medicament = medicamentChoisi;
                 NouveauAvis.praticien = (Praticien)cbBoxDisplay.SelectedValue;
@@ -101,14 +89,11 @@ namespace ACFG_LaboGSB
                 NouveauAvis.praticien = praticienChoisi;
             }
 
-
-
             if (this.TBX_Commentaire.Text == "")
             {
-                MessageBox.Show("Un commentaire doit être saisi.","Erreur",MessageBoxButton.OK,MessageBoxImage.Exclamation);
+                MessageBox.Show("Un commentaire doit être saisi.", "Erreur", MessageBoxButton.OK, MessageBoxImage.Exclamation);
                 return;
             }
-
 
             try
             {
@@ -131,6 +116,25 @@ namespace ACFG_LaboGSB
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
+        }
+
+        public void timer_Tick(object sender, EventArgs e)
+        {
+            // Algo permettant d'afficher un label pendant 3 secondes avant de disparaître
+            this.LabelTimer.Content = DateTime.Now.ToString("ss");
+            var labelStockage = this.LabelTimer.Content;
+
+            while (this.LabelTimer.Content == labelStockage)
+            {
+                var labelNouveauStockage = DateTime.Now.ToString("ss");
+
+                if (labelNouveauStockage != (String)labelStockage)
+                {
+                    this.LabelValidation.Visibility = Visibility.Hidden;
+                    timer.Stop();
+                    break;
+                }
+            }
         }
     }
 }

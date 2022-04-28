@@ -73,6 +73,7 @@
         <TextBox x:Name="Tbx_Description_Dosage" HorizontalAlignment="Left" Margin="189,178,0,0" Text="TextBox" TextWrapping="Wrap" VerticalAlignment="Top" Width="181" Height="21" MaxHeight="21" FontSize="14"/>
         <TextBox x:Name="Tbx_Decription_Description" HorizontalAlignment="Left" Margin="189,213,0,0" Text="TextBox" TextWrapping="Wrap" VerticalAlignment="Top" Width="649" FontSize="14"  Height="81"/>
 
+
         <DataGrid x:Name="DataGridAvis" Margin="36,353,35,93" IsReadOnly="True" HorizontalContentAlignment="Stretch"  Background="White" FontSize="20" FontWeight="Light" CanUserDeleteRows="False" CanUserResizeColumns="False" CanUserReorderColumns="False" AutoGenerateColumns="False" Grid.Column="0">
             <DataGrid.Columns>
                 <DataGridTextColumn x:Name="Date_AVI" Header="Date" Binding="{Binding AVI_DATE}" Width="0.8*"/>
