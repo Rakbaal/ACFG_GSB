@@ -34,7 +34,29 @@ namespace ACFG_LaboGSB
             this.Lbl_Description_Nom.Content = praticien.PRA_NOM;
             this.ComboBoxProfession.Text = praticien.PRA_PROFESSION;
             praticienConcerner = praticien;
+
+            List<Avis> listeAvis = Requetes.PS_SELECT_AVIS_PRATICIEN(praticien.PRA_ID);
+            if (listeAvis != null)
+            {
+                this.DataGridAvis.ItemsSource = listeAvis;
+            }
         }
+
+        private void ActualiserDataGrid()
+        {
+            List<Avis> listeAvis = Requetes.PS_SELECT_AVIS_PRATICIEN(praticienConcerner.PRA_ID);
+            if (listeAvis != null)
+            {
+                DataGridAvis.ItemsSource = listeAvis;
+            }
+        }
+
+        private void Window_Activated(object sender, EventArgs e)
+        {
+            ActualiserDataGrid();
+        }
+
+
 
         private void Btn_Modifier_Click(object sender, RoutedEventArgs e)
         {

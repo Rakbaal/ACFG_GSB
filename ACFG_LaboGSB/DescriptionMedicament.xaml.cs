@@ -16,7 +16,7 @@ using ACFG_LaboGSB.Classes;
 
 namespace ACFG_LaboGSB
 {
-    /// <summary>
+    /// <summary>  
     /// Logique d'interaction pour DescriptionMedicament.xaml
     /// </summary>
     public partial class DescriptionMedicament : Window
@@ -176,5 +176,10 @@ namespace ACFG_LaboGSB
             }
         }
         #endregion
+
+        private void DataGridAvis_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }

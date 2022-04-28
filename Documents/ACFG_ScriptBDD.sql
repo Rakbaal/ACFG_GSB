@@ -144,6 +144,7 @@ INSERT INTO AVIS (AVI_DATE, AVI_COMMENTAIRE, MED_ID, PRA_ID)
 VALUES ('28/04/2022','Une pommade agréable et efficace','8','1')
 INSERT INTO AVIS (AVI_DATE, AVI_COMMENTAIRE, MED_ID, PRA_ID)
 VALUES ('20/01/2022','ARGHHHHHHHHHHHHHHHHHHHHHHHHHHH','8','5')
+go
 
 
 --Création de la procedure Login Validation
@@ -348,6 +349,20 @@ go
 				end
 		go
 
+		-- Lecture de la liste des avis pour un praticien précis
+		CREATE PROC PS_SELECT_AVIS_PRATICIEN
+			@IdPraticien INT
+		AS
+			IF exists(SELECT PRA_ID FROM PRATICIEN WHERE PRA_ID = @IdPraticien)
+				begin
+					SELECT AVI_ID, AVI_DATE, AVI_COMMENTAIRE, A.MED_ID
+					FROM AVIS AS A
+					INNER JOIN MEDICAMENT AS M ON A.MED_ID = M.MED_ID
+					INNER JOIN PRATICIEN AS P ON P.PRA_ID = A.PRA_ID
+					WHERE A.PRA_ID = @IdPraticien
+				end
+		go
+
 		-- Supprimer un avis
 
 		CREATE PROC PS_DELETE_AVIS
@@ -358,4 +373,5 @@ go
 					DELETE FROM AVIS
 					WHERE AVI_ID = @IdAvis
 				end
-		go	
+		go
+
