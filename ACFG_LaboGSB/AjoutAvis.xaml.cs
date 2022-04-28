@@ -30,6 +30,8 @@ namespace ACFG_LaboGSB
             InitializeComponent();
             medicamentChoisi = medicament;
             ActualiserCbBox();
+            this.DP_AVI_DATE.DisplayDateEnd = DateTime.Now;
+            this.DP_AVI_DATE.SelectedDate = DateTime.Now;
         }
 
         void timer_Tick(object sender, EventArgs e)
