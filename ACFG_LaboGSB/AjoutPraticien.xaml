@@ -5,18 +5,18 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ACFG_LaboGSB"
         mc:Ignorable="d"
-        Title="Ajout" Height="292" Width="390" WindowStartupLocation="CenterScreen">
+        Title="Ajout" Height="292" Width="390" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
     <Grid RenderTransformOrigin="0.508,0.527">
-        <Label Content="Nom : " HorizontalAlignment="Left" Margin="80,78,0,0" VerticalAlignment="Top" FontSize="12" Height="29" Width="48"/>
-        <Label Content="Prenom : " HorizontalAlignment="Left" Margin="65,109,0,0" VerticalAlignment="Top" FontSize="12" Height="29" Width="57"/>
-        <Label Content="Profession : " HorizontalAlignment="Left" Margin="52,138,0,0" VerticalAlignment="Top" FontSize="12" Width="73" Height="30"/>
+        <Label Content="Nom : " HorizontalAlignment="Left" Margin="52,81,0,0" VerticalAlignment="Top" FontSize="12" Height="29" Width="48"/>
+        <Label Content="Prenom : " HorizontalAlignment="Left" Margin="52,110,0,0" VerticalAlignment="Top" FontSize="12" Height="28" Width="57"/>
+        <Label Content="Profession : " HorizontalAlignment="Left" Margin="52,140,0,0" VerticalAlignment="Top" FontSize="12" Width="73" Height="30"/>
         <Button x:Name="Btn_AjoutPraticien" Content="Ajouter" HorizontalAlignment="Left" Margin="219,202,0,0" VerticalAlignment="Top" FontSize="12" Click="Btn_Ajout_Click" Width="94" Background="#FFCFFAFF"/>
-        <TextBox x:Name="TextboxNomPraticien" HorizontalAlignment="Left" Margin="141,82,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="180" Height="20"/>
-        <TextBox x:Name="TextboxPrenomPraticien" HorizontalAlignment="Left" Margin="141,114,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="180" Height="20"/>
+        <TextBox x:Name="TextboxNomPraticien" MaxHeight="25" HorizontalAlignment="Left" Margin="141,83,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="180" Height="24"/>
+        <TextBox x:Name="TextboxPrenomPraticien" MaxHeight="25" HorizontalAlignment="Left" Margin="141,112,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="180" Height="24"/>
         <Button Content="Retour" HorizontalAlignment="Left" Margin="71,202,0,0" VerticalAlignment="Top" FontSize="12" Click="Button_Click" Width="86" Background="#FFFFB8B8"/>
         <Label x:Name="LabelTimer" Content="" Visibility="Hidden" HorizontalAlignment="Left" Margin="154,293,0,0" VerticalAlignment="Top" Width="116"/>
         <Label x:Name="LabelValidation" Content="Praticien Ajouté" Visibility="Hidden" HorizontalAlignment="Left" Margin="144,171,0,0" VerticalAlignment="Top" Width="94" Foreground="#FF14A600"/>
-        <ComboBox x:Name="ComboBoxProfession" HorizontalAlignment="Left" Margin="141,142,0,0" VerticalAlignment="Top" Width="180" IsEnabled="True" Height="22">
+        <ComboBox x:Name="ComboBoxProfession" HorizontalAlignment="Left" Margin="141,142,0,0" VerticalAlignment="Top" Width="180" IsEnabled="True" Height="24">
             <ComboBoxItem Content="Chirurgien Cardiaque"/>
             <ComboBoxItem Content="Pharmacien"/>
             <ComboBoxItem Content="Infirmier"/>

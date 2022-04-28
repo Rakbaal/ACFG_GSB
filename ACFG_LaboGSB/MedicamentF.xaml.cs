@@ -133,11 +133,18 @@ namespace ACFG_LaboGSB
             // lors d'un double clique sur une ligne ouvre un le formulaire de détail
             this.DataGridMedicaments.SelectionMode = DataGridSelectionMode.Single;
             int index = DataGridMedicaments.SelectedIndex;
-            var gridMedicament = (Medicament)DataGridMedicaments.Items[index];
-            var medicament = Requetes.PS_MEDICAMENT_DESCRIPTION(gridMedicament.MED_ID);
+            try
+            {
+                var gridMedicament = (Medicament)DataGridMedicaments.Items[index];
+                var medicament = Requetes.PS_MEDICAMENT_DESCRIPTION(gridMedicament.MED_ID);
 
-            DescriptionMedicament descriptionMedicament = new DescriptionMedicament(medicament);
-            descriptionMedicament.Show();
+                DescriptionMedicament descriptionMedicament = new DescriptionMedicament(medicament);
+                descriptionMedicament.Show();
+            }
+            catch (Exception)
+            {
+                return;
+            }
         }
 
         #endregion
@@ -154,10 +161,19 @@ namespace ACFG_LaboGSB
             // lors d'un double clic sur une ligne, ouvre un formulaire détaillé du praticien
             this.DataGridPraticien.SelectionMode = DataGridSelectionMode.Single;
             int index = DataGridPraticien.SelectedIndex;
-            var praticien = (Praticien)DataGridPraticien.Items[index];
 
-            DescriptionPraticien descriptionPraticien = new DescriptionPraticien(praticien);
-            descriptionPraticien.Show();
+            try
+            {
+                var praticien = (Praticien)DataGridPraticien.Items[index];
+
+                DescriptionPraticien descriptionPraticien = new DescriptionPraticien(praticien);
+                descriptionPraticien.Show();
+            }
+            catch (Exception)
+            {
+                return;
+            }
+            
         }
     }
 }
