@@ -69,5 +69,13 @@
             <ComboBoxItem Content="Infirmière"/>
             <ComboBoxItem Content="Gynécologue"/>
         </ComboBox>
+        <DataGrid x:Name="DataGridAvis" Margin="158,208,12,10" IsReadOnly="True" HorizontalContentAlignment="Stretch"  Background="White" FontSize="20" FontWeight="Light" AutoGenerateColumns="False" Grid.Column="0" Grid.ColumnSpan="2">
+            <DataGrid.Columns>
+                <DataGridTextColumn x:Name="Date_AVI" Header="Date" Binding="{Binding AVI_DATE}" Width="0.8*"/>
+                <DataGridTextColumn x:Name="Commentaire_AVI" Header="Commentaire" Binding="{Binding AVI_COMMENTAIRE}" Width="*"/>
+                <DataGridTextColumn x:Name="Medicament_AVI" Header="Médicament" Binding="{Binding medicament.MED_NOM_COMMERCIAL}" Width="*">
+                </DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 </Window>
