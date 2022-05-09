@@ -89,7 +89,7 @@ namespace ACFG_LaboGSB
                 NouveauAvis.praticien = praticienChoisi;
             }
 
-            if (this.TBX_Commentaire.Text == "")
+            if (TBX_Commentaire.Text == "")
             {
                 MessageBox.Show("Un commentaire doit être saisi.", "Erreur", MessageBoxButton.OK, MessageBoxImage.Exclamation);
                 return;
@@ -100,7 +100,7 @@ namespace ACFG_LaboGSB
                 Requetes.PS_CREATE_AVIS(NouveauAvis);
 
                 // On affiche le message de validation d'ajout
-                this.LabelValidation.Visibility = Visibility.Visible;
+                LabelValidation.Visibility = Visibility.Visible;
 
                 // Début du timer pour le message de validation d'ajout
                 timer.Interval = TimeSpan.FromSeconds(2);

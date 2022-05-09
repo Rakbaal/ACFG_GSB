@@ -27,13 +27,17 @@ namespace ACFG_LaboGSB
         public DescriptionPraticien(Praticien praticien)
         {
             InitializeComponent();
+            List<Profession> listProfession = Requetes.PS_LISTE_PROFESSION();
+            ComboBoxProfession.ItemsSource = listProfession;
+            ComboBoxProfession.SelectedItem = listProfession.First(x => x.PRO_ID == praticien.PRA_PROFESSION.PRO_ID);
+
             Btn_Valider.Visibility = Visibility.Hidden;
             Tbx_Description_Prenom.Visibility = Visibility.Hidden;
             Tbx_Description_Nom.Visibility = Visibility.Hidden;
             ComboBoxProfession.Visibility = Visibility.Hidden;
             Lbl_Description_Prenom.Content = praticien.PRA_PRENOM;
             Lbl_Description_Nom.Content = praticien.PRA_NOM;
-            Lbl_Description_Profession.Content = praticien.PRA_PROFESSION;
+            Lbl_Description_Profession.Content = praticien.PRA_PROFESSION.PRO_LIBELLE;
             praticienChoisi = praticien;
 
             ActualiserDataGrid();
@@ -63,7 +67,6 @@ namespace ACFG_LaboGSB
             this.Tbx_Description_Nom.Text = (string)Lbl_Description_Nom.Content;
             this.Tbx_Description_Nom.Visibility = Visibility.Visible;
             this.Lbl_Description_Nom.Visibility = Visibility.Hidden;
-            this.ComboBoxProfession.Text = (string)Lbl_Description_Profession.Content;
             this.ComboBoxProfession.Visibility = Visibility.Visible;
             this.Lbl_Description_Profession.Visibility = Visibility.Hidden;
             this.ComboBoxProfession.IsEnabled = true;
@@ -71,23 +74,11 @@ namespace ACFG_LaboGSB
 
         private void Btn_Valider_Click(object sender, RoutedEventArgs e)
         {
-            this.Btn_Modifier.Visibility = Visibility.Visible;
-            this.Btn_Valider.Visibility = Visibility.Hidden;
-            this.Lbl_Description_Prenom.Content = Tbx_Description_Prenom.Text;
-            this.Lbl_Description_Prenom.Visibility = Visibility.Visible;  
-            this.Tbx_Description_Prenom.Visibility = Visibility.Hidden;
-            this.Lbl_Description_Nom.Content = Tbx_Description_Nom.Text;
-            this.Lbl_Description_Nom.Visibility = Visibility.Visible;
-            this.Tbx_Description_Nom.Visibility = Visibility.Hidden;
-            this.ComboBoxProfession.Visibility = Visibility.Hidden;
-            this.Lbl_Description_Profession.Visibility = Visibility.Visible;
-            this.ComboBoxProfession.IsEnabled = false;
-
-            Praticien praticienModifier = new Praticien();
-            praticienModifier.PRA_ID = praticienChoisi.PRA_ID;
-            praticienModifier.PRA_NOM = this.Tbx_Description_Nom.Text;
-            praticienModifier.PRA_PRENOM = this.Tbx_Description_Prenom.Text;
-            praticienModifier.PRA_PROFESSION = this.ComboBoxProfession.Text;
+            Praticien nouveauPraticien = new Praticien();
+            nouveauPraticien.PRA_ID = praticienChoisi.PRA_ID;
+            nouveauPraticien.PRA_NOM = Tbx_Description_Nom.Text;
+            nouveauPraticien.PRA_PRENOM = Tbx_Description_Prenom.Text;
+            nouveauPraticien.PRA_PROFESSION = (Profession)ComboBoxProfession.SelectedItem;
 
             List<string> errorList = new List<string>();
 
@@ -101,13 +92,33 @@ namespace ACFG_LaboGSB
                 errorList.Add("Un prénom doit être saisi.");
             }
 
-            if (errorList == null)
+            if (ComboBoxProfession.SelectedItem == null)
             {
-                Requetes.PS_UPDATE_PRATICIEN(praticienModifier);
+                errorList.Add("Une profession doit être sélectionnée");
+            }
+
+            if (errorList.Count == 0)
+            {
+                Requetes.PS_UPDATE_PRATICIEN(nouveauPraticien);
+
+                Btn_Modifier.Visibility = Visibility.Visible;
+                Btn_Valider.Visibility = Visibility.Hidden;
+                Lbl_Description_Prenom.Content = Tbx_Description_Prenom.Text;
+                Lbl_Description_Prenom.Visibility = Visibility.Visible;
+                Tbx_Description_Prenom.Visibility = Visibility.Hidden;
+                Lbl_Description_Nom.Content = Tbx_Description_Nom.Text;
+                Lbl_Description_Nom.Visibility = Visibility.Visible;
+                Tbx_Description_Nom.Visibility = Visibility.Hidden;
+                ComboBoxProfession.Visibility = Visibility.Hidden;
+                Lbl_Description_Profession.Content = nouveauPraticien.PRA_PROFESSION.PRO_LIBELLE;
+                Lbl_Description_Profession.Visibility = Visibility.Visible;
+                ComboBoxProfession.IsEnabled = false;
             }
             else
             {
                 MessageBox.Show($"{String.Join("\n", errorList)}", "Erreur", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                Lbl_Description_Nom.Content = praticienChoisi.PRA_NOM;
+                Lbl_Description_Prenom.Content = praticienChoisi.PRA_PRENOM;
             }
             
         }

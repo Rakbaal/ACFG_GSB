@@ -32,13 +32,22 @@ CREATE TABLE MEDICAMENT (
  )
  go
 
+ -- Création de la table PROFESSION
+  CREATE TABLE PROFESSION (
+ PRO_ID INT IDENTITY(1,1),
+ PRO_LIBELLE VARCHAR(38) NOT NULL
+ CONSTRAINT PK_PROFESSION_ID PRIMARY KEY (PRO_ID)
+ )
+ go
+
 --Création de la table PRATICIEN
 CREATE TABLE PRATICIEN (
  PRA_ID INT IDENTITY (1,1),
  PRA_NOM VARCHAR(38) NOT NULL,
  PRA_PRENOM VARCHAR(38) NOT NULL,
- PRA_PROFESSION VARCHAR(38) NOT NULL,
- CONSTRAINT PK_PRATICIEN_ID PRIMARY KEY (PRA_ID)
+ PRO_ID INT NOT NULL,
+ CONSTRAINT PK_PRATICIEN_ID PRIMARY KEY(PRA_ID),
+ CONSTRAINT FK_PROFESSION_PRATICIEN FOREIGN KEY(PRO_ID) REFERENCES PROFESSION(PRO_ID)
  )
  go
 
@@ -97,19 +106,32 @@ INSERT INTO MEDICAMENT (MED_NOM_COMMERCIAL, MED_NOM_DCI, MED_DOSAGE, MED_DESCRIP
 VALUES ('Cortisone', 'Hydrocortisone', '1%', 'C''est le nom de l''hormone cortisol lorsqu''elle est fournie comme médicament. Les utilisations comprennent des affections telles que l''insuffisance surrénocorticale, le syndrome surrénogénital, l''hypocalcémie, la thyroïdite, la polyarthrite rhumatoïde, la dermatite, l''asthme et la BPCO', 'Pommade')
 go
 
---insertion Table Praticien
-INSERT INTO PRATICIEN (PRA_NOM,PRA_PRENOM,PRA_PROFESSION)
-VALUES ('Delamare', 'Paul', 'Chirurgien cardiaque')
-INSERT INTO PRATICIEN (PRA_NOM,PRA_PRENOM,PRA_PROFESSION)
-VALUES ('Roost', 'Didier', 'Pharmacien')
-INSERT INTO PRATICIEN (PRA_NOM,PRA_PRENOM,PRA_PROFESSION)
-VALUES ('Plaza', 'Stephane', 'Infirmier')
-INSERT INTO PRATICIEN (PRA_NOM,PRA_PRENOM,PRA_PROFESSION)
-VALUES ('Deschamps', 'Marie-Jeanne', 'Gynécologue')
-INSERT INTO PRATICIEN (PRA_NOM,PRA_PRENOM,PRA_PROFESSION)
-VALUES ('Lagrosse', 'Bertha', 'Infirmière')
-go
+--insertion Table Profession
+INSERT INTO PROFESSION(PRO_LIBELLE)
+VALUES('Chirurgien')
+INSERT INTO PROFESSION(PRO_LIBELLE)
+VALUES('Cardiologue')
+INSERT INTO PROFESSION(PRO_LIBELLE)
+VALUES('Pédiatre')
+INSERT INTO PROFESSION(PRO_LIBELLE)
+VALUES('Adictologue')
+INSERT INTO PROFESSION(PRO_LIBELLE)
+VALUES('Podologue')
+INSERT INTO PROFESSION(PRO_LIBELLE)
+VALUES('Neurologue')
 
+--insertion Table Praticien
+INSERT INTO PRATICIEN (PRA_NOM,PRA_PRENOM,PRO_ID)
+VALUES ('Delamare', 'Paul', 1)
+INSERT INTO PRATICIEN (PRA_NOM,PRA_PRENOM,PRO_ID)
+VALUES ('Roost', 'Didier', 3)
+INSERT INTO PRATICIEN (PRA_NOM,PRA_PRENOM,PRO_ID)
+VALUES ('Plaza', 'Stephane', 4)
+INSERT INTO PRATICIEN (PRA_NOM,PRA_PRENOM,PRO_ID)
+VALUES ('Deschamps', 'Marie-Jeanne', 5)
+INSERT INTO PRATICIEN (PRA_NOM,PRA_PRENOM,PRO_ID)
+VALUES ('Lagrosse', 'Bertha', 3)
+go
 
 --insertion Table Avis
 INSERT INTO AVIS (AVI_DATE, AVI_COMMENTAIRE, MED_ID, PRA_ID)
@@ -148,15 +170,46 @@ go
 
 
 --Création de la procedure Login Validation
-CREATE PROC PS_LOGIN_VALIDATION
-	@Login CHAR(4),
-	@Mdp VARCHAR(512)
-AS
-	SELECT VIS_ID
-	FROM VISITEUR
-	WHERE VIS_LOGIN = @Login
-	AND VIS_MDP = @Mdp
-go
+	CREATE PROC PS_LOGIN_VALIDATION
+		@Login CHAR(4),
+		@Mdp VARCHAR(512)
+	AS
+		SELECT VIS_ID
+		FROM VISITEUR
+		WHERE VIS_LOGIN = @Login
+		AND VIS_MDP = @Mdp
+	go
+
+-- PROFESSION
+
+		-- Sélection des professions
+		CREATE PROC PS_SELECT_PROFESSION
+			AS
+			begin
+				SELECT PRO_ID, PRO_LIBELLE
+				FROM PROFESSION
+			end
+		go
+		--Sélection d'une profession
+		CREATE PROC PS_SELECT_UNEPROFESSION
+				@IdProfession INT
+			AS
+			begin
+				SELECT PRO_ID, PRO_LIBELLE
+				FROM PROFESSION
+				WHERE PRO_ID = @IdProfession
+			end
+		go
+		-- Sélection de la profession d'un praticien
+		CREATE PROC PS_SELECT_PROFESSION_PRATICIEN
+				@IdPraticien INT
+			AS
+			begin
+				SELECT pro.PRO_ID, PRO_LIBELLE
+				FROM PROFESSION pro inner join PRATICIEN  pra on pra.PRO_ID = pro.PRO_ID
+				WHERE PRA_ID = @IdPraticien
+			end
+		go
 
 
 -- MEDICAMENTS
@@ -248,7 +301,7 @@ go
 		CREATE PROC PS_SELECT_UNPRATICIEN
 				@ID int
 			AS
-				SELECT PRA_ID, PRA_NOM, PRA_PRENOM, PRA_PROFESSION
+				SELECT PRA_ID, PRA_NOM, PRA_PRENOM, PRO_ID
 				FROM PRATICIEN
 				WHERE PRA_ID = @ID
 		go
@@ -257,7 +310,7 @@ go
 		CREATE PROC PS_CREATE_PRATICIEN
 			@Nom VARCHAR(38),
 			@Prenom VARCHAR(38),
-			@Profession VARCHAR(38)
+			@ProfessionId INT
 		AS
 			SET ROWCOUNT 0
 			IF exists(SELECT PRA_NOM, PRA_PRENOM FROM PRATICIEN WHERE PRA_NOM = @Nom AND PRA_PRENOM = @Prenom)
@@ -269,8 +322,8 @@ go
 			ELSE
 				begin
 					-- Effectue l'insertion si le libellé n'existe pas
-					INSERT INTO PRATICIEN(PRA_NOM, PRA_PRENOM, PRA_PROFESSION) 
-						VALUES(@Nom, @Prenom, @Profession)
+					INSERT INTO PRATICIEN(PRA_NOM, PRA_PRENOM, PRO_ID) 
+						VALUES(@Nom, @Prenom, @ProfessionId)
 					-- Renvoie un Code 0 pour "Exécution réussie"
 					SELECT 0 as 'stateMessage'
 				end
@@ -279,7 +332,7 @@ go
 		-- Lecture des praticiens
 		CREATE PROC PS_SELECT_ALL_PRATICIEN
 		AS
-			SELECT PRA_ID, PRA_NOM, PRA_PRENOM, PRA_PROFESSION
+			SELECT PRA_ID, PRA_NOM, PRA_PRENOM, PRO_ID
 			FROM PRATICIEN
 		go
 
@@ -288,11 +341,11 @@ go
 			@id int,
 			@Nom VARCHAR(38),
 			@Prenom VARCHAR(38),
-			@Profession VARCHAR(38)
+			@ProfessionId INT
 		AS
 			BEGIN
 				UPDATE PRATICIEN
-				SET PRA_NOM = @Nom, PRA_PRENOM = @Prenom, PRA_PROFESSION = @Profession
+				SET PRA_NOM = @Nom, PRA_PRENOM = @Prenom, PRO_ID = @ProfessionId
 				WHERE PRA_ID = @id
 			END
 		go

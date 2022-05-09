@@ -126,18 +126,13 @@
             </Button>
             <Button Content="Retour" HorizontalAlignment="Left" Margin="510,642,0,0" VerticalAlignment="Top" Click="Button_Click" FontSize="16"  Width="100" Background="#FFFFB8B8"/>
             <StackPanel Margin="0,313,0,372" Background="#FF4A4741"/>
-            <ComboBox x:Name="ComboBoxProfession" HorizontalAlignment="Left" Margin="160,167,0,0" VerticalAlignment="Top" Width="155" IsEnabled="False">
+            <ComboBox x:Name="ComboBoxProfession" DisplayMemberPath="PRO_LIBELLE" HorizontalAlignment="Left" Margin="160,167,0,0" VerticalAlignment="Top" Width="155" IsEnabled="False">
                 <ComboBox.Background>
                     <LinearGradientBrush EndPoint="0,1">
                         <GradientStop Color="#FFF0F0F0"/>
                         <GradientStop Color="#FFFFFDFD" Offset="1"/>
                     </LinearGradientBrush>
                 </ComboBox.Background>
-                <ComboBoxItem Content="Chirurgien Cardiaque"/>
-                <ComboBoxItem Content="Pharmacien"/>
-                <ComboBoxItem Content="Infirmier"/>
-                <ComboBoxItem Content="Infirmière"/>
-                <ComboBoxItem Content="Gynécologue"/>
             </ComboBox>
         </Grid>
     </Grid>

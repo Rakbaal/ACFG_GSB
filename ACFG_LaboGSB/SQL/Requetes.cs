@@ -245,7 +245,7 @@ namespace ACFG_LaboGSB.SQL
                         praticien.PRA_ID = Convert.ToInt32(mySqlDataReader["PRA_ID"]);
                         praticien.PRA_NOM = Convert.ToString(mySqlDataReader["PRA_NOM"]);
                         praticien.PRA_PRENOM = Convert.ToString(mySqlDataReader["PRA_PRENOM"]);
-                        praticien.PRA_PROFESSION = Convert.ToString(mySqlDataReader["PRA_PROFESSION"]);
+                        praticien.PRA_PROFESSION = (Profession)Requetes.PS_SELECT_UNEPROFESSION(Convert.ToInt32(mySqlDataReader["PRO_ID"]));
                         listPraticien.Add(praticien);
                     }
                 }
@@ -269,7 +269,7 @@ namespace ACFG_LaboGSB.SQL
             SqlDataReader mySqlDataReader = null;
             SqlConnection conn = BDD.openBDDApplication("ACFG_LaboGSB");
 
-            string Requete = "exec PS_CREATE_PRATICIEN '" + praticien.PRA_NOM + "' , '" + praticien.PRA_PRENOM + "' , '" + praticien.PRA_PROFESSION + "'";
+            string Requete = "exec PS_CREATE_PRATICIEN '" + praticien.PRA_NOM + "' , '" + praticien.PRA_PRENOM + "' , '" + praticien.PRA_PROFESSION.PRO_ID + "'";
 
             try // On essaye d'executer la requête
             {
@@ -293,13 +293,12 @@ namespace ACFG_LaboGSB.SQL
             SqlCommand myCommand = null;
             SqlDataReader mySqlDataReader = null;
             SqlConnection conn = BDD.openBDDApplication("ACFG_LaboGSB");
-            var profession = praticien.PRA_PROFESSION.Replace("'", "''");
 
             string Requete = $"exec PS_UPDATE_PRATICIEN " +
                 $"{praticien.PRA_ID}, " +
                 $"'{praticien.PRA_NOM}', " +
                 $"'{praticien.PRA_PRENOM}', " +
-                $"'{profession}'";
+                $"'{praticien.PRA_PROFESSION.PRO_ID}'";
 
             try
             {
@@ -355,7 +354,7 @@ namespace ACFG_LaboGSB.SQL
                         praticien.PRA_ID = Convert.ToInt32(mySqlDataReader["PRA_ID"]);
                         praticien.PRA_NOM = Convert.ToString(mySqlDataReader["PRA_NOM"]);
                         praticien.PRA_PRENOM = Convert.ToString(mySqlDataReader["PRA_PRENOM"]);
-                        praticien.PRA_PROFESSION = Convert.ToString(mySqlDataReader["PRA_PROFESSION"]);
+                        praticien.PRA_PROFESSION = Requetes.PS_SELECT_UNEPROFESSION(Convert.ToInt32(mySqlDataReader["PRO_ID"]));
                     }
                 }
             }
@@ -504,6 +503,79 @@ namespace ACFG_LaboGSB.SQL
             return listeAvis;
         }
 
+        #endregion
+
+        #region - Profession
+        public static List<Profession> PS_LISTE_PROFESSION()
+        {
+            SqlCommand myCommand = null;
+            SqlDataReader mySqlDataReader = null;
+            SqlConnection conn = BDD.openBDDApplication("ACFG_LaboGSB");
+            string Requete = "exec PS_SELECT_PROFESSION";
+            List<Profession> listProfession = new List<Profession>();
+            Profession profession = null;
+
+            try // On essaye d'executer la requête
+            {
+                myCommand = new SqlCommand(Requete, conn);
+                mySqlDataReader = myCommand.ExecuteReader();
+                while (mySqlDataReader.Read())
+                {
+                    if (mySqlDataReader["PRO_ID"] != DBNull.Value)
+                    {
+                        profession = new Profession();
+                        profession.PRO_ID = Convert.ToInt32(mySqlDataReader["PRO_ID"]);
+                        profession.PRO_LIBELLE = Convert.ToString(mySqlDataReader["PRO_LIBELLE"]);
+                        listProfession.Add(profession);
+                    }
+                }
+            }
+            catch (Exception erreur) // En cas d'erreur un message s'affiche sur la console
+            {
+                Console.WriteLine("Erreur lors de la requête SELECT ListeProfession " + erreur.Message);
+                throw;
+            }
+            finally
+            {
+                conn.Close();
+            }
+
+            return listProfession;
+        }
+        public static Profession PS_SELECT_UNEPROFESSION(int id)
+        {
+            SqlCommand myCommand = null;
+            SqlDataReader mySqlDataReader = null;
+            SqlConnection conn = BDD.openBDDApplication("ACFG_LaboGSB");
+            string Requete = $"exec PS_SELECT_UNEPROFESSION {id}";
+            Profession profession = null;
+
+            try // On essaye d'executer la requête
+            {
+                myCommand = new SqlCommand(Requete, conn);
+                mySqlDataReader = myCommand.ExecuteReader();
+                while (mySqlDataReader.Read())
+                {
+                    if (mySqlDataReader["PRO_ID"] != DBNull.Value)
+                    {
+                        profession = new Profession();
+                        profession.PRO_ID = Convert.ToInt32(mySqlDataReader["PRO_ID"]);
+                        profession.PRO_LIBELLE = Convert.ToString(mySqlDataReader["PRO_LIBELLE"]);
+                    }
+                }
+            }
+            catch (Exception erreur) // En cas d'erreur un message s'affiche sur la console
+            {
+                Console.WriteLine("Erreur lors de la requête SELECT d'une profession : " + erreur.Message);
+                throw;
+            }
+            finally
+            {
+                conn.Close();
+            }
+
+            return profession;
+        }
         #endregion
     }
 }

@@ -16,13 +16,7 @@
         <Button Content="Retour" HorizontalAlignment="Left" Margin="71,202,0,0" VerticalAlignment="Top" FontSize="12" Click="Button_Click" Width="86" Background="#FFFFB8B8"/>
         <Label x:Name="LabelTimer" Content="" Visibility="Hidden" HorizontalAlignment="Left" Margin="154,293,0,0" VerticalAlignment="Top" Width="116"/>
         <Label x:Name="LabelValidation" Content="Praticien Ajouté" Visibility="Hidden" HorizontalAlignment="Left" Margin="144,171,0,0" VerticalAlignment="Top" Width="94" Foreground="#FF14A600"/>
-        <ComboBox x:Name="ComboBoxProfession" HorizontalAlignment="Left" Margin="141,142,0,0" VerticalAlignment="Top" Width="180" IsEnabled="True" Height="24">
-            <ComboBoxItem Content="Chirurgien Cardiaque"/>
-            <ComboBoxItem Content="Pharmacien"/>
-            <ComboBoxItem Content="Infirmier"/>
-            <ComboBoxItem Content="Infirmière"/>
-            <ComboBoxItem Content="Gynécologue"/>
-        </ComboBox>
+        <ComboBox x:Name="ComboBoxProfession" DisplayMemberPath="PRO_LIBELLE" HorizontalAlignment="Left" Margin="141,142,0,0" VerticalAlignment="Top" Width="180" IsEnabled="True" Height="24"/>
         <StackPanel Margin="0,0,0,198">
             <Label x:Name="PanelTop" Content="Ajout praticien" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Foreground="#FFF1F1F1" FontSize="30" Background="#FF4A4741" Height="56"/>
         </StackPanel>

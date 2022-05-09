@@ -53,9 +53,9 @@ namespace ACFG_LaboGSB
             }
         }
 
-        public void ActualiserInformations(int Medicament_Id)
+        public void ActualiserInformations(int medicament_Id)
         {
-            Medicament medicamentRefresh = Requetes.PS_MEDICAMENT_DESCRIPTION(Medicament_Id);
+            Medicament medicamentRefresh = Requetes.PS_MEDICAMENT_DESCRIPTION(medicament_Id);
             Lbl_Description_NomCommerciale.Text = medicamentRefresh.MED_NOM_COMMERCIAL;
             Lbl_Description_NomDCI.Text = medicamentRefresh.MED_NOM_DCI;
             Lbl_Description_Dosage.Text = medicamentRefresh.MED_DOSAGE;
@@ -149,7 +149,7 @@ namespace ACFG_LaboGSB
                 errorList.Add("Une description doit être saisie.");
             }
 
-            if (errorList == null)
+            if (errorList.Count == 0)
             {
                 Requetes.PS_UPDATE_MEDICAMENT(medicamentChoisi);
                 ActualiserInformations(medicamentChoisi.MED_ID);

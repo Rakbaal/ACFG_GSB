@@ -68,7 +68,7 @@
                 <DataGridTextColumn x:Name="ID_PRA" Header="ID" Width="0.15*" Binding="{Binding PRA_ID}" CanUserResize="False" CanUserReorder="False"/>
                 <DataGridTextColumn x:Name="Nom_PRA" Header="Nom" Width="*" Binding="{Binding PRA_NOM}" CanUserResize="False" CanUserReorder="False"/>
                 <DataGridTextColumn x:Name="Prenom_PRA" Header="Prénom" Width="*" Binding="{Binding PRA_PRENOM}" CanUserResize="False" CanUserReorder="False"/>
-                <DataGridTextColumn x:Name="Profession_PRA" Header="Profession" Width="*" Binding="{Binding PRA_PROFESSION}" CanUserResize="False" CanUserReorder="False"/>
+                <DataGridTextColumn x:Name="Profession_PRA" Header="Profession" Width="*" Binding="{Binding PRA_PROFESSION.PRO_LIBELLE}" CanUserResize="False" CanUserReorder="False"/>
             </DataGrid.Columns>
         </DataGrid>
 

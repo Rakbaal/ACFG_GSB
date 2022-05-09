@@ -28,11 +28,13 @@ namespace ACFG_LaboGSB
         public AjoutPraticien()
         {
             InitializeComponent();
-            this.ComboBoxProfession.SelectedIndex = 0;
+            List<Profession> listProfession = Requetes.PS_LISTE_PROFESSION();
+            ComboBoxProfession.ItemsSource = listProfession;
+            ComboBoxProfession.SelectedIndex = 0;
         }
 
 
-        void timer_Tick(object sender, EventArgs e)
+        void timerTick(object sender, EventArgs e)
         {
             // Algo permettant d'afficher un label pendant 3 secondes avant de disparaître
             this.LabelTimer.Content = DateTime.Now.ToString("ss");
@@ -54,7 +56,7 @@ namespace ACFG_LaboGSB
         private void Btn_Ajout_Click(object sender, RoutedEventArgs e)
         {
             // On implémente les données saisis dans une classe vide
-            Praticien NouveauPraticien = new Praticien();
+            Praticien nouveauPraticien = new Praticien();
 
             List<string> errorList = new List<string>();
 
@@ -68,22 +70,26 @@ namespace ACFG_LaboGSB
                 errorList.Add("Un prénom doit être saisi.");
             }
 
-            if (errorList == null)
+            if (errorList.Count == 0)
             {
-                // On appelle la procédure pour ajouter le médicament
-                Requetes.PS_CREATE_PRATICIEN(NouveauPraticien);
+                nouveauPraticien.PRA_NOM = TextboxNomPraticien.Text;
+                nouveauPraticien.PRA_PRENOM = TextboxPrenomPraticien.Text;
+                nouveauPraticien.PRA_PROFESSION = (Profession)ComboBoxProfession.SelectedValue;
+
+                // On appelle la procédure pour ajouter le praticien
+                Requetes.PS_CREATE_PRATICIEN(nouveauPraticien);
 
                 // On vide tous les champs à saisir
-                this.TextboxNomPraticien.Text = "";
-                this.TextboxPrenomPraticien.Text = "";
-                this.ComboBoxProfession.Text = "";
+                TextboxNomPraticien.Text = "";
+                TextboxPrenomPraticien.Text = "";
+                ComboBoxProfession.Text = "";
 
                 // On affiche le message de validation d'ajout
-                this.LabelValidation.Visibility = Visibility.Visible;
+                LabelValidation.Visibility = Visibility.Visible;
 
                 // Début du timer pour le message de validation d'ajout
                 timer.Interval = TimeSpan.FromSeconds(2);
-                timer.Tick += timer_Tick;
+                timer.Tick += timerTick;
                 timer.Start();
             }
             else

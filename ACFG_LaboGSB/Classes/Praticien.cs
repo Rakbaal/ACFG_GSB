@@ -11,7 +11,7 @@ namespace ACFG_LaboGSB.Classes
         public int PRA_ID { get; set; }
         public string PRA_NOM { get; set; }
         public string PRA_PRENOM { get; set; }
-        public string PRA_PROFESSION { get; set; }
+        public Profession PRA_PROFESSION { get; set; }
         public string PRA_NOMCOMPLET => this.PRA_NOM.ToUpper() + " " + this.PRA_PRENOM;    
     }
 }

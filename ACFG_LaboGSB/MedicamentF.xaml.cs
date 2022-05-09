@@ -37,7 +37,7 @@ namespace ACFG_LaboGSB
 
             if (listeMedicaments != null)
             {
-                this.DataGridMedicaments.ItemsSource = listeMedicaments;
+                DataGridMedicaments.ItemsSource = listeMedicaments;
             }
 
             List<Praticien> listePraticiens = Requetes.PS_LISTE_PRATICIENS();
