@@ -33,7 +33,7 @@ namespace ACFG_LaboGSB
 
         void timer_Tick(object sender, EventArgs e)
         {
-            // Algo permettant d'afficher un label pendant 3 secondes avant de disparaître
+            // Algo permettant d'afficher un label pendant 2 secondes avant de disparaître
             this.LabelTimer.Content = DateTime.Now.ToString("ss");
             var labelStockage = this.LabelTimer.Content;
 
@@ -52,6 +52,7 @@ namespace ACFG_LaboGSB
 
         private void Btn_Ajout_Click(object sender, RoutedEventArgs e)
         {
+            //Gestion des erreurs possibles 
             List<string> errorList = new List<string>();
             
             if (TextboxNomCom.Text == "")
@@ -74,6 +75,7 @@ namespace ACFG_LaboGSB
                 errorList.Add("Une description doit être saisie.");
             }
 
+            //Si il n'y aucune erreur, alors ...
             if (errorList == null)
             {
                 // On implémente les données saisies dans une classe vide
@@ -87,7 +89,7 @@ namespace ACFG_LaboGSB
                 // On appelle la procédure pour ajouter le médicament
                 Requetes.PS_CREATE_MEDICAMENT(NouveauMedicament);
 
-                // On vide tous les champs à saisir
+                // On vide tous les champs de saisie
                 this.TextboxNomCom.Text = "";
                 this.TextboxNomDCI.Text = "";
                 this.TextboxDosage.Text = "";
@@ -101,8 +103,11 @@ namespace ACFG_LaboGSB
                 timer.Interval = TimeSpan.FromSeconds(2);
                 timer.Tick += timer_Tick;
                 timer.Start();
-            } else
+            }
+            //Si il y a une erreur, alors ...
+            else
             {
+                //Affichage d'un message d'erreur
                 MessageBox.Show($"{String.Join("\n", errorList)}", "Erreur", MessageBoxButton.OK, MessageBoxImage.Exclamation);
             }
             
