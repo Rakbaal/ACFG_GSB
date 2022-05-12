@@ -44,7 +44,7 @@ namespace ACFG_LaboGSB
             this.DP_AVI_DATE.SelectedDate = DateTime.Now;
         }
 
-        void timer_Tick(object sender, EventArgs e)
+        public void timer_Tick(object sender, EventArgs e)
         {
             // Algo permettant d'afficher un label pendant 3 secondes avant de disparaître
             this.LabelTimer.Content = DateTime.Now.ToString("ss");
@@ -73,7 +73,8 @@ namespace ACFG_LaboGSB
                     cbBoxDisplay.ItemsSource = listePraticiens;
                     cbBoxDisplay.DisplayMemberPath = "PRA_NOMCOMPLET";
                 }
-            } else
+            } 
+            else
             {
                 List<Medicament> listeMedicaments = Requetes.PS_LISTE_MEDICAMENT();
                 if (listeMedicaments != null)
