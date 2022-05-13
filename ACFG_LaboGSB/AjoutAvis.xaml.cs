@@ -46,9 +46,27 @@ namespace ACFG_LaboGSB
             praticienChoisi = praticien;
             lblDisplay.Content = "Médicament :";
             ActualiserCbBox();
-            cbBoxDisplay.SelectedIndex = 0;
-            DP_AVI_DATE.DisplayDateEnd = DateTime.Now;
-            DP_AVI_DATE.SelectedDate = DateTime.Now;
+            this.DP_AVI_DATE.DisplayDateEnd = DateTime.Now;
+            this.DP_AVI_DATE.SelectedDate = DateTime.Now;
+        }
+
+        public void timer_Tick(object sender, EventArgs e)
+        {
+            // Algo permettant d'afficher un label pendant 3 secondes avant de disparaître
+            this.LabelTimer.Content = DateTime.Now.ToString("ss");
+            var labelStockage = this.LabelTimer.Content;
+
+            while (this.LabelTimer.Content == labelStockage)
+            {
+                var labelNouveauStockage = DateTime.Now.ToString("ss");
+
+                if (labelNouveauStockage != (String)labelStockage)
+                {
+                    this.LabelValidation.Visibility = Visibility.Hidden;
+                    timer.Stop();
+                    break;
+                }
+            }
         }
 
         private void ActualiserCbBox()
@@ -61,7 +79,8 @@ namespace ACFG_LaboGSB
                     cbBoxDisplay.ItemsSource = listePraticiens;
                     cbBoxDisplay.DisplayMemberPath = "PRA_NOMCOMPLET";
                 }
-            } else
+            } 
+            else
             {
                 List<Medicament> listeMedicaments = Requetes.PS_LISTE_MEDICAMENT();
                 if (listeMedicaments != null)
