@@ -76,7 +76,7 @@ namespace ACFG_LaboGSB
             }
 
             //Si il n'y aucune erreur, alors ...
-            if (errorList == null)
+            if (errorList.Count == 0)
             {
                 // On implémente les données saisies dans une classe vide
                 Medicament NouveauMedicament = new Medicament();
