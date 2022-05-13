@@ -1,8 +1,6 @@
 use master
 go
 
-drop database ACFG_LaboGSB
-go
 --Création de la base de donnee
 CREATE DATABASE ACFG_LaboGSB
 go
@@ -82,6 +80,8 @@ BEGIN
 END
 go
 
+
+-- INSERTION
 --Insertion Table VISITEUR
 INSERT INTO VISITEUR (VIS_PRENOM, VIS_NOM, VIS_MDP, VIS_LOGIN)
 VALUES ('Sebastien', 'AUBERT', 'sebaub273', 'sAUB')
@@ -121,39 +121,39 @@ INSERT INTO PROFESSION(PRO_LIBELLE)
 VALUES('Neurologue')
 
 --insertion Table Praticien
-INSERT INTO PRATICIEN (PRA_NOM,PRA_PRENOM,PRO_ID)
+INSERT INTO PRATICIEN (PRA_NOM,PRA_PRENOM, PRO_ID)
 VALUES ('Delamare', 'Paul', 1)
 INSERT INTO PRATICIEN (PRA_NOM,PRA_PRENOM,PRO_ID)
 VALUES ('Roost', 'Didier', 3)
 INSERT INTO PRATICIEN (PRA_NOM,PRA_PRENOM,PRO_ID)
-VALUES ('Plaza', 'Stephane', 4)
+VALUES ('De Vallers', 'Stephane', 4)
 INSERT INTO PRATICIEN (PRA_NOM,PRA_PRENOM,PRO_ID)
 VALUES ('Deschamps', 'Marie-Jeanne', 5)
 INSERT INTO PRATICIEN (PRA_NOM,PRA_PRENOM,PRO_ID)
-VALUES ('Lagrosse', 'Bertha', 3)
+VALUES ('Larya', 'Bertha', 3)
 go
 
 --insertion Table Avis
 INSERT INTO AVIS (AVI_DATE, AVI_COMMENTAIRE, MED_ID, PRA_ID)
-VALUES ('26/04/2022','Pas mal','1','5')
+VALUES ('26/04/2022','Pas mal mais provoque des irritations','1','5')
 INSERT INTO AVIS (AVI_DATE, AVI_COMMENTAIRE, MED_ID, PRA_ID)
-VALUES ('25/02/2022','Aucun effet','1','4')
+VALUES ('25/02/2022','Aucun effet, je ne recommande pas','1','4')
 INSERT INTO AVIS (AVI_DATE, AVI_COMMENTAIRE, MED_ID, PRA_ID)
-VALUES ('14/04/2022','Très efficace','2','3')
+VALUES ('14/04/2022','Très efficace, pas d''effet secondaire à noter','2','3')
 INSERT INTO AVIS (AVI_DATE, AVI_COMMENTAIRE, MED_ID, PRA_ID)
-VALUES ('29/03/2022','Nul','2','2')
+VALUES ('29/03/2022','Inefficace','2','2')
 INSERT INTO AVIS (AVI_DATE, AVI_COMMENTAIRE, MED_ID, PRA_ID)
-VALUES ('04/01/2022','Plutot efficace','3','3')
+VALUES ('04/01/2022','Plutot efficace sur une période moyenne','3','3')
 INSERT INTO AVIS (AVI_DATE, AVI_COMMENTAIRE, MED_ID, PRA_ID)
-VALUES ('19/04/2022','Traitement rapide','3','2')
+VALUES ('19/04/2022','Traitement rapide à mettre en place et à agir','3','2')
 INSERT INTO AVIS (AVI_DATE, AVI_COMMENTAIRE, MED_ID, PRA_ID)
-VALUES ('25/02/2022','JAVASCRIPT JAVASCRIPT JAVASCRIPT','4','1')
+VALUES ('25/02/2022','Traitement lent à agir mais extrêmement efficace sur la durée','4','1')
 INSERT INTO AVIS (AVI_DATE, AVI_COMMENTAIRE, MED_ID, PRA_ID)
 VALUES ('14/05/2022','Bon goût','4','5')
 INSERT INTO AVIS (AVI_DATE, AVI_COMMENTAIRE, MED_ID, PRA_ID)
 VALUES ('21/03/2022','Peu d''effets secondaire, je valide','5','4')
 INSERT INTO AVIS (AVI_DATE, AVI_COMMENTAIRE, MED_ID, PRA_ID)
-VALUES ('16/03/2022','Ca pue !','5','3')
+VALUES ('16/03/2022','Odeur désagréable','5','3')
 INSERT INTO AVIS (AVI_DATE, AVI_COMMENTAIRE, MED_ID, PRA_ID)
 VALUES ('24/05/2022','Assez efficace et sent bon','6','2')
 INSERT INTO AVIS (AVI_DATE, AVI_COMMENTAIRE, MED_ID, PRA_ID)
@@ -165,7 +165,7 @@ VALUES ('05/02/2022','Efficace mais lent','7','5')
 INSERT INTO AVIS (AVI_DATE, AVI_COMMENTAIRE, MED_ID, PRA_ID)
 VALUES ('28/04/2022','Une pommade agréable et efficace','8','1')
 INSERT INTO AVIS (AVI_DATE, AVI_COMMENTAIRE, MED_ID, PRA_ID)
-VALUES ('20/01/2022','ARGHHHHHHHHHHHHHHHHHHHHHHHHHHH','8','5')
+VALUES ('20/01/2022','Odeur nauséabonde mais effets rapides à observer','8','5')
 go
 
 
